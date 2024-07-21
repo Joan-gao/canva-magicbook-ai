@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Rows,
-  Text,
   Button,
   Title,
   Box,
@@ -13,7 +12,6 @@ import {
   Carousel,
   Pill,
   CheckboxGroup,
-  Grid,
 } from '@canva/app-ui-kit';
 
 interface ScriptDescProps {

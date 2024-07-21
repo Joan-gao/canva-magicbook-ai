@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Rows,
   Text,
+  TypographyCard,
   Button,
   Title,
   Box,
@@ -16,41 +17,82 @@ interface ScriptGenerateProps {
 
 const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
   return (
-    <div className="scrollContainer">
-      <Box>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}
-        >
-          <div style={{ marginRight: '15px' }} onClick={() => goToPage('Main')}>
-            <ArrowLeftIcon />
-          </div>
-          <text style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Generate your Script
-          </text>
-        </div>
-      </Box>
-      <div style={{ marginTop: '15px' }}>
-        <div style={{ marginTop: '15px' }}>
-          <text style={{ fontSize: '15px', fontWeight: 'bold' }}>Title:</text>
-          <Text>Xiaomei's Family Summer Adventure in Perth</Text>
-        </div>
-        <div style={{ marginTop: '15px' }}>
-          <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
+    <Box 
+      paddingTop='2u'
+      paddingEnd='2u'
+      paddingBottom='3u'
+    >
+      <Rows spacing='3u'>
+        {/* Page Title / Navigation */}
+        <Columns spacing='1.5u'>
+          <Column width='containedContent'>
+            <div
+              style={{background: 'none', border: 'none', cursor:'pointer'}}
+              onClick={() => goToPage('ScriptDescribe')}
+            >
+              <ArrowLeftIcon />
+            </div>
+          </Column>
+
+          <Column width='containedContent'>
+            <Title 
+              tone='primary'
+              size='medium'
+              alignment='start'
+            >
+              Generate your Script
+            </Title>
+          </Column>
+        </Columns>
+
+        {/* Title Generated */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Title:
+          </Title>
+
+          <Text size='medium'>
+            Xiaomei's Family Summer Adventure in Perth
+          </Text>
+        </Rows>
+
+        {/* Characters Generated */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
             Characters:
-          </text>
-          <Text>Xiaomei, Xiaomei's mom, Xiaomei's Dad</Text>
-        </div>
-        <div style={{ marginTop: '15px' }}>
-          <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
+          </Title>
+
+          <Text size='medium'>
+            Xiaomei, Xiaomei's mom, Xiaomei's Dad
+          </Text>
+        </Rows>
+        
+        {/* Title Generated */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
             Chapters:
-          </text>
-          <Text>
+          </Title>
+
+          <Text size='medium'>
             Chapter 1:
             <br />
             Xiaomei's family set off from busy Shanghai, ready to start their
             long-awaited trip to Perth. At the airport, Xiaomei excitedly said,
             "I can't wait to see the koalas and kangaroos!" Mom and Dad smiled
             at Xiaomei and said, "Perth is sure to bring us many surprises!"
+            <br />
             <br />
             Chapter 2:
             <br />
@@ -61,27 +103,28 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
             Xiaomei and her mom said happily. They posed and took a beautiful
             photo with big smiles.
           </Text>
-        </div>
-        <div style={{ marginTop: '15px' }}>
-          <Columns spacing="2u">
-            <Column>
-              <Button variant="primary" stretch={true}>
-                Regenerate
-              </Button>
-            </Column>
-            <Column>
-              <Button
-                variant="primary"
-                stretch={true}
-                onClick={() => goToPage('PaintingDescribe')}
-              >
-                Submit
-              </Button>
-            </Column>
-          </Columns>
-        </div>
-      </div>
-    </div>
+        </Rows>
+
+        {/* Submit Button */}
+        <Columns spacing="2u">
+          <Column>
+            <Button variant="primary" stretch={true}>
+              Regenerate
+            </Button>
+          </Column>
+          
+          <Column>
+            <Button
+              variant="primary"
+              stretch={true}
+              onClick={() => goToPage('PaintingDescribe')}
+            >
+              Submit
+            </Button>
+          </Column>
+        </Columns>
+      </Rows>
+    </Box>
   );
 };
 
