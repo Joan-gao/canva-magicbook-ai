@@ -49,7 +49,7 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
+        onClick={() => goToPage('MusicDescribe')}
       >
         Generate
       </Button>
