@@ -14,8 +14,6 @@ import {
   EmbedCard,
   Grid,
 } from '@canva/app-ui-kit';
-import DiscoverTab from './DiscoverTab';
-import GenerateTab from './GenerateTab';
 
 interface HomePageProps {
   goToPage: (page: string) => void;
