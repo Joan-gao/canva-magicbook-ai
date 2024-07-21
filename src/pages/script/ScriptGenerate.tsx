@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Rows,
   Text,
-  TypographyCard,
   Button,
   Title,
   Box,
@@ -106,13 +105,13 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Submit Button */}
-        <Columns spacing="2u">
+        <Columns spacing="1u">
           <Column>
             <Button variant="primary" stretch={true}>
               Regenerate
             </Button>
           </Column>
-          
+
           <Column>
             <Button
               variant="primary"

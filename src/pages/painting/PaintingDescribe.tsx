@@ -44,7 +44,7 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
               size='medium'
               alignment='start'
             >
-              Describe your Painting
+              Describe your Designs
             </Title>
           </Column>
         </Columns>
