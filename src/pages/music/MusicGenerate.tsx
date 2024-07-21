@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Rows,
   Columns,
@@ -28,7 +27,7 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('DesignDescribe')}
+            onClick={() => goToPage('MusicDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -40,7 +39,7 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generate your Designs
+            Music Generation
           </Title>
         </Column>
       </Columns>
@@ -50,7 +49,7 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
+        onClick={() => goToPage('MusicDescribe')}
       >
         Generate
       </Button>

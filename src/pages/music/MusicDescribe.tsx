@@ -139,7 +139,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
+        onClick={() => goToPage('MusicGenerate')}
       >
         Generate
       </Button>
