@@ -13,6 +13,7 @@ import {
   PencilIcon,
   EmbedCard,
 } from '@canva/app-ui-kit';
+import PaintingStyle from '../../components/paintingStyle';
 
 interface PaintingDescribeProps {
   goToPage: (page: string) => void;
@@ -20,25 +21,44 @@ interface PaintingDescribeProps {
 
 const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
   return (
-    <div className="scrollContainer">
-      <Box>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}
-        >
-          <div style={{ marginRight: '15px' }} onClick={() => goToPage('Main')}>
-            <ArrowLeftIcon />
-          </div>
-          <text style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Describe your Painting
-          </text>
-        </div>
-      </Box>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
-          Painting Style:
-        </text>
-        <div style={{ marginTop: '15px' }}>
-          {' '}
+    <Box 
+      paddingTop='2u'
+      paddingEnd='2u'
+      paddingBottom='3u'
+    >
+      <Rows spacing='3u'>
+        {/* Page Title / Navigation */}
+        <Columns spacing='1.5u'>
+          <Column width='containedContent'>
+            <div
+              style={{background: 'none', border: 'none', cursor:'pointer'}}
+              onClick={() => goToPage('ScriptGenerate')}
+            >
+              <ArrowLeftIcon />
+            </div>
+          </Column>
+
+          <Column width='containedContent'>
+            <Title 
+              tone='primary'
+              size='medium'
+              alignment='start'
+            >
+              Describe your Painting
+            </Title>
+          </Column>
+        </Columns>
+
+        {/* Painting Styles Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Title:
+          </Title>
+
           <Carousel>
             <Pill ariaLabel="a pill" onClick={() => {}} text="Japanese anime" />
             <Pill ariaLabel="a pill" onClick={() => {}} text="Disney" />
@@ -50,48 +70,38 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
             />
             <Pill ariaLabel="a pill" onClick={() => {}} text="Realistic" />
           </Carousel>
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
-          Caracter Model Choose:
-        </text>
-        <div style={{ marginTop: '15px' }}>
+        </Rows>
+
+        {/* Characters Models Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Character Models:
+          </Title>
+
           <Carousel>
             <div style={{ height: '120px', width: '120px' }}>
-              <Box
-                background="neutralLow"
-                borderRadius="standard"
-                height="full"
-                padding="2u"
-              >
-                <Title size="xsmall">Xiaomei</Title>
-              </Box>
+              <PaintingStyle StyleName={'Style1'}></PaintingStyle>
             </div>
+
             <div style={{ height: '120px', width: '120px' }}>
-              <Box
-                background="neutralLow"
-                borderRadius="standard"
-                height="full"
-                padding="2u"
-              >
-                <Title size="xsmall">Xiaomei's mom</Title>
-              </Box>
+              <PaintingStyle StyleName={'Style2'}></PaintingStyle>
             </div>
+
             <div style={{ height: '120px', width: '120px' }}>
-              <Box
-                background="neutralLow"
-                borderRadius="standard"
-                height="full"
-                padding="2u"
-              >
-                <Title size="xsmall">Xiaomei's Dad</Title>
-              </Box>
+              <PaintingStyle StyleName={'Style3'}></PaintingStyle>
+            </div>
+
+            <div style={{ height: '120px', width: '120px' }}>
+              <PaintingStyle StyleName={'Style4'}></PaintingStyle>
             </div>
           </Carousel>
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
+        </Rows>
+
+        {/* Submit Button */}
         <Button
           variant="primary"
           stretch={true}
@@ -99,8 +109,9 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
         >
           Submit
         </Button>
-      </div>
-    </div>
+
+      </Rows>
+    </Box>
   );
 };
 

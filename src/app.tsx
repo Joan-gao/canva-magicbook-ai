@@ -22,7 +22,8 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'Main':
-        return <ScriptGenerate goToPage={setCurrentPage} />;
+        // return <HomePage goToPage={setCurrentPage} />;
+        return <PaintingDescribe goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptGenerate':
