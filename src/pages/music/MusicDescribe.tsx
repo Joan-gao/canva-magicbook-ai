@@ -1,15 +1,21 @@
 import React from 'react';
 
 import {
+  Text,
+  TextInput,
   Rows,
   Columns,
   Column,
-  Text,
+  Badge,
   Button,
   Title,
   Box,
+  Slider,
+  Grid,
   ArrowLeftIcon,
 } from '@canva/app-ui-kit';
+import MusicStyles from 'src/components/MusicStyle';
+import MusicParameter from 'src/components/MusicParameter';
 
 interface MusicDescribeProps {
   goToPage: (page: string) => void;
@@ -40,11 +46,94 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generate your Designs
+            Music Descriptions
           </Title>
         </Column>
       </Columns>
 
+      {/* Styles Selection */}
+      <Rows spacing='1u'>
+        <Columns spacing='2u'>
+          <Column width='containedContent'>
+            <Badge
+              tone='assist'
+              shape='circle'
+              ariaLabel='1'
+              text='1'
+            >
+            </Badge>
+          </Column>
+          
+          <Column>
+            <Title
+              tone='primary'
+              size='small'
+              alignment='start'
+            >
+              Choose Style
+            </Title>
+          </Column>
+        </Columns>
+
+        <MusicStyles />
+      </Rows>
+
+
+      {/* Music Parameters */}
+      <Rows spacing='2u'>
+        <Columns spacing='2u'>
+          <Column width='containedContent'>
+            <Badge
+              tone='assist'
+              shape='circle'
+              ariaLabel='2'
+              text='2'
+            >
+            </Badge>
+          </Column>
+        
+          <Column>
+            <Title
+              tone='primary'
+              size='small'
+              alignment='start'
+            >
+              Refine Music Parameters
+            </Title>
+          </Column>
+        </Columns>
+
+        <MusicParameter />
+      </Rows>
+
+      {/* Durations */}
+      <Rows spacing='1u'>
+        <Columns spacing='2u'>
+          <Column width='containedContent'>
+            <Badge
+              tone='assist'
+              shape='circle'
+              ariaLabel='3'
+              text='3'
+            >
+            </Badge>
+          </Column>
+          
+          <Column>
+            <Title
+              tone='primary'
+              size='small'
+              alignment='start'
+            >
+              Set Duration
+            </Title>
+          </Column>
+        </Columns>
+
+        <TextInput
+          placeholder='Enter value from 5.0 to 300.0'
+        />
+      </Rows>
 
       {/* Generate Button */}
       <Button
