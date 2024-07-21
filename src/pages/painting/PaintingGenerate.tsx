@@ -11,6 +11,7 @@ import {
   Select,
   FormField,
   ArrowLeftIcon,
+  SegmentedControl,
 } from '@canva/app-ui-kit';
 import PaintingStyle from '../../components/paintingStyle';
 
@@ -89,23 +90,29 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
         </Carousel>
 
         {/* Regenerate and Fine-Tuning Button */}
-        <Columns spacing="1u">
-          <Column>
-            <Button variant="secondary" stretch={true}>
-              Regenerate
-            </Button>
-          </Column>
+        <Box
+          paddingY='1u'
+          paddingX='1u'
+          borderRadius='large'
+        >
+          <Columns spacing="1u">
+            <Column>
+              <Button variant="secondary" stretch={true}>
+                Regenerate
+              </Button>
+            </Column>
 
-          <Column>
-            <Button
-              variant="secondary"
-              stretch={true}
-              onClick={() => {}}
-            >
-              Fine-Tune
-            </Button>
-          </Column>
-        </Columns>
+            <Column>
+              <Button
+                variant="secondary"
+                stretch={true}
+                onClick={() => {}}
+              >
+                Fine-Tune
+              </Button>
+            </Column>
+          </Columns>
+        </Box>
       </Rows>
 
       {/* Background Models */}
@@ -149,23 +156,29 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
         </Carousel>
 
         {/* Regenerate and Fine-Tuning Button */}
-        <Columns spacing="1u">
-          <Column>
-            <Button variant="secondary" stretch={true}>
-              Regenerate
-            </Button>
-          </Column>
+        <Box
+          paddingY='1u'
+          paddingX='1u'
+          borderRadius='large'
+        >
+          <Columns spacing="1u">
+            <Column>
+              <Button variant="secondary" stretch={true}>
+                Regenerate
+              </Button>
+            </Column>
 
-          <Column>
-            <Button
-              variant="secondary"
-              stretch={true}
-              onClick={() => {}}
-            >
-              Fine-Tune
-            </Button>
-          </Column>
-        </Columns>
+            <Column>
+              <Button
+                variant="secondary"
+                stretch={true}
+                onClick={() => {}}
+              >
+                Fine-Tune
+              </Button>
+            </Column>
+          </Columns>
+        </Box>
       </Rows>
 
 
@@ -186,13 +199,14 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
           size='xsmall'
           alignment='start'
         >
-          Story Length (seconds)
+          Motion Length (seconds)
         </Title>
         
         <Box
           paddingStart='2u'
         >
-          <Slider 
+          <Slider
+            id='motionLength'
             defaultValue={3}
             max={10}
             min={3}
@@ -201,18 +215,14 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
         </Box>
 
         {/* Motion Tool */}
-        <FormField
-          label="Motion Tool"
-          control={(props) => (
-            <Select
-              {...props}
-              options={[
-                { value: "aiMotion", label: "AI Motion" },
-                { value: "parallaxMotion", label: "Parallax Motion" },
-              ]}
-            />
-          )}
+        <SegmentedControl
+          id='motionTool'
+          options={[
+            { value: "aiMotion", label: "AI Motion" },
+            { value: "parallaxMotion", label: "Parallax Motion" },
+          ]}
         />
+        
         <Button
           variant="secondary"
           stretch={true}

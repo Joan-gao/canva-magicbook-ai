@@ -23,7 +23,7 @@ const App: React.FC = () => {
     switch (currentPage) {
       case 'Main':
         // return <HomePage goToPage={setCurrentPage} />;
-        return <VoiceoverDescribe goToPage={setCurrentPage} />;
+        return <PaintingGenerate goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptGenerate':
