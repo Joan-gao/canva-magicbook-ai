@@ -34,7 +34,7 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           </text>
         </div>
       </Box>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
           Story Description
         </text>
@@ -46,9 +46,9 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           />
         </div>
       </div>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <text style={{ fontSize: '15px', fontWeight: 'bold' }}>Age Range</text>
-        <div style={{ marginTop: '10px' }}>
+        <div style={{ marginTop: '15px' }}>
           <CheckboxGroup
             options={[
               {
@@ -71,7 +71,7 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           />
         </div>
       </div>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <text style={{ fontSize: '15px', fontWeight: 'bold' }}>Story Type</text>
         <div style={{ marginTop: '10px' }}>
           {' '}
@@ -85,7 +85,7 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           </Carousel>
         </div>
       </div>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
           Teaching Content (Optional)
         </text>
@@ -97,7 +97,7 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           />
         </div>
       </div>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
           Story Length
         </text>
@@ -105,7 +105,7 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           <Slider defaultValue={3} max={10} min={3} step={1} />
         </div>
       </div>
-      <div style={{ marginTop: '10px' }}>{/* <Button>Submit</Button> */}</div>
+      <div style={{ marginTop: '15px' }}>{/* <Button>Submit</Button> */}</div>
     </div>
   );
 };

@@ -23,8 +23,8 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
   const [currentPage, setCurrentPage] = useState<string>('Discover');
   // Discover Tab
   const discoverTab = (
-    <div style={{ padding: '10px' }}>
-      <div style={{ marginBottom: '10px' }}>
+    <div style={{ padding: '15px' }}>
+      <div style={{ marginBottom: '15px' }}>
         <Carousel>
           <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />
           <Pill ariaLabel="a pill" onClick={() => {}} text="Birthday" />
@@ -34,7 +34,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
           <Pill ariaLabel="a pill" onClick={() => {}} text="Family" />
         </Carousel>
       </div>
-      <div style={{ marginTop: '10px' }}>
+      <div style={{ marginTop: '15px' }}>
         <Grid alignX="stretch" alignY="stretch" columns={2} spacing="1u">
           <EmbedCard
             ariaLabel="Add embed to design"
@@ -74,7 +74,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
   );
   // Generate Tab
   const generateTab = (
-    <div style={{ padding: '10px' }}>
+    <div style={{ padding: '15px' }}>
       <Rows spacing="2u">
         <Title>Finally, you're here! 😊❤️</Title>
         <Text>
