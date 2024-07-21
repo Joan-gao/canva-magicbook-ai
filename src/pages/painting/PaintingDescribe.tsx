@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Rows,
-  Text,
   Button,
   Title,
   Box,
@@ -10,8 +9,6 @@ import {
   Pill,
   Column,
   Columns,
-  PencilIcon,
-  EmbedCard,
 } from '@canva/app-ui-kit';
 import PaintingStyle from '../../components/paintingStyle';
 

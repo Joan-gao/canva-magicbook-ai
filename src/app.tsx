@@ -8,8 +8,8 @@ import ScriptGenerate from './pages/script/ScriptGenerate';
 import PaintingDescribe from './pages/painting/PaintingDescribe';
 import PaintingGenerate from './pages/painting/PaintingGenerate';
 // voiceover pages
-import VoiceoverDescribe from './pages/music/MusicDescribe';
-import VoiceoverGenerate from './pages/music/MusicGenerate';
+import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
+import VoiceoverGenerate from './pages/voiceover/VoiceoverGenerate';
 // music pages
 import MusicDescribe from './pages/music/MusicDescribe';
 import MusicGenerate from './pages/music/MusicGenerate';
@@ -23,7 +23,7 @@ const App: React.FC = () => {
     switch (currentPage) {
       case 'Main':
         // return <HomePage goToPage={setCurrentPage} />;
-        return <PaintingGenerate goToPage={setCurrentPage} />;
+        return <VoiceoverDescribe goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptGenerate':

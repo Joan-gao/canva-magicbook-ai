@@ -4,15 +4,12 @@ import {
   Rows,
   Columns,
   Column,
-  Text,
   Button,
   Title,
   Carousel,
-  Pill,
   Slider,
   Select,
   FormField,
-  CheckboxGroup,
   ArrowLeftIcon,
 } from '@canva/app-ui-kit';
 import PaintingStyle from '../../components/paintingStyle';
