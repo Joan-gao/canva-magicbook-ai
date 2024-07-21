@@ -23,7 +23,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
   const [currentPage, setCurrentPage] = useState<string>('Discover');
   // Discover Tab
   const discoverTab = (
-    <div style={{ padding: '15px' }}>
+    <div style={{ padding: '15px'}}>
       <div style={{ marginBottom: '15px' }}>
         <Carousel>
           <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />

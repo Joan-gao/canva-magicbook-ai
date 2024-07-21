@@ -13,42 +13,70 @@ import {
   Carousel,
   Pill,
   CheckboxGroup,
+  Grid,
 } from '@canva/app-ui-kit';
 
-interface ScriptDescribeProps {
+interface ScriptDescProps {
   goToPage: (page: string) => void;
 }
 
-const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
+const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
   return (
-    <div className="scrollContainer">
-      <Box>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}
-        >
-          <div style={{ marginRight: '15px' }} onClick={() => goToPage('Main')}>
-            <ArrowLeftIcon />
-          </div>
-          <text style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Describe your Script
-          </text>
-        </div>
-      </Box>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
-          Story Description
-        </text>
-        <div style={{ marginTop: '10px' }}>
+    <Box 
+      paddingTop='2u'
+      paddingEnd='2u'
+      paddingBottom='3u'
+    >
+      <Rows spacing='3u'>
+        {/* Page Title / Navigation */}
+        <Columns spacing='1.5u'>
+          <Column width='containedContent'>
+            <div
+              style={{background: 'none', border: 'none', cursor:'pointer'}}
+              onClick={() => goToPage('Main')}
+            >
+              <ArrowLeftIcon />
+            </div>
+          </Column>
+
+          <Column width='containedContent'>
+            <Title 
+              tone='primary'
+              size='medium'
+              alignment='start'
+            >
+              Describe your Script
+            </Title>
+          </Column>
+        </Columns>
+        
+        {/* Story Description Input */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Story Description
+          </Title>
+
           <MultilineInput
             autoGrow
             minRows={2}
             placeholder="Write your script here..."
           />
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>Age Range</text>
-        <div style={{ marginTop: '15px' }}>
+        </Rows>
+
+        {/* Age Range Checkbox */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Age Range
+          </Title>
+
           <CheckboxGroup
             options={[
               {
@@ -69,12 +97,18 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
               },
             ]}
           />
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>Story Type</text>
-        <div style={{ marginTop: '10px' }}>
-          {' '}
+        </Rows>
+
+        {/* Story Type Carousel */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Story Type
+          </Title>
+
           <Carousel>
             <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />
             <Pill ariaLabel="a pill" onClick={() => {}} text="Birthday" />
@@ -83,30 +117,49 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
             <Pill ariaLabel="a pill" onClick={() => {}} text="Language Study" />
             <Pill ariaLabel="a pill" onClick={() => {}} text="Family" />
           </Carousel>
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
-          Teaching Content (Optional)
-        </text>
-        <div style={{ marginTop: '10px' }}>
+        </Rows>
+
+        {/* Teaching Content Input */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Teaching Content (Optional)
+          </Title>
+          
           <MultilineInput
             autoGrow
             minRows={2}
             placeholder="Write the knowledge you wanna involve..."
           />
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        <text style={{ fontSize: '15px', fontWeight: 'bold' }}>
-          Story Length
-        </text>
-        <div style={{ marginTop: '10px' }}>
-          <Slider defaultValue={3} max={10} min={3} step={1} />
-        </div>
-      </div>
-      <div style={{ marginTop: '15px' }}>
-        {' '}
+        </Rows>
+
+        
+        {/* Story Length Slider */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Story Length
+          </Title>
+          
+          <Box
+            paddingStart='2u'
+          >
+          <Slider 
+            defaultValue={3}
+            max={10}
+            min={3}
+            step={1}
+          />
+          </Box>
+        </Rows>
+
+        {/* Submit Button */}
         <Button
           variant="primary"
           stretch={true}
@@ -114,10 +167,9 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
         >
           Submit
         </Button>
-      </div>
-    </div>
+      </Rows>
+    </Box>
   );
 };
 
-export default ScriptDescribe;
-
+export default ScriptDesc;
