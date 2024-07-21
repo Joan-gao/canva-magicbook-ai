@@ -7,8 +7,9 @@ const GenerateTab: React.FC = () => {
       <Rows spacing="2u">
         <Title>Finally, you're here! 😊❤️</Title>
         <Text>
-          We're thrilled to introduce our magical app that supports amazing
-          features to help you create exclusive memories with your little ones.{' '}
+          We're excited to offer you a one-stop platform for creating children's
+          audiobooks with script generation, character and scene creation, AI
+          narration, and AI music.
           <br />
           Let’s embark on this journey together and make something truly
           special! 🎨📚✨
