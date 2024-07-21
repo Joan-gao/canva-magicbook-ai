@@ -23,7 +23,7 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
             <ArrowLeftIcon />
           </div>
           <text style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Describe your Script
+            Generate your Painting
           </text>
         </div>
       </Box>
@@ -31,6 +31,5 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
     </div>
   );
 };
-
 
 export default PaintingGenerate;
