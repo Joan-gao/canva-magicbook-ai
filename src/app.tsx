@@ -1,26 +1,20 @@
-import { Button, Rows, Text } from "@canva/app-ui-kit";
-import { addNativeElement } from "@canva/design";
-import styles from "styles/components.css";
+import React, { useState } from 'react';
+import HomePage from './pages/home/home';
+import './assets/styles/main.css'
+import './assets/styles/components.css'
+const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<string>('Main');
 
-export const App = () => {
-  const onClick = () => {
-    addNativeElement({
-      type: "TEXT",
-      children: ["Hello world!"],
-    });
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'Main':
+        return <HomePage goToPage={setCurrentPage} />;
+      default:
+        return <HomePage goToPage={setCurrentPage} />;
+    }
   };
 
-  return (
-    <div className={styles.scrollContainer}>
-      <Rows spacing="2u">
-        <Text>
-          To make changes to this app, edit the <code>src/app.tsx</code> file,
-          then close and reopen the app in the editor to preview the changes.
-        </Text>
-        <Button variant="primary" onClick={onClick} stretch={true}>
-          Do something cool
-        </Button>
-      </Rows>
-    </div>
-  );
+  return <div className="App">{renderPage()}</div>;
 };
+
+export default App;
