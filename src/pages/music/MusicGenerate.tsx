@@ -1,7 +1,8 @@
 import React from 'react';
-
 import {
   Rows,
+  Columns,
+  Column,
   Text,
   Button,
   Title,
@@ -15,24 +16,45 @@ interface MusicGenerateProps {
 
 const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
   return (
-    <div className="scrollContainer">
-      <Box>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}
-        >
-          <div style={{ marginRight: '15px' }} onClick={() => goToPage('Main')}>
+    <Box 
+    paddingTop='2u'
+    paddingEnd='2u'
+    paddingBottom='3u'
+  >
+    <Rows spacing='3u'>
+      {/* Page Title / Navigation */}
+      <Columns spacing='1.5u'>
+        <Column width='containedContent'>
+          <div
+            style={{background: 'none', border: 'none', cursor:'pointer'}}
+            onClick={() => goToPage('MusicDescribe')}
+          >
             <ArrowLeftIcon />
           </div>
-          <text style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Describe your Script
-          </text>
-        </div>
-      </Box>
-      <Button variant="primary" onClick={() => goToPage('GenerateTab')}>
-        Back to GenerateTab
+        </Column>
+
+        <Column width='containedContent'>
+          <Title 
+            tone='primary'
+            size='medium'
+            alignment='start'
+          >
+            Music Generation
+          </Title>
+        </Column>
+      </Columns>
+
+
+      {/* Generate Button */}
+      <Button
+        variant="primary"
+        stretch={true}
+        onClick={() => goToPage('MusicDescribe')}
+      >
+        Generate
       </Button>
-      {/* Add your Script Describe content here */}
-    </div>
+    </Rows>
+  </Box>
   );
 };
 
