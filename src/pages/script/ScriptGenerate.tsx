@@ -116,7 +116,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
             <Button
               variant="primary"
               stretch={true}
-              onClick={() => goToPage('PaintingDescribe')}
+              onClick={() => goToPage('DesignDescribe')}
             >
               Submit
             </Button>

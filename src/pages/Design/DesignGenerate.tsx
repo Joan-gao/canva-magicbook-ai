@@ -13,13 +13,13 @@ import {
   ArrowLeftIcon,
   SegmentedControl,
 } from '@canva/app-ui-kit';
-import PaintingStyle from '../../components/paintingStyle';
+import DesignStyle from '../../components/DesignStyle';
 
-interface PaintingGenerateProps {
+interface DesignGenerateProps {
   goToPage: (page: string) => void;
 }
 
-const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
+const DesignGenerate: React.FC<DesignGenerateProps> = ({ goToPage }) => {
   return (
     <Box 
     paddingTop='2u'
@@ -32,7 +32,7 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('PaintingDescribe')}
+            onClick={() => goToPage('DesignDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -64,28 +64,28 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style1'}></PaintingStyle>
+            <DesignStyle StyleName={'Style1'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style2'}></PaintingStyle>
+            <DesignStyle StyleName={'Style2'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style3'}></PaintingStyle>
+            <DesignStyle StyleName={'Style3'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style4'}></PaintingStyle>
+            <DesignStyle StyleName={'Style4'}></DesignStyle>
           </div>
         </Carousel>
 
@@ -130,28 +130,28 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style1'}></PaintingStyle>
+            <DesignStyle StyleName={'Style1'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style2'}></PaintingStyle>
+            <DesignStyle StyleName={'Style2'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style3'}></PaintingStyle>
+            <DesignStyle StyleName={'Style3'}></DesignStyle>
           </div>
 
           <div 
             style={{ height: '120px', width: '120px', cursor: 'pointer'}}
             onClick={() => {}}
           >
-            <PaintingStyle StyleName={'Style4'}></PaintingStyle>
+            <DesignStyle StyleName={'Style4'}></DesignStyle>
           </div>
         </Carousel>
 
@@ -245,4 +245,4 @@ const PaintingGenerate: React.FC<PaintingGenerateProps> = ({ goToPage }) => {
   );
 };
 
-export default PaintingGenerate;
+export default DesignGenerate;

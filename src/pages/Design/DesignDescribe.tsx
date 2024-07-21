@@ -10,13 +10,13 @@ import {
   Column,
   Columns,
 } from '@canva/app-ui-kit';
-import PaintingStyle from '../../components/paintingStyle';
+import DesignStyle from '../../components/DesignStyle';
 
-interface PaintingDescribeProps {
+interface DesignDescribeProps {
   goToPage: (page: string) => void;
 }
 
-const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
+const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
   return (
     <Box 
       paddingTop='2u'
@@ -46,7 +46,7 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
           </Column>
         </Columns>
 
-        {/* Painting Styles Selection */}
+        {/* Design Styles Selection */}
         <Rows spacing='1u'>
           <Title
             tone='primary'
@@ -81,19 +81,19 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
 
           <Carousel>
             <div style={{ height: '120px', width: '120px' }}>
-              <PaintingStyle StyleName={'Style1'}></PaintingStyle>
+              <DesignStyle StyleName={'Style1'}></DesignStyle>
             </div>
 
             <div style={{ height: '120px', width: '120px' }}>
-              <PaintingStyle StyleName={'Style2'}></PaintingStyle>
+              <DesignStyle StyleName={'Style2'}></DesignStyle>
             </div>
 
             <div style={{ height: '120px', width: '120px' }}>
-              <PaintingStyle StyleName={'Style3'}></PaintingStyle>
+              <DesignStyle StyleName={'Style3'}></DesignStyle>
             </div>
 
             <div style={{ height: '120px', width: '120px' }}>
-              <PaintingStyle StyleName={'Style4'}></PaintingStyle>
+              <DesignStyle StyleName={'Style4'}></DesignStyle>
             </div>
           </Carousel>
         </Rows>
@@ -102,7 +102,7 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('PaintingGenerate')}
+          onClick={() => goToPage('DesignGenerate')}
         >
           Submit
         </Button>
@@ -112,4 +112,4 @@ const PaintingDescribe: React.FC<PaintingDescribeProps> = ({ goToPage }) => {
   );
 };
 
-export default PaintingDescribe;
+export default DesignDescribe;

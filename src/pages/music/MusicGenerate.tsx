@@ -28,7 +28,7 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('PaintingDescribe')}
+            onClick={() => goToPage('DesignDescribe')}
           >
             <ArrowLeftIcon />
           </div>

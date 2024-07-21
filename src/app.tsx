@@ -4,9 +4,9 @@ import HomePage from './pages/home/HomePage';
 // script pages
 import ScriptDescribe from './pages/script/ScriptDescribe';
 import ScriptGenerate from './pages/script/ScriptGenerate';
-// painting pages
-import PaintingDescribe from './pages/painting/PaintingDescribe';
-import PaintingGenerate from './pages/painting/PaintingGenerate';
+// Design pages
+import DesignDescribe from './pages/Design/DesignDescribe';
+import DesignGenerate from './pages/Design/DesignGenerate';
 // voiceover pages
 import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
 import VoiceoverGenerate from './pages/voiceover/VoiceoverGenerate';
@@ -23,15 +23,15 @@ const App: React.FC = () => {
     switch (currentPage) {
       case 'Main':
         // return <HomePage goToPage={setCurrentPage} />;
-        return <PaintingGenerate goToPage={setCurrentPage} />;
+        return <DesignGenerate goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptGenerate':
         return <ScriptGenerate goToPage={setCurrentPage} />;
-      case 'PaintingDescribe':
-        return <PaintingDescribe goToPage={setCurrentPage} />;
-      case 'PaintingGenerate':
-        return <PaintingGenerate goToPage={setCurrentPage} />;
+      case 'DesignDescribe':
+        return <DesignDescribe goToPage={setCurrentPage} />;
+      case 'DesignGenerate':
+        return <DesignGenerate goToPage={setCurrentPage} />;
       case 'VoiceoverDescribe':
         return <VoiceoverDescribe goToPage={setCurrentPage} />;
       case 'VoiceoverGenerate':
