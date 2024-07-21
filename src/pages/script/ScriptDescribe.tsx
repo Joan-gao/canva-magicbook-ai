@@ -105,7 +105,16 @@ const ScriptDescribe: React.FC<ScriptDescribeProps> = ({ goToPage }) => {
           <Slider defaultValue={3} max={10} min={3} step={1} />
         </div>
       </div>
-      <div style={{ marginTop: '15px' }}>{/* <Button>Submit</Button> */}</div>
+      <div style={{ marginTop: '15px' }}>
+        {' '}
+        <Button
+          variant="primary"
+          stretch={true}
+          onClick={() => goToPage('ScriptGenerate')}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };
