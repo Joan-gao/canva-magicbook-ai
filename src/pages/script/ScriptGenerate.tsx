@@ -39,7 +39,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
               size='medium'
               alignment='start'
             >
-              Generate your Script
+              Script Generation
             </Title>
           </Column>
         </Columns>

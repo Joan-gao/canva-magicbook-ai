@@ -41,7 +41,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
               size='medium'
               alignment='start'
             >
-              Describe your Designs
+              Design Descriptions
             </Title>
           </Column>
         </Columns>

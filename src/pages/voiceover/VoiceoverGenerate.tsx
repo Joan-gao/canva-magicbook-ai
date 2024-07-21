@@ -27,7 +27,7 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('DesignDescribe')}
+            onClick={() => goToPage('VoiceoverDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -39,7 +39,7 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generate your Designs
+            Voice Generation
           </Title>
         </Column>
       </Columns>

@@ -43,7 +43,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
               size='medium'
               alignment='start'
             >
-              Describe your Script
+              Script Descriptions
             </Title>
           </Column>
         </Columns>

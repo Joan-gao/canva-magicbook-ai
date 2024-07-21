@@ -9,11 +9,8 @@ import {
   Columns,
   Column,
   MultilineInput,
-  Slider,
   Select,
   Carousel,
-  Pill,
-  CheckboxGroup,
 } from '@canva/app-ui-kit';
 import DesignStyle from '../../components/DesignStyle';
 
@@ -47,7 +44,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
               size='medium'
               alignment='start'
             >
-              Voiceover Descriptions
+              Voiceover Description
             </Title>
           </Column>
         </Columns>

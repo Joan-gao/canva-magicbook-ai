@@ -42,7 +42,7 @@ const DesignGenerate: React.FC<DesignGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generate your Designs
+            Design Generation
           </Title>
         </Column>
       </Columns>
