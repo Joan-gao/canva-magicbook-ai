@@ -4,11 +4,11 @@ import {
   Title,
 } from '@canva/app-ui-kit';
 
-interface PaintingStyleProps {
+interface DesignStyleProps {
   StyleName: string;
 }
 
-const PaintingStyle: React.FC<PaintingStyleProps> = ({ StyleName }) => {
+const DesignStyle: React.FC<DesignStyleProps> = ({ StyleName }) => {
   return (
     <div style={{ height: '120px', width: '120px' }}>
       <Box
@@ -24,4 +24,4 @@ const PaintingStyle: React.FC<PaintingStyleProps> = ({ StyleName }) => {
   );
 };
 
-export default PaintingStyle;
+export default DesignStyle;
