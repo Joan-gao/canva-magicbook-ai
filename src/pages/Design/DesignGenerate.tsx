@@ -8,8 +8,6 @@ import {
   Title,
   Carousel,
   Slider,
-  Select,
-  FormField,
   ArrowLeftIcon,
   SegmentedControl,
 } from '@canva/app-ui-kit';
@@ -60,33 +58,10 @@ const DesignGenerate: React.FC<DesignGenerateProps> = ({ goToPage }) => {
         </Title>
 
         <Carousel>
-          <div 
-            style={{ height: '120px', width: '120px', cursor: 'pointer'}}
-            onClick={() => {}}
-          >
-            <DesignStyle StyleName={'Style1'}></DesignStyle>
-          </div>
-
-          <div 
-            style={{ height: '120px', width: '120px', cursor: 'pointer'}}
-            onClick={() => {}}
-          >
-            <DesignStyle StyleName={'Style2'}></DesignStyle>
-          </div>
-
-          <div 
-            style={{ height: '120px', width: '120px', cursor: 'pointer'}}
-            onClick={() => {}}
-          >
-            <DesignStyle StyleName={'Style3'}></DesignStyle>
-          </div>
-
-          <div 
-            style={{ height: '120px', width: '120px', cursor: 'pointer'}}
-            onClick={() => {}}
-          >
-            <DesignStyle StyleName={'Style4'}></DesignStyle>
-          </div>
+          <DesignStyle StyleName={'Style1'}></DesignStyle>
+          <DesignStyle StyleName={'Style2'}></DesignStyle>
+          <DesignStyle StyleName={'Style3'}></DesignStyle>
+          <DesignStyle StyleName={'Style4'}></DesignStyle>
         </Carousel>
 
         {/* Regenerate and Fine-Tuning Button */}

@@ -80,21 +80,10 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
-            <div style={{ height: '120px', width: '120px' }}>
-              <DesignStyle StyleName={'Style1'}></DesignStyle>
-            </div>
-
-            <div style={{ height: '120px', width: '120px' }}>
-              <DesignStyle StyleName={'Style2'}></DesignStyle>
-            </div>
-
-            <div style={{ height: '120px', width: '120px' }}>
-              <DesignStyle StyleName={'Style3'}></DesignStyle>
-            </div>
-
-            <div style={{ height: '120px', width: '120px' }}>
-              <DesignStyle StyleName={'Style4'}></DesignStyle>
-            </div>
+            <DesignStyle StyleName={'Style1'}></DesignStyle>
+            <DesignStyle StyleName={'Style2'}></DesignStyle>
+            <DesignStyle StyleName={'Style3'}></DesignStyle>
+            <DesignStyle StyleName={'Style4'}></DesignStyle>
           </Carousel>
         </Rows>
 
