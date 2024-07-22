@@ -1,3 +1,4 @@
+huggingface auth token: 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
 
 ## 1. Generate GIF API
 
