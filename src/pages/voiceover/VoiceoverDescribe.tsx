@@ -145,23 +145,6 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           />
         </Rows>
 
-        {/* Story Description Input */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Script
-          </Title>
-
-          <MultilineInput
-            autoGrow
-            minRows={2}
-            placeholder="Write your script here..."
-          />
-        </Rows>
-
         {/* Preview / Generate Button */}
         <Rows spacing='1u'>
           <Button

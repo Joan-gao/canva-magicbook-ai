@@ -9,6 +9,8 @@ import {
   Pill,
   Column,
   Columns,
+  MultilineInput,
+  Select,
 } from '@canva/app-ui-kit';
 import DesignStyle from '../../components/DesignStyle';
 
@@ -85,6 +87,54 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             <DesignStyle StyleName={'Style3'}></DesignStyle>
             <DesignStyle StyleName={'Style4'}></DesignStyle>
           </Carousel>
+        </Rows>
+
+        {/* Dimension Selections */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Design Dimension
+          </Title>
+          
+          <Select
+            id='dimenions'
+            options={[
+              {
+                label: 'Landscape',
+                value: 'Landscape',
+              },
+              {
+                label: 'Portrait',
+                value: 'Portrait',
+              },
+              {
+                label: 'Square',
+                value: 'Square',
+              }
+            ]}
+          >
+          </Select>
+
+        </Rows>
+
+        {/* Teaching Content Input */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Teaching Content (Optional)
+          </Title>
+          
+          <MultilineInput
+            autoGrow
+            minRows={2}
+            placeholder="Write the knowledge you wanna involve..."
+          />
         </Rows>
 
         {/* Submit Button */}
