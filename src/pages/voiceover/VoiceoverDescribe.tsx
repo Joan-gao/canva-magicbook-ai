@@ -32,7 +32,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Column width='containedContent'>
             <div
               style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('DesignGenerate')}
+              onClick={() => goToPage('Summary')}
             >
               <ArrowLeftIcon />
             </div>

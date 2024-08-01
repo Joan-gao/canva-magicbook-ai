@@ -7,6 +7,8 @@ import ScriptGenerate from './pages/script/ScriptGenerate';
 // Design pages
 import DesignDescribe from './pages/Design/DesignDescribe';
 import DesignGenerate from './pages/Design/DesignGenerate';
+// Summary page
+import Summary from './pages/Summary/SummaryGeneration';
 // voiceover pages
 import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
 import VoiceoverGenerate from './pages/voiceover/VoiceoverGenerate';
@@ -22,7 +24,7 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'Main':
-        return <DesignDescribe goToPage={setCurrentPage} />;
+        return <HomePage goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptGenerate':
@@ -31,6 +33,8 @@ const App: React.FC = () => {
         return <DesignDescribe goToPage={setCurrentPage} />;
       case 'DesignGenerate':
         return <DesignGenerate goToPage={setCurrentPage} />;
+      case 'Summary':
+        return <Summary goToPage={setCurrentPage} />;
       case 'VoiceoverDescribe':
         return <VoiceoverDescribe goToPage={setCurrentPage} />;
       case 'VoiceoverGenerate':
