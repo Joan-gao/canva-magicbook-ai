@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from "react";
 import {
   Rows,
   Button,
@@ -12,49 +12,87 @@ import {
   Carousel,
   Pill,
   CheckboxGroup,
-} from '@canva/app-ui-kit';
+  LoadingIndicator,
+} from "@canva/app-ui-kit";
+import { useViewContext } from "src/context/contentContext";
 
 interface ScriptDescProps {
   goToPage: (page: string) => void;
 }
 
 const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
+  const { setScriptData, setChapterData } = useViewContext();
+  const [loading, setLoading] = useState(false);
+
+  const [generteData, setGenerateData] = useState({
+    scriptContent: "",
+    ageRange: "",
+    storyType: "",
+    teachingContent: "",
+    length: 3,
+  });
+
+  const requestForStory = async () => {
+    console.log(generteData);
+    try {
+      setLoading(true);
+
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      const response = await fetch("http://127.0.0.1:5000/generate/story", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ generatePrompt: generteData }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        setChapterData(result.story);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+      setScriptData(generteData);
+      goToPage("ScriptGenerate");
+    }
+  };
+
+  if (loading) return <LoadingIndicator size="medium" />;
   return (
-    <Box 
-      paddingTop='2u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
-      <Rows spacing='3u'>
+    <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
+      <Rows spacing="3u">
         {/* Page Title / Navigation */}
-        <Columns spacing='1.5u'>
-          <Column width='containedContent'>
+        <Columns spacing="1.5u">
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('Main')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("Main")}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='containedContent'>
-            <Title 
-              tone='primary'
-              size='medium'
-              alignment='start'
-            >
+          <Column width="containedContent">
+            <Title tone="primary" size="medium" alignment="start">
               Script Descriptions
             </Title>
           </Column>
         </Columns>
-        
+
         {/* Story Description Input */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Story Description
           </Title>
 
@@ -62,107 +100,132 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
             autoGrow
             minRows={2}
             placeholder="Write your script here..."
+            onChange={(value) =>
+              setGenerateData({ ...generteData, scriptContent: value })
+            }
           />
         </Rows>
 
         {/* Age Range Checkbox */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Age Range
           </Title>
 
           <CheckboxGroup
+            onChange={(value) =>
+              setGenerateData({ ...generteData, ageRange: value })
+            }
             options={[
               {
-                label: '1-3 years old',
-                value: '13',
+                label: "1-3 years old",
+                value: "1-3",
               },
               {
-                label: '3-6 years old',
-                value: '36',
+                label: "3-6 years old",
+                value: "3-6",
               },
               {
-                label: '6-10 years old',
-                value: '610',
+                label: "6-10 years old",
+                value: "6-10",
               },
               {
-                label: '10+ years old',
-                value: '10',
+                label: "10+ years old",
+                value: "10",
               },
             ]}
           />
         </Rows>
 
         {/* Story Type Carousel */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Story Type
           </Title>
 
           <Carousel>
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Birthday" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Science" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Travel" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Language Study" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Family" />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "adventure" })
+              }
+              text="Adventure"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "birthday" })
+              }
+              text="Birthday"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "science" })
+              }
+              text="Science"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "travel" })
+              }
+              text="Travel"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "language study" })
+              }
+              text="Language Study"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() =>
+                setGenerateData({ ...generteData, storyType: "family" })
+              }
+              text="Family"
+            />
           </Carousel>
         </Rows>
 
         {/* Teaching Content Input */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Teaching Content (Optional)
           </Title>
-          
+
           <MultilineInput
             autoGrow
             minRows={2}
             placeholder="Write the knowledge you wanna involve..."
+            onChange={(value) =>
+              setGenerateData({ ...generteData, teachingContent: value })
+            }
           />
         </Rows>
 
-        
         {/* Story Length Slider */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Story Length
           </Title>
-          
-          <Box
-            paddingStart='2u'
-          >
-          <Slider 
-            defaultValue={3}
-            max={10}
-            min={3}
-            step={1}
-          />
+
+          <Box paddingStart="2u">
+            <Slider
+              defaultValue={3}
+              max={10}
+              min={3}
+              step={1}
+              onChange={(value) =>
+                setGenerateData({ ...generteData, length: value })
+              }
+            />
           </Box>
         </Rows>
 
         {/* Submit Button */}
-        <Button
-          variant="primary"
-          stretch={true}
-          onClick={() => goToPage('ScriptGenerate')}
-        >
+        <Button variant="primary" stretch={true} onClick={requestForStory}>
           Submit
         </Button>
       </Rows>

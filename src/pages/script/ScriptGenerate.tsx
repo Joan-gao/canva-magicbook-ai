@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   Rows,
   Text,
@@ -8,99 +8,112 @@ import {
   ArrowLeftIcon,
   Columns,
   Column,
-} from '@canva/app-ui-kit';
+  LoadingIndicator,
+} from "@canva/app-ui-kit";
+import { useViewContext } from "src/context/contentContext";
 
 interface ScriptGenerateProps {
   goToPage: (page: string) => void;
 }
 
-const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
+const ScriptGenerate: React.FC<ScriptGenerateProps> = ({
+  goToPage,
+}: ScriptGenerateProps) => {
+  const { scriptData, chapterData, setChapterData } = useViewContext();
+
+  const characters = chapterData.Characters;
+  const characterString = characters.join(", ");
+  const [loading, setLoading] = useState(false);
+  const regenerateStory = async () => {
+    try {
+      setLoading(true);
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      const response = await fetch("http://127.0.0.1:5000/generate/story", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ generatePrompt: scriptData }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        setChapterData(result.story);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <LoadingIndicator size="medium" />;
   return (
-    <Box 
-      paddingTop='2u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
-      <Rows spacing='3u'>
+    <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
+      <Rows spacing="3u">
         {/* Page Title / Navigation */}
-        <Columns spacing='1.5u'>
-          <Column width='containedContent'>
+        <Columns spacing="1.5u">
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('ScriptDescribe')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("ScriptDescribe")}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='containedContent'>
-            <Title 
-              tone='primary'
-              size='medium'
-              alignment='start'
-            >
+          <Column width="containedContent">
+            <Title tone="primary" size="medium" alignment="start">
               Script Generation
             </Title>
           </Column>
         </Columns>
 
         {/* Title Generated */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Title:
           </Title>
-
-          <Text size='medium'>
-            Xiaomei's Family Summer Adventure in Perth
-          </Text>
+          {/* 
+          <Text size="medium">Xiaomei's Family Summer Adventure in Perth</Text> */}
+          <Text size="medium">{chapterData.Title}</Text>
         </Rows>
 
         {/* Characters Generated */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Characters:
           </Title>
 
-          <Text size='medium'>
-            Xiaomei, Xiaomei's mom, Xiaomei's Dad
-          </Text>
+          {/* <Text size="medium">Xiaomei, Xiaomei's mom, Xiaomei's Dad</Text> */}
+          <Text size="medium">{characterString}</Text>
         </Rows>
-        
+
         {/* Title Generated */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Chapters:
           </Title>
 
-          <Text size='medium'>
-            Chapter 1:
-            <br />
-            Xiaomei's family set off from busy Shanghai, ready to start their
-            long-awaited trip to Perth. At the airport, Xiaomei excitedly said,
-            "I can't wait to see the koalas and kangaroos!" Mom and Dad smiled
-            at Xiaomei and said, "Perth is sure to bring us many surprises!"
-            <br />
-            <br />
-            Chapter 2:
-            <br />
-            One summer morning, Xiaomei and her family visited the famous
-            Crawley Edge Boatshed. It is a blue boathouse built by the water,
-            looking very beautiful. The sun was shining brightly, and it was a
-            bit hot. Xiaomei's dad said, "Let's take a family photo!" "Yes!"
-            Xiaomei and her mom said happily. They posed and took a beautiful
-            photo with big smiles.
+          <Text size="medium">
+            {chapterData.ChapterList.map((item, index) => (
+              <>
+                <br key={index} />
+                Chapter {index + 1}: {item.chapterTitle}
+                <br />
+                {item.chapterContent}
+                <br />
+              </>
+            ))}
           </Text>
         </Rows>
 
@@ -116,7 +129,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
             <Button
               variant="primary"
               stretch={true}
-              onClick={() => goToPage('DesignDescribe')}
+              onClick={() => goToPage("DesignDescribe")}
             >
               Submit
             </Button>

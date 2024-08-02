@@ -1,43 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Home page
-import HomePage from './pages/home/HomePage';
+import HomePage from "./pages/home/HomePage";
 // script pages
-import ScriptDescribe from './pages/script/ScriptDescribe';
-import ScriptGenerate from './pages/script/ScriptGenerate';
+import ScriptDescribe from "./pages/script/ScriptDescribe";
+import ScriptGenerate from "./pages/script/ScriptGenerate";
 // Design pages
-import DesignDescribe from './pages/Design/DesignDescribe';
-import DesignGenerate from './pages/Design/DesignGenerate';
+import DesignDescribe from "./pages/Design/DesignDescribe";
+import DesignGenerate from "./pages/Design/DesignGenerate";
 // voiceover pages
-import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
-import VoiceoverGenerate from './pages/voiceover/VoiceoverGenerate';
+import VoiceoverDescribe from "./pages/voiceover/VoiceoverDescribe";
+import VoiceoverGenerate from "./pages/voiceover/VoiceoverGenerate";
 // music pages
-import MusicDescribe from './pages/music/MusicDescribe';
-import MusicGenerate from './pages/music/MusicGenerate';
+import MusicDescribe from "./pages/music/MusicDescribe";
+import MusicGenerate from "./pages/music/MusicGenerate";
 // css
-import './assets/styles/main.css'
-import './assets/styles/components.css'
+import "./assets/styles/main.css";
+import "./assets/styles/components.css";
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<string>('Main');
+  const [currentPage, setCurrentPage] = useState<string>("Main");
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'Main':
+      case "Main":
         return <DesignDescribe goToPage={setCurrentPage} />;
-      case 'ScriptDescribe':
+      case "ScriptDescribe":
         return <ScriptDescribe goToPage={setCurrentPage} />;
-      case 'ScriptGenerate':
+      case "ScriptGenerate":
         return <ScriptGenerate goToPage={setCurrentPage} />;
-      case 'DesignDescribe':
+      case "DesignDescribe":
         return <DesignDescribe goToPage={setCurrentPage} />;
-      case 'DesignGenerate':
+      case "DesignGenerate":
         return <DesignGenerate goToPage={setCurrentPage} />;
-      case 'VoiceoverDescribe':
+      case "VoiceoverDescribe":
         return <VoiceoverDescribe goToPage={setCurrentPage} />;
-      case 'VoiceoverGenerate':
+      case "VoiceoverGenerate":
         return <VoiceoverGenerate goToPage={setCurrentPage} />;
-      case 'MusicDescribe':
+      case "MusicDescribe":
         return <MusicDescribe goToPage={setCurrentPage} />;
-      case 'MusicGenerate':
+      case "MusicGenerate":
         return <MusicGenerate goToPage={setCurrentPage} />;
       default:
         return <HomePage goToPage={setCurrentPage} />;
