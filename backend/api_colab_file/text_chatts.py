@@ -4,8 +4,8 @@ from io import BytesIO
 from pydub import AudioSegment
 
 def generate_audio(prompt):
-    url = "https://4626-34-125-42-159.ngrok-free.app/api/generate_audio"  # Replace with your actual ngrok URL
-    payload = {"input": prompt, "temperature": 0.7, "top_P": 0.5, "top_K": 10, "oral": 4, "laugh": 0, "break_": 5}
+    url = "https://db89-34-125-7-185.ngrok-free.app/api/generate_audio"  # Replace with your actual ngrok URL
+    payload = {"input": prompt, "temperature": 0.7, "top_P": 0.5, "top_K": 10, "oral": 4, "laugh": 0, "break_": 5, "seed": 1000}
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, json=payload, headers=headers)
 
