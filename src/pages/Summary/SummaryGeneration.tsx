@@ -5,6 +5,8 @@ import {
   Tabs,
   TabList,
   Rows,
+  SegmentedControl,
+  Slider,
   Text,
   TabPanels,
   TabPanel,
@@ -93,7 +95,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
         </Rows>
       </Tabs>
 
-      {/* Generate Button */}
+      {/* Continue Button */}
       <Button
         variant="primary"
         stretch={true}
