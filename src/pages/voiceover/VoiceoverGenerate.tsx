@@ -8,6 +8,7 @@ import {
   Title,
   Box,
   ArrowLeftIcon,
+  ProgressBar,
 } from '@canva/app-ui-kit';
 
 interface VoiceoverGenerateProps {
@@ -39,20 +40,17 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Voice Generation
+            Generating
           </Title>
         </Column>
       </Columns>
 
+      <ProgressBar
+        size="medium"
+        tone="info"
+        value={10}
+      />
 
-      {/* Generate Button */}
-      <Button
-        variant="primary"
-        stretch={true}
-        onClick={() => goToPage('MusicDescribe')}
-      >
-        Generate
-      </Button>
     </Rows>
   </Box>
   );
