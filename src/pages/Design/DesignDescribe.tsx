@@ -72,7 +72,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Characters Models Selection */}
-        <Rows spacing='1u'>
+        {/* <Rows spacing='1u'>
           <Title
             tone='primary'
             size='small'
@@ -87,7 +87,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             <DesignStyle StyleName={'Style3'}></DesignStyle>
             <DesignStyle StyleName={'Style4'}></DesignStyle>
           </Carousel>
-        </Rows>
+        </Rows> */}
 
         {/* Dimension Selections */}
         <Rows spacing='1u'>
@@ -121,7 +121,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Teaching Content Input */}
-        <Rows spacing='1u'>
+        {/* <Rows spacing='1u'>
           <Title
             tone='primary'
             size='small'
@@ -135,13 +135,13 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             minRows={2}
             placeholder="Write the knowledge you wanna involve..."
           />
-        </Rows>
+        </Rows> */}
 
         {/* Submit Button */}
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('DesignGenerate')}
+          onClick={() => goToPage('Summary')}
         >
           Submit
         </Button>

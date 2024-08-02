@@ -5,6 +5,8 @@ import {
   Tabs,
   TabList,
   Rows,
+  SegmentedControl,
+  Slider,
   Text,
   TabPanels,
   TabPanel,
@@ -60,7 +62,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
             <Column width='containedContent'>
               <div
                 style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('DesignGeneration')}
+                onClick={() => goToPage('DesignDescribe')}
               >
                 <ArrowLeftIcon />
               </div>
@@ -93,7 +95,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
         </Rows>
       </Tabs>
 
-      {/* Generate Button */}
+      {/* Continue Button */}
       <Button
         variant="primary"
         stretch={true}
