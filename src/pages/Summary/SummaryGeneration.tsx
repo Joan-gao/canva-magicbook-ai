@@ -62,7 +62,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
             <Column width='containedContent'>
               <div
                 style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('DesignGeneration')}
+                onClick={() => goToPage('DesignDescribe')}
               >
                 <ArrowLeftIcon />
               </div>

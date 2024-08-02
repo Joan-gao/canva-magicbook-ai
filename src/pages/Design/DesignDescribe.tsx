@@ -141,7 +141,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('DesignGenerate')}
+          onClick={() => goToPage('Summary')}
         >
           Submit
         </Button>
