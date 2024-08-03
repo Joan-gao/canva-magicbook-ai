@@ -8,7 +8,6 @@ import {
   PlayFilledIcon,
   Columns,
   Column,
-  MultilineInput,
   Select,
   Carousel,
 } from '@canva/app-ui-kit';
@@ -32,7 +31,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Column width='containedContent'>
             <div
               style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('DesignGenerate')}
+              onClick={() => goToPage('Summary')}
             >
               <ArrowLeftIcon />
             </div>
@@ -81,28 +80,12 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             id='language'
             options={[
               {
-                label: 'English (US)',
-                value: 'EnglishUS'
+                label: 'English',
+                value: 'English'
               },
               {
-                label: 'English (UK)',
-                value: 'EnglishUK'
-              },
-              {
-                label: 'English (AUS)',
-                value: 'EnglishAUS'
-              },
-              {
-                label: 'French',
-                value: 'French'
-              },
-              {
-                label: 'Chinese (Mandarin)',
-                value: 'ChineseMandarin'
-              },
-              {
-                label: 'Japanese',
-                value: 'Japanese'
+                label: 'Chinese',
+                value: 'Chinese'
               },
             ]}
           />
@@ -124,10 +107,6 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
               {
                 label: 'Formal',
                 value: 'Formal'
-              },
-              {
-                label: 'Casual',
-                value: 'Casual'
               },
               {
                 label: 'Casual',
@@ -161,7 +140,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             stretch={true}
             onClick={() => goToPage('VoiceoverGenerate')}
           >
-            Submit
+            Generate
           </Button>
         </Rows>
       </Rows>
