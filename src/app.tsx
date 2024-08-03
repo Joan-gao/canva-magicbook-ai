@@ -4,14 +4,15 @@ import HomePage from './pages/home/HomePage';
 // script pages
 import ScriptDescribe from './pages/script/ScriptDescribe';
 import ScriptGenerate from './pages/script/ScriptGenerate';
+import ScriptLoading from './pages/script/ScriptLoading';
 // Design pages
 import DesignDescribe from './pages/Design/DesignDescribe';
-// import DesignGenerate from './pages/Design/DesignGenerate';
+import DesignLoading from './pages/Design/DesignLoading';
 // Summary page
 import Summary from './pages/Summary/SummaryGeneration';
 // voiceover pages
 import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
-import VoiceoverGenerate from './pages/voiceover/VoiceoverGenerate';
+import VoiceoverGenerate from './pages/voiceover/VoiceoverLoading';
 // music pages
 import MusicDescribe from './pages/music/MusicDescribe';
 import MusicGenerate from './pages/music/MusicGenerate';

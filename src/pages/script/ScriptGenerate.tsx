@@ -104,7 +104,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
           </Text>
         </Rows>
 
-        {/* Submit Button */}
+        {/* Regenerate/Continue Button */}
         <Columns spacing="1u">
           <Column>
             <Button variant="primary" stretch={true}>
@@ -118,7 +118,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
               stretch={true}
               onClick={() => goToPage('DesignDescribe')}
             >
-              Submit
+              Continue
             </Button>
           </Column>
         </Columns>

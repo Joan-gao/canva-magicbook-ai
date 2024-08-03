@@ -11,11 +11,11 @@ import {
   ProgressBar,
 } from '@canva/app-ui-kit';
 
-interface VoiceoverGenerateProps {
+interface VoiceoverLoadingProps {
   goToPage: (page: string) => void;
 }
 
-const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
+const VoiceoverLoading: React.FC<VoiceoverLoadingProps> = ({ goToPage }) => {
   return (
     <Box 
     paddingTop='2u'
@@ -56,4 +56,4 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
   );
 };
 
-export default VoiceoverGenerate;
+export default VoiceoverLoading;
