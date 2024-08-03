@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addAudioTrack, AudioTrack } from "@canva/design";
+import { addAudioTrack, addNativeElement, AudioTrack } from "@canva/design";
 import { upload } from "@canva/asset";
 import {
   Rows,
@@ -13,7 +13,6 @@ import {
   LoadingIndicator,
 } from "@canva/app-ui-kit";
 import { useViewContext } from "src/context/contentContext";
-
 interface VoiceoverGenerateProps {
   goToPage: (page: string) => void;
 }
@@ -21,55 +20,73 @@ interface VoiceoverGenerateProps {
 const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
   const { scriptData, chapterData, setChapterData } = useViewContext();
   const [loading, setLoading] = useState(false);
-  // const handleClick = async () => {
-  //   // Upload an audio file
-  //   const result = await upload({
-  //     type: "AUDIO",
-  //     title: "Example audio",
-  //     url: "https://www.canva.dev/example-assets/audio-import/audio.mp3",
-  //     mimeType: "audio/mp3",
-  //     durationMs: 86047,
-  //   });
-
-  //   // Add the audio track to the design
-  //   await addAudioTrack({
-  //     ref: result.ref,
-  //   });
-  // };
-
   const handleClick = async () => {
-    try {
-      setLoading(true);
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
-
-      const response = await fetch("http://127.0.0.1:5000/generate/audio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          // Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          story: chapterData.ChapterList,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
-
-      if (result.status === "success") {
-        setChapterData(result.story);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log("error", error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
+    // Upload an audio file
+    const result = await upload({
+      type: "AUDIO",
+      title: "Example audio",
+      url: "https://cloud.appwrite.io/v1/storage/buckets/66ab98e800074cb72188/files/66ad996d002c4c491530/view?project=66ab7c0f0031bd4ae2ac&mode=admin",
+      mimeType: "audio/mp3",
+      durationMs: 86047,
+    });
+    // Upload an video file
+    // const result = await upload({
+    //   type: "VIDEO",
+    //   mimeType: "video/mp4",
+    //   url: "https://cloud.appwrite.io/v1/storage/buckets/66ab98e800074cb72188/files/66ad8d2a003763216183/view?project=66ab7c0f0031bd4ae2ac&mode=admin",
+    //   thumbnailImageUrl:
+    //     "https://www.canva.dev/example-assets/video-import/thumbnail-image.jpg",
+    //   thumbnailVideoUrl:
+    //     "https://cloud.appwrite.io/v1/storage/buckets/66ab98e800074cb72188/files/66ad8d2a003763216183/view?project=66ab7c0f0031bd4ae2ac&mode=admin",
+    // });
+    //Add the audio track to the design
+    await addAudioTrack({
+      ref: result.ref,
+    });
+    // Add the video track to the design
+    // await addNativeElement({
+    //   type: "VIDEO",
+    //   ref: result.ref,
+    //   width: 400,
+    //   height: 600,
+    //   top: 0,
+    //   left: 0,
+    // });
   };
+
+  // const handleClick = async () => {
+  //   try {
+  //     setLoading(true);
+  //     // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  //     const response = await fetch("http://127.0.0.1:5000/generate/audio", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         // Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         story: chapterData.ChapterList,
+  //       }),
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const result = await response.json();
+
+  //     if (result.status === "success") {
+  //       setChapterData(result.story);
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       console.log("error", error.message);
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   if (loading) return <LoadingIndicator size="medium" />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
