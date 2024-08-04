@@ -29,19 +29,9 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       paddingTop='2u'
       paddingBottom='3u'
     >
-      <SummaryIllustrations />
+      <SummaryAnimations />
     </Box>
   );
-
-    // Animations Tab
-    const animationsTab = (
-      <Box 
-        paddingTop='2u'
-        paddingBottom='3u'
-      >
-        <SummaryAnimations />
-      </Box>
-    );
 
   // Chapters Text Tab
   const chaptersTab = (
@@ -93,12 +83,6 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
                 Illustrations
               </Tab>
               <Tab 
-                id="animations"
-                onClick={() => setCurrentPage('animations')}
-              >
-                Animations
-              </Tab>
-              <Tab 
                 id="chapters"
                 onClick={() => setCurrentPage('chapters')}
               >
@@ -110,7 +94,6 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
           {/* Tabs Content*/}
           <TabPanels>
             <TabPanel id="illustrations">{illustrationsTab}</TabPanel>
-            <TabPanel id="animations">{animationsTab}</TabPanel>
             <TabPanel id="chapters">{chaptersTab}</TabPanel>
           </TabPanels>
         </Rows>

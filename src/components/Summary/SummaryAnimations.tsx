@@ -10,6 +10,7 @@ import {
   Slider,
   SegmentedControl,
   Button,
+  Carousel,
 } from '@canva/app-ui-kit';
 
 const embedCardsData = [
@@ -90,32 +91,38 @@ const embedCardsData = [
 const SummaryAnimations: React.FC = () => {
   return (
     <Rows spacing='3u'>
-      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="2u">
+      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="3u">
         {embedCardsData.map((card, index) => (
           <Rows spacing='1u'>
-            {/* <EmbedCard
-              key={index}
-              ariaLabel={card.ariaLabel}
-              // description={card.description}
-              onClick={card.onClick}
-              onDragStart={card.onDragStart}
-              thumbnailUrl={card.thumbnailUrl}
-            /> */}
-            <VideoCard
-              borderRadius='standard'
-              ariaLabel={card.ariaLabel}
-              onClick={card.onClick}
-              videoPreviewUrl={card.videoPreviewUrl}
-              thumbnailUrl={card.thumbnailUrl}
-              mimeType='video/mp4'
-            />
+            <Carousel >
+              <EmbedCard
+                key={index}
+                ariaLabel={card.ariaLabel}
+
+                onClick={card.onClick}
+                onDragStart={card.onDragStart}
+                thumbnailUrl={card.thumbnailUrl}
+                thumbnailHeight={80}
+              />
+              <VideoCard
+                borderRadius='standard'
+                ariaLabel={card.ariaLabel}
+                onClick={card.onClick}
+                videoPreviewUrl={card.videoPreviewUrl}
+                thumbnailUrl={card.thumbnailUrl}
+                mimeType='video/mp4'
+                bottomEndVisibility='always'
+                thumbnailHeight={80}
+              />
+            </Carousel>
+
             <Box
-              background='neutralLow'
-              borderRadius='large'
-              padding='1u'
-            >
-              <Text>{card.description}</Text>
-            </Box>
+                background='neutralLow'
+                borderRadius='large'
+                padding='1u'
+              >
+                <Text>{card.description}</Text>
+              </Box>
           </Rows>
         ))}
       </Grid>
