@@ -55,7 +55,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             size='small'
             alignment='start'
           >
-            Title:
+            Style
           </Title>
 
           <Carousel>
@@ -106,7 +106,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('Summary')}
+          onClick={() => goToPage('DesignLoading')}
         >
           Generate
         </Button>

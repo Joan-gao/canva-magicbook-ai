@@ -51,6 +51,14 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
         value={10}
       />
 
+      {/* REMOVE LATER */}
+      <Button
+        variant="primary"
+        stretch={true}
+        onClick={() => goToPage('Summary')}
+      >
+        Continue
+      </Button>
     </Rows>
   </Box>
   );
