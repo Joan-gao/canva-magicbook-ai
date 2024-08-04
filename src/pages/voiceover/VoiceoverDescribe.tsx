@@ -13,8 +13,6 @@ import {
   Carousel,
   Badge,
 } from '@canva/app-ui-kit';
-import DesignStyle from '../../components/DesignStyle';
-
 
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
@@ -64,24 +62,6 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           </Column>
         </Columns>
 
-        {/* Characters Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Voice Character
-          </Title>
-
-          <Carousel>
-            <DesignStyle StyleName={'Style1'}></DesignStyle>
-            <DesignStyle StyleName={'Style2'}></DesignStyle>
-            <DesignStyle StyleName={'Style3'}></DesignStyle>
-            <DesignStyle StyleName={'Style4'}></DesignStyle>
-          </Carousel>
-        </Rows>
-
         {/* Language Selection */}
         <Rows spacing='1u'>
           <Title
@@ -102,6 +82,64 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
               {
                 label: 'Chinese',
                 value: 'Chinese'
+              },
+            ]}
+          />
+        </Rows>
+
+        {/* Gender Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Gender
+          </Title>
+
+          <Select
+            id='gender'
+            options={[
+              {
+                label: 'Male',
+                value: 'male'
+              },
+              {
+                label: 'Female',
+                value: 'female'
+              },
+            ]}
+          />
+        </Rows>
+
+        {/* Age Group Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Age Group
+          </Title>
+
+          <Select
+            id='age'
+            options={[
+              {
+                label: '0-12',
+                value: 'age1'
+              },
+              {
+                label: '13-21',
+                value: 'age2'
+              },
+              {
+                label: '21-40',
+                value: 'age3'
+              },
+              {
+                label: '40+',
+                value: 'age4'
               },
             ]}
           />
