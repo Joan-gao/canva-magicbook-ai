@@ -21,9 +21,11 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({
 }: ScriptGenerateProps) => {
   const { scriptData, chapterData, setChapterData } = useViewContext();
 
-  const characters = chapterData.Characters;
-  const characterString = characters.join(", ");
   const [loading, setLoading] = useState(false);
+  const characters = chapterData.Characters;
+  const storyOutline = chapterData.storyOutline;
+  // console.log(characters);
+  // console.log(storyOutline);
   const regenerateStory = async () => {
     try {
       setLoading(true);
@@ -81,36 +83,51 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({
         {/* Title Generated */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
-            Title:
+            Story Title:
           </Title>
           {/* 
           <Text size="medium">Xiaomei's Family Summer Adventure in Perth</Text> */}
-          <Text size="medium">{chapterData.Title}</Text>
+          <Text size="medium">{chapterData.storyTitle}</Text>
         </Rows>
-
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
+            Story Background:
+          </Title>
+          {/* 
+          <Text size="medium">Xiaomei's Family Summer Adventure in Perth</Text> */}
+          <Text size="medium">{chapterData.storyBackground}</Text>
+        </Rows>
         {/* Characters Generated */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
-            Characters:
+            Main Characters:
           </Title>
-
+          {characters.map((item, index) => (
+            <>
+              <Text key={index} size="medium">
+                {item.name}
+              </Text>
+              <Text key={index} size="medium">
+                {item.description}
+              </Text>
+            </>
+          ))}
           {/* <Text size="medium">Xiaomei, Xiaomei's mom, Xiaomei's Dad</Text> */}
-          <Text size="medium">{characterString}</Text>
         </Rows>
 
         {/* Title Generated */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
-            Chapters:
+            Story Outline:
           </Title>
 
           <Text size="medium">
-            {chapterData.ChapterList.map((item, index) => (
+            {storyOutline.map((item, index) => (
               <>
                 <br key={index} />
-                Chapter {index + 1}: {item.chapterTitle}
+                {item.title}
                 <br />
-                {item.chapterContent}
+                {item.content}
                 <br />
               </>
             ))}

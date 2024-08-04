@@ -16,9 +16,24 @@ interface ScriptData {
   length: number;
 }
 interface ChapterData {
-  Title: string;
-  Characters: string[];
-  ChapterList: [{ chapterTitle: string; chapterContent: string }];
+  storyTitle: string;
+  Characters: [{ name: string; description: string }];
+  storyBackground: string;
+  storyOutline: [{ title: string; content: string }];
+  scence: [
+    { scenceName: string; scenceDescription: string; narrationDialogue: string }
+  ];
+  scenceImagePrompts: [{ scenceName: string; prompt: string }];
+  // charactImagePrompts: [{ character: string; prompt: string }];
+}
+interface ImageData {
+  imageFiles: [{ scenceName: string; url: string }];
+}
+interface VideoData {
+  videoFiles: [{ scenceName: string; url: string }];
+}
+interface AudioData {
+  audioFiles: [{ scenceName: string; url: string }];
 }
 
 // interface ExampleData {
@@ -43,7 +58,15 @@ interface ChapterData {
 //     },
 //   ],
 // };
-
+const defaultImageData: ImageData = {
+  imageFiles: [{ scenceName: "", url: "" }],
+};
+const defaultVideoData: VideoData = {
+  videoFiles: [{ scenceName: "", url: "" }],
+};
+const defaultAudioData: AudioData = {
+  audioFiles: [{ scenceName: "", url: "" }],
+};
 const defaultScriptData: ScriptData = {
   scriptContent: "",
   ageRange: "",
@@ -52,9 +75,12 @@ const defaultScriptData: ScriptData = {
   length: 3,
 };
 const defaultChapterData: ChapterData = {
-  Title: "",
-  Characters: [],
-  ChapterList: [{ chapterTitle: "", chapterContent: "" }],
+  storyTitle: "",
+  Characters: [{ name: "", description: "" }],
+  storyBackground: "",
+  storyOutline: [{ title: "", content: "" }],
+  scence: [{ scenceName: "", scenceDescription: "", narrationDialogue: "" }],
+  scenceImagePrompts: [{ scenceName: "", prompt: "" }],
 };
 
 interface ViewContextProps {
@@ -62,9 +88,12 @@ interface ViewContextProps {
   setScriptData: (data: any) => void;
   chapterData: ChapterData;
   setChapterData: (data: any) => void;
-
-  //   exampleData: ExampleData;
-  //   setExampleData: (data: any) => void;
+  imageData: ImageData;
+  setImageData: (data: any) => void;
+  videoData: VideoData;
+  setVideoData: (data: any) => void;
+  audioData: AudioData;
+  setAudioData: (data: any) => void;
 }
 
 export const ViewContext = createContext<ViewContextProps>({
@@ -72,8 +101,12 @@ export const ViewContext = createContext<ViewContextProps>({
   setScriptData: () => {},
   chapterData: defaultChapterData,
   setChapterData: () => {},
-  //   exampleData: defaultExample,
-  //   setExampleData: () => {},
+  imageData: defaultImageData,
+  setImageData: () => {},
+  videoData: defaultVideoData,
+  setVideoData: () => {},
+  audioData: defaultAudioData,
+  setAudioData: () => {},
 });
 
 export const useViewContext = () => useContext(ViewContext);
@@ -86,6 +119,9 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
   //   const [exampleData, setExampleData] = useState<ExampleData>(defaultExample);
   const [chapterData, setChapterData] =
     useState<ChapterData>(defaultChapterData);
+  const [imageData, setImageData] = useState<ImageData>(defaultImageData);
+  const [videoData, setVideoData] = useState<VideoData>(defaultVideoData);
+  const [audioData, setAudioData] = useState<AudioData>(defaultAudioData);
 
   return (
     <ViewContext.Provider
@@ -94,6 +130,12 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
         setScriptData,
         chapterData,
         setChapterData,
+        imageData,
+        setImageData,
+        videoData,
+        setVideoData,
+        audioData,
+        setAudioData,
         // exampleData,
         // setExampleData,
       }}
