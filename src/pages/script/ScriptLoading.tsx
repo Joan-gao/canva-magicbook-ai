@@ -11,11 +11,11 @@ import {
   ProgressBar,
 } from '@canva/app-ui-kit';
 
-interface VoiceoverGenerateProps {
+interface ScriptLoadingProps {
   goToPage: (page: string) => void;
 }
 
-const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
+const ScriptLoading: React.FC<ScriptLoadingProps> = ({ goToPage }) => {
   return (
     <Box 
     paddingTop='2u'
@@ -28,7 +28,7 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('VoiceoverDescribe')}
+            onClick={() => goToPage('ScriptDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -40,7 +40,7 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generating
+            Generating Script
           </Title>
         </Column>
       </Columns>
@@ -51,9 +51,17 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
         value={10}
       />
 
+      {/* REMOVE LATER */}
+      <Button
+        variant="primary"
+        stretch={true}
+        onClick={() => goToPage('ScriptGenerate')}
+      >
+        Continue
+      </Button>
     </Rows>
   </Box>
   );
 };
 
-export default VoiceoverGenerate;
+export default ScriptLoading;

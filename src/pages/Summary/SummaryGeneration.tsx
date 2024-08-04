@@ -5,23 +5,16 @@ import {
   Tabs,
   TabList,
   Rows,
-  SegmentedControl,
-  Slider,
-  Text,
   TabPanels,
   TabPanel,
   Title,
   Button,
-  Carousel,
   Column,
   Columns,
-  Pill,
-  EmbedCard,
-  Grid,
   ArrowLeftIcon,
 } from '@canva/app-ui-kit';
-import SummaryIllustrations from 'src/components/Summary/SummaryIllustrations';
 import SummaryChapters from 'src/components/Summary/SummaryChapters';
+import SummaryAnimations from 'src/components/Summary/SummaryAnimations';
 
 interface SummaryPageProps {
   goToPage: (page: string) => void;
@@ -35,7 +28,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       paddingTop='2u'
       paddingBottom='3u'
     >
-      <SummaryIllustrations />
+      <SummaryAnimations />
     </Box>
   );
 
@@ -62,30 +55,40 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
             <Column width='containedContent'>
               <div
                 style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('DesignDescribe')}
+                onClick={() => goToPage('MusicDescribe')}
               >
                 <ArrowLeftIcon />
               </div>
             </Column>
               
-            {/* Tabs Button */}
-            <Column width='fluid'>
-              <TabList>
-                <Tab 
-                  id="illustrations"
-                  onClick={() => setCurrentPage('illustrations')}
-                >
-                  Illustrations
-                </Tab>
-                <Tab 
-                  id="chapters"
-                  onClick={() => setCurrentPage('chapters')}
-                >
-                  Chapters
-                </Tab>
-              </TabList>
+            <Column width='containedContent'>
+              <Title 
+                tone='primary'
+                size='medium'
+                alignment='start'
+              >
+                Generated Contents
+              </Title>
             </Column>
           </Columns>
+
+          {/* Tabs Button */}
+          <Column width='fluid'>
+            <TabList>
+              <Tab 
+                id="illustrations"
+                onClick={() => setCurrentPage('illustrations')}
+              >
+                Illustrations
+              </Tab>
+              <Tab 
+                id="chapters"
+                onClick={() => setCurrentPage('chapters')}
+              >
+                Chapters
+              </Tab>
+            </TabList>
+          </Column>
 
           {/* Tabs Content*/}
           <TabPanels>
@@ -99,7 +102,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
+        onClick={() => goToPage('HomePage')}
       >
         Continue
       </Button>

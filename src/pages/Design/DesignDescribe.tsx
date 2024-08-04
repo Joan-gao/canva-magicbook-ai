@@ -55,7 +55,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             size='small'
             alignment='start'
           >
-            Title:
+            Style
           </Title>
 
           <Carousel>
@@ -71,24 +71,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
           </Carousel>
         </Rows>
 
-        {/* Characters Models Selection */}
-        {/* <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Character Models:
-          </Title>
-
-          <Carousel>
-            <DesignStyle StyleName={'Style1'}></DesignStyle>
-            <DesignStyle StyleName={'Style2'}></DesignStyle>
-            <DesignStyle StyleName={'Style3'}></DesignStyle>
-            <DesignStyle StyleName={'Style4'}></DesignStyle>
-          </Carousel>
-        </Rows> */}
-
         {/* Dimension Selections */}
         <Rows spacing='1u'>
           <Title
@@ -103,15 +85,15 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             id='dimenions'
             options={[
               {
-                label: 'Landscape',
+                label: 'Landscape (16:9)',
                 value: 'Landscape',
               },
               {
-                label: 'Portrait',
+                label: 'Portrait (9:16)',
                 value: 'Portrait',
               },
               {
-                label: 'Square',
+                label: 'Square (1:1)s',
                 value: 'Square',
               }
             ]}
@@ -120,30 +102,13 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
 
         </Rows>
 
-        {/* Teaching Content Input */}
-        {/* <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Teaching Content (Optional)
-          </Title>
-          
-          <MultilineInput
-            autoGrow
-            minRows={2}
-            placeholder="Write the knowledge you wanna involve..."
-          />
-        </Rows> */}
-
-        {/* Submit Button */}
+        {/* Generate Button */}
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('Summary')}
+          onClick={() => goToPage('DesignLoading')}
         >
-          Submit
+          Generate
         </Button>
 
       </Rows>

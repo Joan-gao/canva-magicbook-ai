@@ -5,11 +5,12 @@ import {
   Grid,
   Box,
   Text,
-  ImageCard,
+  VideoCard,
   Title,
   Slider,
   SegmentedControl,
   Button,
+  Carousel,
 } from '@canva/app-ui-kit';
 
 const embedCardsData = [
@@ -18,6 +19,7 @@ const embedCardsData = [
     description: "Chapter 1",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -25,6 +27,7 @@ const embedCardsData = [
     description: "Chapter 2",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -32,6 +35,7 @@ const embedCardsData = [
     description: "Chapter 3",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -39,6 +43,7 @@ const embedCardsData = [
     description: "Chapter 4",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -46,6 +51,7 @@ const embedCardsData = [
     description: "Chapter 5",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -53,6 +59,7 @@ const embedCardsData = [
     description: "Chapter 6",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -60,6 +67,7 @@ const embedCardsData = [
     description: "Chapter 7",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -67,6 +75,7 @@ const embedCardsData = [
     description: "Chapter 8",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   },
   {
@@ -74,37 +83,46 @@ const embedCardsData = [
     description: "Chapter 9",
     onClick: () => {},
     onDragStart: () => {},
+    videoPreviewUrl: "https://www.canva.dev/example-assets/video-import/beach-thumbnail-video.mp4",
     thumbnailUrl: "https://www.canva.dev/example-assets/images/puppyhood.jpg"
   }
 ];
 
-const SummaryIllustrations: React.FC = () => {
+const SummaryAnimations: React.FC = () => {
   return (
     <Rows spacing='3u'>
-      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="2u">
+      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="3u">
         {embedCardsData.map((card, index) => (
           <Rows spacing='1u'>
-            {/* <EmbedCard
-              key={index}
-              ariaLabel={card.ariaLabel}
-              // description={card.description}
-              onClick={card.onClick}
-              onDragStart={card.onDragStart}
-              thumbnailUrl={card.thumbnailUrl}
-            /> */}
-            <ImageCard
-              borderRadius='standard'
-              ariaLabel={card.ariaLabel}
-              onClick={card.onClick}
-              thumbnailUrl={card.thumbnailUrl}
-            />
+            <Carousel >
+              <EmbedCard
+                key={index}
+                ariaLabel={card.ariaLabel}
+
+                onClick={card.onClick}
+                onDragStart={card.onDragStart}
+                thumbnailUrl={card.thumbnailUrl}
+                thumbnailHeight={80}
+              />
+              <VideoCard
+                borderRadius='standard'
+                ariaLabel={card.ariaLabel}
+                onClick={card.onClick}
+                videoPreviewUrl={card.videoPreviewUrl}
+                thumbnailUrl={card.thumbnailUrl}
+                mimeType='video/mp4'
+                bottomEndVisibility='always'
+                thumbnailHeight={80}
+              />
+            </Carousel>
+
             <Box
-              background='neutralLow'
-              borderRadius='large'
-              padding='1u'
-            >
-              <Text>{card.description}</Text>
-            </Box>
+                background='neutralLow'
+                borderRadius='large'
+                padding='1u'
+              >
+                <Text>{card.description}</Text>
+              </Box>
           </Rows>
         ))}
       </Grid>
@@ -169,4 +187,4 @@ const SummaryIllustrations: React.FC = () => {
   );
 };
 
-export default SummaryIllustrations;
+export default SummaryAnimations;

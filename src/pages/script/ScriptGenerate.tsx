@@ -10,6 +10,20 @@ import {
   Column,
 } from '@canva/app-ui-kit';
 
+// Define placeholder data
+const storyBackground = "Once upon a time in a land far away, a magical adventure was about to begin. The sun was setting, casting a golden glow over the tranquil village, and everyone was eagerly anticipating the start of the journey.";
+
+const characters = [
+  { name: 'Lia', description: 'A brave young girl with a knack for solving mysteries.' },
+  { name: 'Rex', description: 'A loyal dog who never leaves Lia’s side.' },
+  { name: 'Professor Oak', description: 'An old wise man who provides guidance to the heroes.' },
+];
+
+const chapters = [
+  { title: 'The Mysterious Forest', description: 'Lia and Rex enter the forest, encountering strange creatures and finding clues about the ancient legend.' },
+  { title: 'The Hidden Temple', description: 'The duo discovers a hidden temple and faces challenges to uncover its secrets.' },
+];
+
 interface ScriptGenerateProps {
   goToPage: (page: string) => void;
 }
@@ -44,67 +58,74 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
           </Column>
         </Columns>
 
-        {/* Title Generated */}
+        {/* Story Background */}
         <Rows spacing='1u'>
           <Title
             tone='primary'
-            size='small'
+            size='medium'
             alignment='start'
           >
-            Title:
+            Story Background:
           </Title>
 
-          <Text size='medium'>
-            Xiaomei's Family Summer Adventure in Perth
+          <Text size='medium' tone='secondary'>
+            {storyBackground}
           </Text>
         </Rows>
 
-        {/* Characters Generated */}
-        <Rows spacing='1u'>
+        {/* Main Characters */}
+        <Rows spacing='2u'>
           <Title
             tone='primary'
-            size='small'
+            size='medium'
             alignment='start'
           >
-            Characters:
+            Main Characters:
           </Title>
+          {characters.map((character, index) => (
+            <Box>
+              <Title
+                tone='primary'
+                size='small'
+                alignment='start'
+              >
+                {character.name}:
+              </Title>
 
-          <Text size='medium'>
-            Xiaomei, Xiaomei's mom, Xiaomei's Dad
-          </Text>
+              <Text key={index} size='medium' tone='secondary'>
+                {character.description}
+              </Text>
+            </Box>
+          ))}
         </Rows>
         
-        {/* Title Generated */}
-        <Rows spacing='1u'>
+        {/* Story Outline */}
+        <Rows spacing='2u'>
           <Title
             tone='primary'
-            size='small'
+            size='medium'
             alignment='start'
           >
-            Chapters:
+            Story Outline:
           </Title>
+          {chapters.map((chapter, index) => (
+            <Box>
+              <Title
+                tone='primary'
+                size='small'
+                alignment='start'
+              >
+                Chapter {index + 1}:
+              </Title>
 
-          <Text size='medium'>
-            Chapter 1:
-            <br />
-            Xiaomei's family set off from busy Shanghai, ready to start their
-            long-awaited trip to Perth. At the airport, Xiaomei excitedly said,
-            "I can't wait to see the koalas and kangaroos!" Mom and Dad smiled
-            at Xiaomei and said, "Perth is sure to bring us many surprises!"
-            <br />
-            <br />
-            Chapter 2:
-            <br />
-            One summer morning, Xiaomei and her family visited the famous
-            Crawley Edge Boatshed. It is a blue boathouse built by the water,
-            looking very beautiful. The sun was shining brightly, and it was a
-            bit hot. Xiaomei's dad said, "Let's take a family photo!" "Yes!"
-            Xiaomei and her mom said happily. They posed and took a beautiful
-            photo with big smiles.
-          </Text>
+              <Text key={index} size='medium' tone='secondary'>
+                <strong>{chapter.title}:</strong> {chapter.description}
+              </Text>
+            </Box>
+          ))}
         </Rows>
 
-        {/* Submit Button */}
+        {/* Regenerate/Continue Button */}
         <Columns spacing="1u">
           <Column>
             <Button variant="primary" stretch={true}>
@@ -118,8 +139,8 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
               stretch={true}
               onClick={() => goToPage('DesignDescribe')}
             >
-              Submit
-            </Button>
+              Continue
+            </Button> 
           </Column>
         </Columns>
       </Rows>

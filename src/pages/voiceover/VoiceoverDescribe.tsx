@@ -5,14 +5,14 @@ import {
   Title,
   Box,
   ArrowLeftIcon,
+  ArrowRightIcon,
   PlayFilledIcon,
   Columns,
   Column,
   Select,
   Carousel,
+  Badge,
 } from '@canva/app-ui-kit';
-import DesignStyle from '../../components/DesignStyle';
-
 
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
@@ -31,13 +31,13 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Column width='containedContent'>
             <div
               style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('Summary')}
+              onClick={() => goToPage('DesignDescribe')}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='containedContent'>
+          <Column width='fluid'>
             <Title 
               tone='primary'
               size='medium'
@@ -46,25 +46,21 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
               Voiceover Description
             </Title>
           </Column>
+
+          <Column width='containedContent'>
+            <div
+              style={{background: 'none', border: 'none', cursor:'pointer'}}
+              onClick={() => goToPage('MusicDescribe')}
+            >
+              <Badge
+                ariaLabel='skip'
+                text='Skip'
+                tone='assist'
+                wrapInset='-0.5u'
+              />
+            </div>
+          </Column>
         </Columns>
-
-        {/* Characters Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Voice Character
-          </Title>
-
-          <Carousel>
-            <DesignStyle StyleName={'Style1'}></DesignStyle>
-            <DesignStyle StyleName={'Style2'}></DesignStyle>
-            <DesignStyle StyleName={'Style3'}></DesignStyle>
-            <DesignStyle StyleName={'Style4'}></DesignStyle>
-          </Carousel>
-        </Rows>
 
         {/* Language Selection */}
         <Rows spacing='1u'>
@@ -91,6 +87,64 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           />
         </Rows>
 
+        {/* Gender Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Gender
+          </Title>
+
+          <Select
+            id='gender'
+            options={[
+              {
+                label: 'Male',
+                value: 'male'
+              },
+              {
+                label: 'Female',
+                value: 'female'
+              },
+            ]}
+          />
+        </Rows>
+
+        {/* Age Group Selection */}
+        <Rows spacing='1u'>
+          <Title
+            tone='primary'
+            size='small'
+            alignment='start'
+          >
+            Age Group
+          </Title>
+
+          <Select
+            id='age'
+            options={[
+              {
+                label: '0-12',
+                value: 'age1'
+              },
+              {
+                label: '13-21',
+                value: 'age2'
+              },
+              {
+                label: '21-40',
+                value: 'age3'
+              },
+              {
+                label: '40+',
+                value: 'age4'
+              },
+            ]}
+          />
+        </Rows>
+
         {/* Voice Tone Selection */}
         <Rows spacing='1u'>
           <Title
@@ -98,7 +152,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             size='small'
             alignment='start'
           >
-            Language
+            Tone
           </Title>
 
           <Select
@@ -138,7 +192,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Button
             variant="primary"
             stretch={true}
-            onClick={() => goToPage('VoiceoverGenerate')}
+            onClick={() => goToPage('VoiceoverLoading')}
           >
             Generate
           </Button>

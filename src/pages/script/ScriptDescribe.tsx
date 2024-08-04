@@ -157,13 +157,13 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Box>
         </Rows>
 
-        {/* Submit Button */}
+        {/* Generate Button */}
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('ScriptGenerate')}
+          onClick={() => goToPage('ScriptLoading')}
         >
-          Submit
+          Generate
         </Button>
       </Rows>
     </Box>

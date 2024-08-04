@@ -34,13 +34,13 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('VoiceoverGenerate')}
+            onClick={() => goToPage('VoiceoverDescribe')}
           >
             <ArrowLeftIcon />
           </div>
         </Column>
 
-        <Column width='containedContent'>
+        <Column width='fluid'>
           <Title 
             tone='primary'
             size='medium'
@@ -48,6 +48,20 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
           >
             Music Descriptions
           </Title>
+        </Column>
+
+        <Column width='containedContent'>
+          <div
+            style={{background: 'none', border: 'none', cursor:'pointer'}}
+            onClick={() => goToPage('Summary')}
+          >
+            <Badge
+              ariaLabel='skip'
+              text='Skip'
+              tone='assist'
+              wrapInset='-0.5u'
+            />
+          </div>
         </Column>
       </Columns>
 
@@ -139,7 +153,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('MusicGenerate')}
+        onClick={() => goToPage('MusicLoading')}
       >
         Generate
       </Button>
