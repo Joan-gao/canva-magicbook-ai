@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   Rows,
   Text,
@@ -8,118 +8,150 @@ import {
   ArrowLeftIcon,
   Columns,
   Column,
-} from '@canva/app-ui-kit';
+  LoadingIndicator,
+} from "@canva/app-ui-kit";
+import { useViewContext } from "src/context/contentContext";
+import ScriptLoading from "./ScriptLoading";
 
 // Define placeholder data
-const storyBackground = "Once upon a time in a land far away, a magical adventure was about to begin. The sun was setting, casting a golden glow over the tranquil village, and everyone was eagerly anticipating the start of the journey.";
+const storyBackground =
+  "Once upon a time in a land far away, a magical adventure was about to begin. The sun was setting, casting a golden glow over the tranquil village, and everyone was eagerly anticipating the start of the journey.";
 
 const characters = [
-  { name: 'Lia', description: 'A brave young girl with a knack for solving mysteries.' },
-  { name: 'Rex', description: 'A loyal dog who never leaves Lia’s side.' },
-  { name: 'Professor Oak', description: 'An old wise man who provides guidance to the heroes.' },
+  {
+    name: "Lia",
+    description: "A brave young girl with a knack for solving mysteries.",
+  },
+  { name: "Rex", description: "A loyal dog who never leaves Lia’s side." },
+  {
+    name: "Professor Oak",
+    description: "An old wise man who provides guidance to the heroes.",
+  },
 ];
 
 const chapters = [
-  { title: 'The Mysterious Forest', description: 'Lia and Rex enter the forest, encountering strange creatures and finding clues about the ancient legend.' },
-  { title: 'The Hidden Temple', description: 'The duo discovers a hidden temple and faces challenges to uncover its secrets.' },
+  {
+    title: "The Mysterious Forest",
+    description:
+      "Lia and Rex enter the forest, encountering strange creatures and finding clues about the ancient legend.",
+  },
+  {
+    title: "The Hidden Temple",
+    description:
+      "The duo discovers a hidden temple and faces challenges to uncover its secrets.",
+  },
 ];
 
 interface ScriptGenerateProps {
   goToPage: (page: string) => void;
 }
 
-const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
+const ScriptGenerate: React.FC<ScriptGenerateProps> = ({
+  goToPage,
+}: ScriptGenerateProps) => {
+  const { scriptData, chapterData, setChapterData } = useViewContext();
+
+  const [loading, setLoading] = useState(false);
+  const characters = chapterData.Characters;
+  const storyOutline = chapterData.storyOutline;
+  console.log(characters);
+  console.log(storyOutline);
+  const regenerateStory = async () => {
+    try {
+      setLoading(true);
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      const response = await fetch("http://127.0.0.1:5000/generate/story", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ generatePrompt: scriptData }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        setChapterData(result.story);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+  if (loading) return <ScriptLoading goToPage={goToPage} />;
+
   return (
-    <Box 
-      paddingTop='2u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
-      <Rows spacing='3u'>
+    <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
+      <Rows spacing="3u">
         {/* Page Title / Navigation */}
-        <Columns spacing='1.5u'>
-          <Column width='containedContent'>
+        <Columns spacing="1.5u">
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('ScriptDescribe')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("ScriptDescribe")}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='containedContent'>
-            <Title 
-              tone='primary'
-              size='medium'
-              alignment='start'
-            >
+          <Column width="containedContent">
+            <Title tone="primary" size="medium" alignment="start">
               Script Generation
             </Title>
           </Column>
         </Columns>
 
         {/* Story Background */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='medium'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="medium" alignment="start">
             Story Background:
           </Title>
 
-          <Text size='medium' tone='secondary'>
-            {storyBackground}
+          <Text size="medium" tone="secondary">
+            {chapterData.storyBackground}
           </Text>
         </Rows>
 
         {/* Main Characters */}
-        <Rows spacing='2u'>
-          <Title
-            tone='primary'
-            size='medium'
-            alignment='start'
-          >
+        <Rows spacing="2u">
+          <Title tone="primary" size="medium" alignment="start">
             Main Characters:
           </Title>
           {characters.map((character, index) => (
             <Box>
-              <Title
-                tone='primary'
-                size='small'
-                alignment='start'
-              >
+              <Title tone="primary" size="small" alignment="start">
                 {character.name}:
               </Title>
 
-              <Text key={index} size='medium' tone='secondary'>
+              <Text key={index} size="medium" tone="secondary">
                 {character.description}
               </Text>
             </Box>
           ))}
         </Rows>
-        
+
         {/* Story Outline */}
-        <Rows spacing='2u'>
-          <Title
-            tone='primary'
-            size='medium'
-            alignment='start'
-          >
+        <Rows spacing="2u">
+          <Title tone="primary" size="medium" alignment="start">
             Story Outline:
           </Title>
-          {chapters.map((chapter, index) => (
+          {storyOutline.map((item, index) => (
             <Box>
-              <Title
-                tone='primary'
-                size='small'
-                alignment='start'
-              >
+              <Title tone="primary" size="small" alignment="start">
                 Chapter {index + 1}:
               </Title>
 
-              <Text key={index} size='medium' tone='secondary'>
-                <strong>{chapter.title}:</strong> {chapter.description}
+              <Text key={index} size="medium" tone="secondary">
+                <strong>{item.title}:</strong> {item.content}
               </Text>
             </Box>
           ))}
@@ -128,7 +160,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
         {/* Regenerate/Continue Button */}
         <Columns spacing="1u">
           <Column>
-            <Button variant="primary" stretch={true}>
+            <Button variant="primary" stretch={true} onClick={regenerateStory}>
               Regenerate
             </Button>
           </Column>
@@ -137,10 +169,10 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({ goToPage }) => {
             <Button
               variant="primary"
               stretch={true}
-              onClick={() => goToPage('DesignDescribe')}
+              onClick={() => goToPage("DesignDescribe")}
             >
               Continue
-            </Button> 
+            </Button>
           </Column>
         </Columns>
       </Rows>

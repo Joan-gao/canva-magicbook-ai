@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Tab,
@@ -12,79 +12,66 @@ import {
   Column,
   Columns,
   ArrowLeftIcon,
-} from '@canva/app-ui-kit';
-import SummaryChapters from 'src/components/Summary/SummaryChapters';
-import SummaryAnimations from 'src/components/Summary/SummaryAnimations';
+} from "@canva/app-ui-kit";
+import SummaryChapters from "src/components/Summary/SummaryChapters";
+import SummaryAnimations from "src/components/Summary/SummaryAnimations";
 
 interface SummaryPageProps {
   goToPage: (page: string) => void;
 }
 
 const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
-  const [currentPage, setCurrentPage] = useState<string>('illustrations');
+  const [currentPage, setCurrentPage] = useState<string>("illustrations");
+  const handleClick = () => {
+    setCurrentPage("illustrations");
+  };
   // Illustrations Tab
   const illustrationsTab = (
-    <Box 
-      paddingTop='2u'
-      paddingBottom='3u'
-    >
+    <Box paddingTop="2u" paddingBottom="3u">
       <SummaryAnimations />
     </Box>
   );
 
   // Chapters Text Tab
   const chaptersTab = (
-    <Box 
-      paddingTop='2u'
-      paddingBottom='3u'
-    >
+    <Box paddingTop="2u" paddingBottom="3u">
       <SummaryChapters />
     </Box>
   );
 
   return (
-    <Box 
-      paddingTop='1u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
+    <Box paddingTop="1u" paddingEnd="2u" paddingBottom="3u">
       <Tabs>
         <Rows spacing="1u">
-          <Columns spacing='1.5u'>
+          <Columns spacing="1.5u">
             {/* Back Button */}
-            <Column width='containedContent'>
+            <Column width="containedContent">
               <div
-                style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('MusicDescribe')}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onClick={() => goToPage("MusicDescribe")}
               >
                 <ArrowLeftIcon />
               </div>
             </Column>
-              
-            <Column width='containedContent'>
-              <Title 
-                tone='primary'
-                size='medium'
-                alignment='start'
-              >
+
+            <Column width="containedContent">
+              <Title tone="primary" size="medium" alignment="start">
                 Generated Contents
               </Title>
             </Column>
           </Columns>
 
           {/* Tabs Button */}
-          <Column width='fluid'>
+          <Column width="fluid">
             <TabList>
-              <Tab 
-                id="illustrations"
-                onClick={() => setCurrentPage('illustrations')}
-              >
+              <Tab id="illustrations" onClick={handleClick}>
                 Illustrations
               </Tab>
-              <Tab 
-                id="chapters"
-                onClick={() => setCurrentPage('chapters')}
-              >
+              <Tab id="chapters" onClick={() => setCurrentPage("chapters")}>
                 Chapters
               </Tab>
             </TabList>
@@ -102,7 +89,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('HomePage')}
+        onClick={() => goToPage("HomePage")}
       >
         Continue
       </Button>

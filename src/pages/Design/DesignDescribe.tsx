@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   Rows,
   Button,
@@ -11,106 +11,163 @@ import {
   Columns,
   MultilineInput,
   Select,
-} from '@canva/app-ui-kit';
-import DesignStyle from '../../components/DesignStyle';
+  LoadingIndicator,
+} from "@canva/app-ui-kit";
+import DesignStyle from "../../components/DesignStyle";
+import { useViewContext } from "src/context/contentContext";
+import DesignLoading from "./DesignLoading";
 
 interface DesignDescribeProps {
   goToPage: (page: string) => void;
 }
 
 const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
+  const { chapterData, setImageData } = useViewContext();
+  const [loading, setLoading] = useState(false);
+  const [imageStyle, setImageStyple] = useState("Disney");
+  const [size, setSize] = useState("Landscape");
+  const requestForImage = async () => {
+    // console.log(chapterData);
+    try {
+      setLoading(true);
+
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      // const response = await fetch("http://127.0.0.1:5000/generate/image", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Access-Control-Allow-Origin": "*",
+      //     // Authorization: `Bearer ${token}`,
+      //   },
+      //   body: JSON.stringify({
+      //     scenePrompts: chapterData.scenceImagePrompts,
+      //     imageStyle: imageStyle,
+      //     size: size,
+      //   }),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error("Network response was not ok");
+      // }
+
+      // const result = await response.json();
+
+      // if (result.status === "success") {
+      //   console.log(result.imageData);
+      //   const imageFiles = result.imageData;
+      //   const scenes = Object.entries(imageFiles).map(([scenceName, url]) => ({
+      //     scenceName,
+      //     url,
+      //   }));
+      //   console.log(scenes);
+      //   setImageData(scenes);
+      // }
+
+      // const imageFiles = {
+      //   "The Hidden Treasure":
+      //     "https://cloud.appwrite.io/v1/storage/buckets/66ab98e800074cb72188/files/8wwxaa985fgdaf35761n/view?project=66ab7c0f0031bd4ae2ac&mode=admin",
+      // };
+
+      // 转换成 [{ scenceName: string; url: string }] 结构
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+
+      goToPage("VoiceoverDescribe");
+    }
+  };
+  if (loading) return <DesignLoading goToPage={goToPage} />;
   return (
-    <Box 
-      paddingTop='2u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
-      <Rows spacing='3u'>
+    <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
+      <Rows spacing="3u">
         {/* Page Title / Navigation */}
-        <Columns spacing='1.5u'>
-          <Column width='containedContent'>
+        <Columns spacing="1.5u">
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('ScriptGenerate')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("ScriptGenerate")}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='containedContent'>
-            <Title 
-              tone='primary'
-              size='medium'
-              alignment='start'
-            >
+          <Column width="containedContent">
+            <Title tone="primary" size="medium" alignment="start">
               Design Descriptions
             </Title>
           </Column>
         </Columns>
 
         {/* Design Styles Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Style
           </Title>
 
           <Carousel>
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Japanese anime" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Disney" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Clay" />
             <Pill
               ariaLabel="a pill"
-              onClick={() => {}}
+              onClick={() => setImageStyple("Japanese anime")}
+              text="Japanese anime"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() => setImageStyple("Disney")}
+              text="Disney"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() => setImageStyple("Clay")}
+              text="Clay"
+            />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() => setImageStyple("American Marvel")}
               text="American Marvel"
             />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Realistic" />
+            <Pill
+              ariaLabel="a pill"
+              onClick={() => setImageStyple("Realistic")}
+              text="Realistic"
+            />
           </Carousel>
         </Rows>
 
         {/* Dimension Selections */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Design Dimension
           </Title>
-          
+
           <Select
-            id='dimenions'
+            id="dimenions"
+            onChange={(value) => setSize(value)}
             options={[
               {
-                label: 'Landscape (16:9)',
-                value: 'Landscape',
+                label: "Landscape (16:9)",
+                value: "Landscape",
               },
               {
-                label: 'Portrait (9:16)',
-                value: 'Portrait',
+                label: "Portrait (9:16)",
+                value: "Portrait",
               },
               {
-                label: 'Square (1:1)s',
-                value: 'Square',
-              }
+                label: "Square (1:1)s",
+                value: "Square",
+              },
             ]}
-          >
-          </Select>
-
+          ></Select>
         </Rows>
 
         {/* Generate Button */}
-        <Button
-          variant="primary"
-          stretch={true}
-          onClick={() => goToPage('DesignLoading')}
-        >
+        <Button variant="primary" stretch={true} onClick={requestForImage}>
           Generate
         </Button>
-
       </Rows>
     </Box>
   );

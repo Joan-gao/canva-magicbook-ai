@@ -2,6 +2,7 @@ import { AppUiProvider } from "@canva/app-ui-kit";
 import { createRoot } from "react-dom/client";
 import App from "./app";
 import "@canva/app-ui-kit/styles.css";
+import { ViewProvider } from "./context/contentContext";
 
 const el = document.getElementById("root");
 if (!el) {
@@ -11,7 +12,9 @@ const root = createRoot(el);
 function render() {
   root.render(
     <AppUiProvider>
-      <App />
+      <ViewProvider>
+        <App />
+      </ViewProvider>
     </AppUiProvider>
   );
 }

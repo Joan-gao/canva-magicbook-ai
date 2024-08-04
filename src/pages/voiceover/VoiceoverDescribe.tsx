@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   Rows,
   Button,
@@ -12,174 +12,213 @@ import {
   Select,
   Carousel,
   Badge,
-} from '@canva/app-ui-kit';
+} from "@canva/app-ui-kit";
 
+import { useViewContext } from "src/context/contentContext";
+import VoiceoverLoading from "./VoiceoverLoading";
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
 }
 
 const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
+  const { chapterData, setAudioData } = useViewContext();
+  const [loading, setLoading] = useState(false);
+  const [ageGroup, setAgeGroup] = useState("Middle-Aged");
+  const [gender, setGender] = useState("Male");
+  const [style, setStyle] = useState("StoryTelling");
+  const [language, setLanguage] = useState("English");
+
+  const requestForVoice = async () => {
+    console.log(chapterData);
+    try {
+      setLoading(true);
+
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      const response = await fetch("http://127.0.0.1:5000/generate/voice", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          story: chapterData.scence,
+          language: language,
+          ageGroup: ageGroup,
+          style: style,
+          gender: gender,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        console.log(result.voiceData);
+        const voiceFiles = result.videoData;
+        const scenes = Object.entries(voiceFiles).map(([scenceName, url]) => ({
+          scenceName,
+          url,
+        }));
+        setAudioData(scenes);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+
+      goToPage("MusicDescribe");
+    }
+  };
+  if (loading) return <VoiceoverLoading goToPage={goToPage} />;
   return (
-    <Box 
-      paddingTop='2u'
-      paddingEnd='2u'
-      paddingBottom='3u'
-    >
-      <Rows spacing='3u'>
+    <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
+      <Rows spacing="3u">
         {/* Page Title / Navigation */}
-        <Columns spacing='1.5u'>
-          <Column width='containedContent'>
+        <Columns spacing="1.5u">
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('DesignDescribe')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("DesignDescribe")}
             >
               <ArrowLeftIcon />
             </div>
           </Column>
 
-          <Column width='fluid'>
-            <Title 
-              tone='primary'
-              size='medium'
-              alignment='start'
-            >
+          <Column width="fluid">
+            <Title tone="primary" size="medium" alignment="start">
               Voiceover Description
             </Title>
           </Column>
-
-          <Column width='containedContent'>
+          <Column width="containedContent">
             <div
-              style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('MusicDescribe')}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+              onClick={() => goToPage("MusicDescribe")}
             >
               <Badge
-                ariaLabel='skip'
-                text='Skip'
-                tone='assist'
-                wrapInset='-0.5u'
+                ariaLabel="skip"
+                text="Skip"
+                tone="assist"
+                wrapInset="-0.5u"
               />
             </div>
           </Column>
         </Columns>
 
         {/* Language Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Language
           </Title>
 
           <Select
-            id='language'
+            onChange={(value) => setLanguage(value)}
+            id="language"
             options={[
               {
-                label: 'English',
-                value: 'English'
+                label: "English",
+                value: "English",
               },
               {
-                label: 'Chinese',
-                value: 'Chinese'
+                label: "Chinese",
+                value: "Chinese",
               },
             ]}
           />
         </Rows>
 
         {/* Gender Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
             Gender
           </Title>
 
           <Select
-            id='gender'
+            onChange={(value) => setGender(value)}
+            id="gender"
             options={[
               {
-                label: 'Male',
-                value: 'male'
+                label: "Male",
+                value: "Male",
               },
               {
-                label: 'Female',
-                value: 'female'
+                label: "Female",
+                value: "Female",
+              },
+              {
+                label: "Non-Binary",
+                value: "Non-Binary",
               },
             ]}
           />
         </Rows>
-
-        {/* Age Group Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Age Group
+        {/* Age group */}
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
+            Age group
           </Title>
 
           <Select
-            id='age'
+            onChange={(value) => setAgeGroup(value)}
+            id="ageGroup"
             options={[
               {
-                label: '0-12',
-                value: 'age1'
+                label: "Children",
+                value: "Children",
               },
               {
-                label: '13-21',
-                value: 'age2'
+                label: "Young",
+                value: "Young",
               },
               {
-                label: '21-40',
-                value: 'age3'
+                label: "Middle-Aged",
+                value: "Middle-Aged",
               },
               {
-                label: '40+',
-                value: 'age4'
+                label: "Senior",
+                value: "Senior",
               },
             ]}
           />
         </Rows>
-
-        {/* Voice Tone Selection */}
-        <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Tone
+        {/* Voice Style Selection */}
+        <Rows spacing="1u">
+          <Title tone="primary" size="small" alignment="start">
+            Voice Style
           </Title>
 
           <Select
-            id='voiceTone'
+            onChange={(value) => setStyle(value)}
+            id="voiceStyle"
             options={[
               {
-                label: 'Formal',
-                value: 'Formal'
+                label: "StoryTelling",
+                value: "Storytelling",
               },
               {
-                label: 'Casual',
-                value: 'Casual'
+                label: "Casual",
+                value: "Casual",
               },
               {
-                label: 'Friendly',
-                value: 'Friendly'
+                label: "Friendly",
+                value: "Friendly",
               },
               {
-                label: 'Narrative',
-                value: 'Narrative'
+                label: "Cheerful",
+                value: "Cheerful",
               },
             ]}
           />
         </Rows>
 
         {/* Preview / Generate Button */}
-        <Rows spacing='1u'>
+        <Rows spacing="1u">
           <Button
             variant="secondary"
             stretch={true}
@@ -189,11 +228,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             Preview Speech
           </Button>
 
-          <Button
-            variant="primary"
-            stretch={true}
-            onClick={() => goToPage('VoiceoverLoading')}
-          >
+          <Button variant="primary" stretch={true} onClick={requestForVoice}>
             Generate
           </Button>
         </Rows>

@@ -12,9 +12,9 @@
       "es2020.string"
     ],
     "types": ["node", "webpack-env", "jest"],
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
+    // "composite": true,
+    // "declaration": true,
+    // "declarationMap": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "noImplicitOverride": true,
