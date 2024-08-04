@@ -15,6 +15,7 @@ import {
   LoadingIndicator,
 } from "@canva/app-ui-kit";
 import { useViewContext } from "src/context/contentContext";
+import ScriptLoading from "./ScriptLoading";
 
 interface ScriptDescProps {
   goToPage: (page: string) => void;
@@ -68,7 +69,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
     }
   };
 
-  if (loading) return <LoadingIndicator size="medium" />;
+  if (loading) return <ScriptLoading goToPage={goToPage} />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -224,9 +225,9 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Box>
         </Rows>
 
-        {/* Submit Button */}
+        {/* Generate Button */}
         <Button variant="primary" stretch={true} onClick={requestForStory}>
-          Submit
+          Generate
         </Button>
       </Rows>
     </Box>

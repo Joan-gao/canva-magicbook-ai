@@ -15,6 +15,7 @@ interface ScriptData {
   teachingContent?: string;
   length: number;
 }
+
 interface ChapterData {
   storyTitle: string;
   Characters: [{ name: string; description: string }];
@@ -33,9 +34,11 @@ interface VideoData {
   videoFiles: [{ scenceName: string; url: string }];
 }
 interface AudioData {
-  audioFiles: [{ scenceName: string; url: string }];
+  audioFiles: [{ scenceName: string; url: string[] }];
 }
-
+interface MusicData {
+  musicUrl: string;
+}
 // interface ExampleData {
 //   title: string;
 //   chapterContent: [
@@ -61,11 +64,15 @@ interface AudioData {
 const defaultImageData: ImageData = {
   imageFiles: [{ scenceName: "", url: "" }],
 };
+
 const defaultVideoData: VideoData = {
   videoFiles: [{ scenceName: "", url: "" }],
 };
 const defaultAudioData: AudioData = {
-  audioFiles: [{ scenceName: "", url: "" }],
+  audioFiles: [{ scenceName: "", url: [""] }],
+};
+const defaultMusicData: MusicData = {
+  musicUrl: "",
 };
 const defaultScriptData: ScriptData = {
   scriptContent: "",
@@ -94,6 +101,10 @@ interface ViewContextProps {
   setVideoData: (data: any) => void;
   audioData: AudioData;
   setAudioData: (data: any) => void;
+  example: boolean;
+  setExample: (data: any) => void;
+  musicData: MusicData;
+  setMusicData: (data: any) => void;
 }
 
 export const ViewContext = createContext<ViewContextProps>({
@@ -107,6 +118,10 @@ export const ViewContext = createContext<ViewContextProps>({
   setVideoData: () => {},
   audioData: defaultAudioData,
   setAudioData: () => {},
+  example: false,
+  setExample: () => {},
+  musicData: defaultMusicData,
+  setMusicData: () => {},
 });
 
 export const useViewContext = () => useContext(ViewContext);
@@ -122,6 +137,8 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
   const [imageData, setImageData] = useState<ImageData>(defaultImageData);
   const [videoData, setVideoData] = useState<VideoData>(defaultVideoData);
   const [audioData, setAudioData] = useState<AudioData>(defaultAudioData);
+  const [example, setExample] = useState(false);
+  const [musicData, setMusicData] = useState<MusicData>(defaultMusicData);
 
   return (
     <ViewContext.Provider
@@ -136,6 +153,10 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
         setVideoData,
         audioData,
         setAudioData,
+        example,
+        setExample,
+        musicData,
+        setMusicData,
         // exampleData,
         // setExampleData,
       }}

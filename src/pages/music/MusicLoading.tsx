@@ -11,11 +11,11 @@ import {
   ProgressBar,
 } from "@canva/app-ui-kit";
 
-interface VoiceoverGenerateProps {
+interface MusicLoadingProps {
   goToPage: (page: string) => void;
 }
 
-const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
+const MusicLoading: React.FC<MusicLoadingProps> = ({ goToPage }) => {
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -32,15 +32,24 @@ const VoiceoverGenerate: React.FC<VoiceoverGenerateProps> = ({ goToPage }) => {
 
           <Column width="containedContent">
             <Title tone="primary" size="medium" alignment="start">
-              Generating
+              Generating Music
             </Title>
           </Column>
         </Columns>
 
         <ProgressBar size="medium" tone="info" value={10} />
+
+        {/* DELETE LATER */}
+        <Button
+          variant="primary"
+          stretch={true}
+          onClick={() => goToPage("Summary")}
+        >
+          Continue
+        </Button>
       </Rows>
     </Box>
   );
 };
 
-export default VoiceoverGenerate;
+export default MusicLoading;

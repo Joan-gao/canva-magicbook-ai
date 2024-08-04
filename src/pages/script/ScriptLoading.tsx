@@ -8,13 +8,14 @@ import {
   Title,
   Box,
   ArrowLeftIcon,
+  ProgressBar,
 } from '@canva/app-ui-kit';
 
-interface MusicGenerateProps {
+interface ScriptLoadingProps {
   goToPage: (page: string) => void;
 }
 
-const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
+const ScriptLoading: React.FC<ScriptLoadingProps> = ({ goToPage }) => {
   return (
     <Box 
     paddingTop='2u'
@@ -27,7 +28,7 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('MusicDescribe')}
+            onClick={() => goToPage('ScriptDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -39,23 +40,28 @@ const MusicGenerate: React.FC<MusicGenerateProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Music Generation
+            Generating Script
           </Title>
         </Column>
       </Columns>
 
+      <ProgressBar
+        size="medium"
+        tone="info"
+        value={10}
+      />
 
-      {/* Generate Button */}
+      {/* REMOVE LATER */}
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('MusicDescribe')}
+        onClick={() => goToPage('ScriptGenerate')}
       >
-        Generate
+        Continue
       </Button>
     </Rows>
   </Box>
   );
 };
 
-export default MusicGenerate;
+export default ScriptLoading;

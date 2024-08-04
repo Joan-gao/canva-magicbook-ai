@@ -15,6 +15,7 @@ import {
 } from "@canva/app-ui-kit";
 import DesignStyle from "../../components/DesignStyle";
 import { useViewContext } from "src/context/contentContext";
+import DesignLoading from "./DesignLoading";
 
 interface DesignDescribeProps {
   goToPage: (page: string) => void;
@@ -76,10 +77,10 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     } finally {
       setLoading(false);
 
-      goToPage("Summary");
+      goToPage("VoiceoverDescribe");
     }
   };
-  if (loading) return <LoadingIndicator size="medium" />;
+  if (loading) return <DesignLoading goToPage={goToPage} />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -102,9 +103,10 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         </Columns>
 
         {/* Design Styles Selection */}
+
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
-            Title:
+            Style
           </Title>
 
           <Carousel>
@@ -136,24 +138,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
           </Carousel>
         </Rows>
 
-        {/* Characters Models Selection */}
-        {/* <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Character Models:
-          </Title>
-
-          <Carousel>
-            <DesignStyle StyleName={'Style1'}></DesignStyle>
-            <DesignStyle StyleName={'Style2'}></DesignStyle>
-            <DesignStyle StyleName={'Style3'}></DesignStyle>
-            <DesignStyle StyleName={'Style4'}></DesignStyle>
-          </Carousel>
-        </Rows> */}
-
         {/* Dimension Selections */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
@@ -165,41 +149,24 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             onChange={(value) => setSize(value)}
             options={[
               {
-                label: "Landscape",
+                label: "Landscape (16:9)",
                 value: "Landscape",
               },
               {
-                label: "Portrait",
+                label: "Portrait (9:16)",
                 value: "Portrait",
               },
               {
-                label: "Square",
+                label: "Square (1:1)s",
                 value: "Square",
               },
             ]}
           ></Select>
         </Rows>
 
-        {/* Teaching Content Input */}
-        {/* <Rows spacing='1u'>
-          <Title
-            tone='primary'
-            size='small'
-            alignment='start'
-          >
-            Teaching Content (Optional)
-          </Title>
-          
-          <MultilineInput
-            autoGrow
-            minRows={2}
-            placeholder="Write the knowledge you wanna involve..."
-          />
-        </Rows> */}
-
-        {/* Submit Button */}
+        {/* Generate Button */}
         <Button variant="primary" stretch={true} onClick={requestForImage}>
-          Submit
+          Generate
         </Button>
       </Rows>
     </Box>
