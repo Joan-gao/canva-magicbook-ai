@@ -32,8 +32,6 @@ const App: React.FC = () => {
         return <ScriptGenerate goToPage={setCurrentPage} />;
       case 'DesignDescribe':
         return <DesignDescribe goToPage={setCurrentPage} />;
-      // case 'DesignGenerate':
-      //   return <DesignGenerate goToPage={setCurrentPage} />;
       case 'Summary':
         return <Summary goToPage={setCurrentPage} />;
       case 'VoiceoverDescribe':

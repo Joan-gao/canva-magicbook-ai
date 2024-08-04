@@ -5,23 +5,17 @@ import {
   Tabs,
   TabList,
   Rows,
-  SegmentedControl,
-  Slider,
-  Text,
   TabPanels,
   TabPanel,
   Title,
   Button,
-  Carousel,
   Column,
   Columns,
-  Pill,
-  EmbedCard,
-  Grid,
   ArrowLeftIcon,
 } from '@canva/app-ui-kit';
 import SummaryIllustrations from 'src/components/Summary/SummaryIllustrations';
 import SummaryChapters from 'src/components/Summary/SummaryChapters';
+import SummaryAnimations from 'src/components/Summary/SummaryAnimations';
 
 interface SummaryPageProps {
   goToPage: (page: string) => void;
@@ -38,6 +32,16 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       <SummaryIllustrations />
     </Box>
   );
+
+    // Animations Tab
+    const animationsTab = (
+      <Box 
+        paddingTop='2u'
+        paddingBottom='3u'
+      >
+        <SummaryAnimations />
+      </Box>
+    );
 
   // Chapters Text Tab
   const chaptersTab = (
@@ -68,28 +72,45 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
               </div>
             </Column>
               
-            {/* Tabs Button */}
-            <Column width='fluid'>
-              <TabList>
-                <Tab 
-                  id="illustrations"
-                  onClick={() => setCurrentPage('illustrations')}
-                >
-                  Illustrations
-                </Tab>
-                <Tab 
-                  id="chapters"
-                  onClick={() => setCurrentPage('chapters')}
-                >
-                  Chapters
-                </Tab>
-              </TabList>
+            <Column width='containedContent'>
+              <Title 
+                tone='primary'
+                size='medium'
+                alignment='start'
+              >
+                Generated Contents
+              </Title>
             </Column>
           </Columns>
+
+          {/* Tabs Button */}
+          <Column width='fluid'>
+            <TabList>
+              <Tab 
+                id="illustrations"
+                onClick={() => setCurrentPage('illustrations')}
+              >
+                Illustrations
+              </Tab>
+              <Tab 
+                id="animations"
+                onClick={() => setCurrentPage('animations')}
+              >
+                Animations
+              </Tab>
+              <Tab 
+                id="chapters"
+                onClick={() => setCurrentPage('chapters')}
+              >
+                Chapters
+              </Tab>
+            </TabList>
+          </Column>
 
           {/* Tabs Content*/}
           <TabPanels>
             <TabPanel id="illustrations">{illustrationsTab}</TabPanel>
+            <TabPanel id="animations">{animationsTab}</TabPanel>
             <TabPanel id="chapters">{chaptersTab}</TabPanel>
           </TabPanels>
         </Rows>
