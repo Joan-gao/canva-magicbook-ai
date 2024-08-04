@@ -8,15 +8,14 @@ import ScriptLoading from './pages/script/ScriptLoading';
 // Design pages
 import DesignDescribe from './pages/Design/DesignDescribe';
 import DesignLoading from './pages/Design/DesignLoading';
-import DesignGenerate from './pages/Design/DesignGenerate';
-// Summary page
-import Summary from './pages/Summary/SummaryGeneration';
 // voiceover pages
 import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
 import VoiceoverLoading from './pages/voiceover/VoiceoverLoading';
 // music pages
 import MusicDescribe from './pages/music/MusicDescribe';
 import MusicLoading from './pages/music/MusicLoading';
+// Summary page
+import Summary from './pages/Summary/SummaryGeneration';
 
 // css
 import './assets/styles/main.css'
@@ -39,10 +38,6 @@ const App: React.FC = () => {
         return <DesignDescribe goToPage={setCurrentPage} />;
       case 'DesignLoading':
         return <DesignLoading goToPage={setCurrentPage} />;
-      case 'DesignGenerate':
-        return <DesignGenerate goToPage={setCurrentPage} />;
-      case 'Summary':
-        return <Summary goToPage={setCurrentPage} />;
 
       case 'VoiceoverDescribe':
         return <VoiceoverDescribe goToPage={setCurrentPage} />;
@@ -53,6 +48,9 @@ const App: React.FC = () => {
         return <MusicDescribe goToPage={setCurrentPage} />;
       case 'MusicLoading':
         return <MusicLoading goToPage={setCurrentPage} />;
+
+      case 'Summary':
+        return <Summary goToPage={setCurrentPage} />;
       default:
         return <HomePage goToPage={setCurrentPage} />;
     }
