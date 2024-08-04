@@ -13,7 +13,6 @@ import {
   Columns,
   ArrowLeftIcon,
 } from '@canva/app-ui-kit';
-import SummaryIllustrations from 'src/components/Summary/SummaryIllustrations';
 import SummaryChapters from 'src/components/Summary/SummaryChapters';
 import SummaryAnimations from 'src/components/Summary/SummaryAnimations';
 
