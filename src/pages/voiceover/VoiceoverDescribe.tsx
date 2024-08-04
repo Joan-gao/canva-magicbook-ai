@@ -5,11 +5,13 @@ import {
   Title,
   Box,
   ArrowLeftIcon,
+  ArrowRightIcon,
   PlayFilledIcon,
   Columns,
   Column,
   Select,
   Carousel,
+  Badge,
 } from '@canva/app-ui-kit';
 import DesignStyle from '../../components/DesignStyle';
 
@@ -37,7 +39,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             </div>
           </Column>
 
-          <Column width='containedContent'>
+          <Column width='fluid'>
             <Title 
               tone='primary'
               size='medium'
@@ -45,6 +47,20 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             >
               Voiceover Description
             </Title>
+          </Column>
+
+          <Column width='containedContent'>
+            <div
+              style={{background: 'none', border: 'none', cursor:'pointer'}}
+              onClick={() => goToPage('MusicDescribe')}
+            >
+              <Badge
+                ariaLabel='skip'
+                text='Skip'
+                tone='assist'
+                wrapInset='-0.5u'
+              />
+            </div>
           </Column>
         </Columns>
 
