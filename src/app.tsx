@@ -12,7 +12,7 @@ import DesignLoading from './pages/Design/DesignLoading';
 import Summary from './pages/Summary/SummaryGeneration';
 // voiceover pages
 import VoiceoverDescribe from './pages/voiceover/VoiceoverDescribe';
-import VoiceoverGenerate from './pages/voiceover/VoiceoverLoading';
+import VoiceoverLoading from './pages/voiceover/VoiceoverLoading';
 // music pages
 import MusicDescribe from './pages/music/MusicDescribe';
 import MusicGenerate from './pages/music/MusicGenerate';
@@ -28,16 +28,23 @@ const App: React.FC = () => {
         return <HomePage goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
+      case 'ScriptLoading':
+        return <ScriptLoading goToPage={setCurrentPage} />;
       case 'ScriptGenerate':
         return <ScriptGenerate goToPage={setCurrentPage} />;
+
       case 'DesignDescribe':
         return <DesignDescribe goToPage={setCurrentPage} />;
+      case 'DesignLoading':
+        return <DesignLoading goToPage={setCurrentPage} />;
       case 'Summary':
         return <Summary goToPage={setCurrentPage} />;
+
       case 'VoiceoverDescribe':
         return <VoiceoverDescribe goToPage={setCurrentPage} />;
-      case 'VoiceoverGenerate':
-        return <VoiceoverGenerate goToPage={setCurrentPage} />;
+      case 'VoiceoverLoading':
+        return <VoiceoverLoading goToPage={setCurrentPage} />;      
+
       case 'MusicDescribe':
         return <MusicDescribe goToPage={setCurrentPage} />;
       case 'MusicGenerate':

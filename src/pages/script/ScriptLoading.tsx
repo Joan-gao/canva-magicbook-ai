@@ -51,6 +51,14 @@ const ScriptLoading: React.FC<ScriptLoadingProps> = ({ goToPage }) => {
         value={10}
       />
 
+      {/* REMOVE LATER */}
+      <Button
+        variant="primary"
+        stretch={true}
+        onClick={() => goToPage('ScriptGenerate')}
+      >
+        Continue
+      </Button>
     </Rows>
   </Box>
   );

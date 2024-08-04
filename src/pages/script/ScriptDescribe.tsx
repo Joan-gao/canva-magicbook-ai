@@ -161,7 +161,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
         <Button
           variant="primary"
           stretch={true}
-          onClick={() => goToPage('ScriptGenerate')}
+          onClick={() => goToPage('ScriptLoading')}
         >
           Generate
         </Button>
