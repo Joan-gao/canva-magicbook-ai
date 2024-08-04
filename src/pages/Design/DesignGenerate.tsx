@@ -211,7 +211,7 @@ const DesignGenerate: React.FC<DesignGenerateProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('Summary')}
+        onClick={() => goToPage('VoiceoverDescribe')}
       >
         Generate
       </Button>

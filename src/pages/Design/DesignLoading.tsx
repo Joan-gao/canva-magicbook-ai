@@ -55,7 +55,7 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('Summary')}
+        onClick={() => goToPage('DesignGenerate')}
       >
         Continue
       </Button>

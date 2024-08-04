@@ -40,7 +40,7 @@ const VoiceoverLoading: React.FC<VoiceoverLoadingProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generating
+            Generating Voice
           </Title>
         </Column>
       </Columns>
@@ -51,6 +51,14 @@ const VoiceoverLoading: React.FC<VoiceoverLoadingProps> = ({ goToPage }) => {
         value={10}
       />
 
+      {/* DELETE LATER */}
+      <Button
+        variant="primary"
+        stretch={true}
+        onClick={() => goToPage('MusicDescribe')}
+      >
+        Continue
+      </Button>
     </Rows>
   </Box>
   );

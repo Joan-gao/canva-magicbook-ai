@@ -33,7 +33,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Column width='containedContent'>
             <div
               style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('Summary')}
+              onClick={() => goToPage('DesignDescribe')}
             >
               <ArrowLeftIcon />
             </div>
@@ -114,7 +114,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             size='small'
             alignment='start'
           >
-            Language
+            Tone
           </Title>
 
           <Select
@@ -154,7 +154,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Button
             variant="primary"
             stretch={true}
-            onClick={() => goToPage('VoiceoverGenerate')}
+            onClick={() => goToPage('VoiceoverLoading')}
           >
             Generate
           </Button>

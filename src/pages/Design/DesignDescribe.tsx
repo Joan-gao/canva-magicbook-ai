@@ -85,15 +85,15 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             id='dimenions'
             options={[
               {
-                label: 'Landscape',
+                label: 'Landscape (16:9)',
                 value: 'Landscape',
               },
               {
-                label: 'Portrait',
+                label: 'Portrait (9:16)',
                 value: 'Portrait',
               },
               {
-                label: 'Square',
+                label: 'Square (1:1)s',
                 value: 'Square',
               }
             ]}

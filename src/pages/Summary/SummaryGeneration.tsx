@@ -55,7 +55,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
             <Column width='containedContent'>
               <div
                 style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('DesignDescribe')}
+                onClick={() => goToPage('MusicDescribe')}
               >
                 <ArrowLeftIcon />
               </div>
@@ -102,7 +102,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
+        onClick={() => goToPage('HomePage')}
       >
         Continue
       </Button>
