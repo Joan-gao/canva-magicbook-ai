@@ -89,7 +89,11 @@ const SummaryChapters: React.FC = () => {
     });
   };
 
-  const positionText = async (des: string) => {
+  const handleClick = async (des, top) => {
+    await positionText(des, top);
+  };
+
+  const positionText = async (des: string, top: number) => {
     const context = await getCurrentPageContext();
     if (!context.dimensions) {
       console.warn("The current design does not have dimensions");
@@ -97,7 +101,6 @@ const SummaryChapters: React.FC = () => {
     }
     const width = 300;
 
-    const top = 20;
     const left = 450;
 
     await addNativeElement({
@@ -110,14 +113,18 @@ const SummaryChapters: React.FC = () => {
   };
   return (
     <Rows spacing="3u">
-      {" "}
       {newChaptersData.map((chapter, index) => (
         <Box key={index}>
           <Rows key={index} spacing="1u">
-            <Title size="small">{chapter.title}</Title>
-            <Box background="neutralLow" borderRadius="large" padding="2u">
-              <Text>{chapter.description}</Text>
-            </Box>
+            <div onClick={() => handleClick(chapter.title, 20)}>
+              <Title size="small">{chapter.title}</Title>
+            </div>
+            <div onClick={() => handleClick(chapter.description, 50)}>
+              <Box background="neutralLow" borderRadius="large" padding="2u">
+                <Text>{chapter.description}</Text>
+              </Box>
+            </div>
+
             <Box background="neutral" borderRadius="large">
               <AudioContextProvider>
                 {chapter.AudioPreviewURLs.map((audioUrl, index) => (
