@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Rows, Grid, Box, Slider } from "@canva/app-ui-kit";
 import { musicParameterOptions } from "./MusicParameterOption";
 import { useViewContext } from "src/context/contentContext";
@@ -8,7 +8,9 @@ const MusicParameter = () => {
     (option) => option.labelStart
   );
   const { setMusicParameters } = useViewContext();
-  setMusicParameters(initialParameters);
+  useEffect(() => {
+    setMusicParameters(initialParameters);
+  }, []);
   const handleSliderChange = (
     index: number, // 代表当前滑块的索引
     value: number,
