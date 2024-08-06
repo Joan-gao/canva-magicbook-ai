@@ -31,38 +31,38 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     try {
       setLoading(true);
 
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      // const response = await fetch("http://127.0.0.1:5000/generate/image", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Access-Control-Allow-Origin": "*",
-      //     // Authorization: `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify({
-      //     scenePrompts: chapterData.scenceImagePrompts,
-      //     imageStyle: imageStyle,
-      //     size: size,
-      //   }),
-      // });
+      const response = await fetch("http://127.0.0.1:5000/generate/image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          scenePrompts: chapterData.scenceImagePrompts,
+          imageStyle: imageStyle,
+          size: size,
+        }),
+      });
 
-      // if (!response.ok) {
-      //   throw new Error("Network response was not ok");
-      // }
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-      // const result = await response.json();
+      const result = await response.json();
 
-      // if (result.status === "success") {
-      //   console.log(result.imageData);
-      //   const imageFiles = result.imageData;
-      //   const scenes = Object.entries(imageFiles).map(([scenceName, url]) => ({
-      //     scenceName,
-      //     url,
-      //   }));
-      //   console.log(scenes);
-      //   setImageData(scenes);
-      // }
+      if (result.status === "success") {
+        console.log(result.imageData);
+        const imageFiles = result.imageData;
+        const scenes = Object.entries(imageFiles).map(([scenceName, url]) => ({
+          scenceName,
+          url,
+        }));
+        console.log(scenes);
+        setImageData({ imageFiles: scenes });
+      }
 
       // const imageFiles = {
       //   "The Hidden Treasure":

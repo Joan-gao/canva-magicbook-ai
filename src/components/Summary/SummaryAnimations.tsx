@@ -16,6 +16,7 @@ import {
 import { useViewContext } from "src/context/contentContext";
 import { upload } from "@canva/asset";
 import { addNativeElement } from "@canva/design";
+import MusicLoading from "src/pages/music/MusicLoading";
 const embedCardsData = [
   {
     ariaLabel: "Add embed to design",
@@ -101,7 +102,8 @@ const embedCardsData = [
 ];
 
 const SummaryAnimations: React.FC = () => {
-  const { chapterData, imageData, example, videoData } = useViewContext();
+  const { chapterData, imageData, example, videoData, setVideoData } =
+    useViewContext();
   const [loading, setLoading] = useState(false);
   // Mapping scenceDescription to embedCardsData description with thumbnailUrl from urlData
   const newEmbedCardsData = chapterData.scence.map((scence, index) => {
@@ -165,40 +167,38 @@ const SummaryAnimations: React.FC = () => {
     try {
       setLoading(true);
 
-      // // await new Promise((resolve) => setTimeout(resolve, 5000));
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      // const response = await fetch(
-      //   "http://127.0.0.1:5000/generate/animations",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Access-Control-Allow-Origin": "*",
-      //       // Authorization: `Bearer ${token}`,
-      //     },
-      //     body: JSON.stringify({
-      //       images: imageData,
-      //     }),
-      //   }
-      // );
+      const response = await fetch(
+        "http://127.0.0.1:5000/generate/animations",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            // Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            images: imageData,
+          }),
+        }
+      );
 
-      // if (!response.ok) {
-      //   throw new Error("Network response was not ok");
-      // }
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-      // const result = await response.json();
+      const result = await response.json();
 
-      // if (result.status === "success") {
-      //   console.log(result);
-      //   console.log(result.videoData);
-      //   const videoFiles = result.videoData;
-      //   const scenes = Object.entries(videoFiles).map(([scenceName, url]) => ({
-      //     scenceName,
-      //     url,
-      //   }));
-      //   console.log(scenes);
-      //   setVideoData(scenes);
-      // }
+      if (result.status === "success") {
+        const videoFiles = result.videoData;
+        const scenes = Object.entries(videoFiles).map(([scenceName, url]) => ({
+          scenceName,
+          url,
+        }));
+        console.log(scenes);
+        setVideoData({ videoFiles: scenes });
+      }
     } catch (error) {
       if (error instanceof Error) {
         console.log("error", error.message);
@@ -207,7 +207,7 @@ const SummaryAnimations: React.FC = () => {
       setLoading(false);
     }
   };
-  if (loading) return <LoadingIndicator size="medium" />;
+  if (loading) return <LoadingIndicator />;
   return (
     <Rows spacing="3u">
       <Grid alignX="stretch" alignY="stretch" columns={2} spacing="3u">

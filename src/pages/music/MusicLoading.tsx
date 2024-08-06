@@ -40,13 +40,13 @@ const MusicLoading: React.FC<MusicLoadingProps> = ({ goToPage }) => {
         <ProgressBar size="medium" tone="info" value={10} />
 
         {/* DELETE LATER */}
-        <Button
+        {/* <Button
           variant="primary"
           stretch={true}
           onClick={() => goToPage("Summary")}
         >
           Continue
-        </Button>
+        </Button> */}
       </Rows>
     </Box>
   );
