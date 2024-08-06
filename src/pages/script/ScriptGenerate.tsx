@@ -77,6 +77,7 @@ const ScriptGenerate: React.FC<ScriptGenerateProps> = ({
       const result = await response.json();
 
       if (result.status === "success") {
+        console.log(result.story);
         setChapterData(result.story);
       }
     } catch (error) {

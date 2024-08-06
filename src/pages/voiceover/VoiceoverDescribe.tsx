@@ -59,12 +59,12 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
 
       if (result.status === "success") {
         console.log(result.voiceData);
-        const voiceFiles = result.videoData;
-        const scenes = Object.entries(voiceFiles).map(([scenceName, url]) => ({
-          scenceName,
-          url,
-        }));
-        setAudioData(scenes);
+        const voiceFiles = result.voiceData;
+        const scenes = Object.entries(voiceFiles).map(([scenceName, url]) => {
+          return { scenceName, url };
+        });
+
+        setAudioData({ audioFiles: scenes });
       }
     } catch (error) {
       if (error instanceof Error) {

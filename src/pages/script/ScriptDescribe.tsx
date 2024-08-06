@@ -56,6 +56,8 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
       const result = await response.json();
 
       if (result.status === "success") {
+        console.log(result.story);
+        setScriptData(generteData);
         setChapterData(result.story);
       }
     } catch (error) {
@@ -64,7 +66,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
       }
     } finally {
       setLoading(false);
-      setScriptData(generteData);
+
       goToPage("ScriptGenerate");
     }
   };

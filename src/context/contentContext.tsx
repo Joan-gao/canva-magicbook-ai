@@ -39,6 +39,7 @@ interface AudioData {
 interface MusicData {
   musicUrl: string;
 }
+
 // interface ExampleData {
 //   title: string;
 //   chapterContent: [
@@ -105,6 +106,10 @@ interface ViewContextProps {
   setExample: (data: any) => void;
   musicData: MusicData;
   setMusicData: (data: any) => void;
+  musicOption: string;
+  setMusicOption: (data: any) => void;
+  musicParameters: string[];
+  setMusicParameters: (data: any) => void;
 }
 
 export const ViewContext = createContext<ViewContextProps>({
@@ -122,6 +127,10 @@ export const ViewContext = createContext<ViewContextProps>({
   setExample: () => {},
   musicData: defaultMusicData,
   setMusicData: () => {},
+  musicOption: "",
+  setMusicOption: () => {},
+  musicParameters: [""],
+  setMusicParameters: () => {},
 });
 
 export const useViewContext = () => useContext(ViewContext);
@@ -139,6 +148,8 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
   const [audioData, setAudioData] = useState<AudioData>(defaultAudioData);
   const [example, setExample] = useState(false);
   const [musicData, setMusicData] = useState<MusicData>(defaultMusicData);
+  const [musicOption, setMusicOption] = useState("happy");
+  const [musicParameters, setMusicParameters] = useState([]);
 
   return (
     <ViewContext.Provider
@@ -157,8 +168,10 @@ export const ViewProvider: FC<ViewProviderProps> = ({ children }) => {
         setExample,
         musicData,
         setMusicData,
-        // exampleData,
-        // setExampleData,
+        musicOption,
+        setMusicOption,
+        musicParameters,
+        setMusicParameters,
       }}
     >
       {children}

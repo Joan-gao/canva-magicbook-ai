@@ -10,7 +10,7 @@ import {
 import { useViewContext } from "src/context/contentContext";
 import { url } from "inspector";
 import { upload } from "@canva/asset";
-import { addNativeElement } from "@canva/design";
+import { addNativeElement, getCurrentPageContext } from "@canva/design";
 import { addAudioTrack } from "@canva/design";
 const chaptersData = [
   {
@@ -86,6 +86,26 @@ const SummaryChapters: React.FC = () => {
     // Add the image to the design
     await addAudioTrack({
       ref: result.ref,
+    });
+  };
+
+  const positionText = async (des: string) => {
+    const context = await getCurrentPageContext();
+    if (!context.dimensions) {
+      console.warn("The current design does not have dimensions");
+      return;
+    }
+    const width = 300;
+
+    const top = 20;
+    const left = 450;
+
+    await addNativeElement({
+      type: "TEXT",
+      children: [des],
+      width,
+      top,
+      left,
     });
   };
   return (

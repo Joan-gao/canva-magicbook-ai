@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Text,
@@ -16,12 +16,55 @@ import {
 } from "@canva/app-ui-kit";
 import MusicStyles from "src/components/MusicStyle";
 import MusicParameter from "src/components/MusicParameter";
+import { useViewContext } from "src/context/contentContext";
+import MusicLoading from "./MusicLoading";
 
 interface MusicDescribeProps {
   goToPage: (page: string) => void;
 }
 
 const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
+  const [loading, setLoading] = useState(false);
+  const { setMusicData, musicOption, musicParameters } = useViewContext();
+  const requestForMusic = async () => {
+    try {
+      setLoading(true);
+
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      const response = await fetch("http://127.0.0.1:5000/generate/music", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          option: musicOption,
+          parameters: musicParameters,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        console.log(result.musicData);
+        setMusicData({ musicUrl: result.musicData });
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("error", error.message);
+      }
+    } finally {
+      setLoading(false);
+
+      goToPage("Summary");
+    }
+  };
+  if (loading) return <MusicLoading goToPage={goToPage} />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -102,8 +145,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Durations */}
-        <Rows spacing="1u">
-          <Columns spacing="2u">
+        {/* <Rows spacing="1u"> */}
+        {/* <Columns spacing="2u">
             <Column width="containedContent">
               <Badge
                 tone="assist"
@@ -111,9 +154,9 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
                 ariaLabel="3"
                 text="3"
               ></Badge>
-            </Column>
+            </Column> */}
 
-            <Column>
+        {/* <Column>
               <Title tone="primary" size="small" alignment="start">
                 Set Duration
               </Title>
@@ -121,14 +164,10 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
           </Columns>
 
           <TextInput placeholder="Enter value from 5.0 to 300.0" />
-        </Rows>
+        </Rows> */}
 
         {/* Generate Button */}
-        <Button
-          variant="primary"
-          stretch={true}
-          onClick={() => goToPage("MusicLoading")}
-        >
+        <Button variant="primary" stretch={true} onClick={requestForMusic}>
           Generate
         </Button>
       </Rows>
