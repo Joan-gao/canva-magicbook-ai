@@ -219,14 +219,14 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
 
         {/* Preview / Generate Button */}
         <Rows spacing="1u">
-          <Button
+          {/* <Button
             variant="secondary"
             stretch={true}
             icon={PlayFilledIcon}
             onClick={() => {}}
           >
             Preview Speech
-          </Button>
+          </Button> */}
 
           <Button variant="primary" stretch={true} onClick={requestForVoice}>
             Generate
