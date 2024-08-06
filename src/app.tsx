@@ -6,16 +6,20 @@ import ScriptDescribe from "./pages/script/ScriptDescribe";
 import ScriptGenerate from "./pages/script/ScriptGenerate";
 import ScriptLoading from "./pages/script/ScriptLoading";
 // Design pages
-import DesignDescribe from "./pages/Design/DesignDescribe";
-import DesignLoading from "./pages/Design/DesignLoading";
+
+import DesignDescribe from './pages/Design/DesignDescribe';
+import DesignLoading from './pages/Design/DesignLoading';
+
 // voiceover pages
 import VoiceoverDescribe from "./pages/voiceover/VoiceoverDescribe";
 import VoiceoverLoading from "./pages/voiceover/VoiceoverLoading";
 // music pages
-import MusicDescribe from "./pages/music/MusicDescribe";
-import MusicLoading from "./pages/music/MusicLoading";
+
+import MusicDescribe from './pages/music/MusicDescribe';
+import MusicLoading from './pages/music/MusicLoading';
 // Summary page
-import Summary from "./pages/Summary/SummaryGeneration";
+import Summary from './pages/Summary/SummaryGeneration';
+
 
 // css
 import "./assets/styles/main.css";
@@ -49,7 +53,8 @@ const App: React.FC = () => {
       case "MusicLoading":
         return <MusicLoading goToPage={setCurrentPage} />;
 
-      case "Summary":
+      case 'Summary':
+
         return <Summary goToPage={setCurrentPage} />;
       default:
         return <HomePage goToPage={setCurrentPage} />;
