@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Badge,
   Box,
   Tab,
   Tabs,
@@ -62,10 +63,24 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
               </div>
             </Column>
 
-            <Column width="containedContent">
+            <Column width="fluid">
               <Title tone="primary" size="medium" alignment="start">
                 {example ? "Return to Home" : " Generated Contents"}
               </Title>
+            </Column>
+
+            <Column width='containedContent'>
+              <div
+                style={{background: 'none', border: 'none', cursor:'pointer'}}
+                onClick={() => goToPage('HomePage')}
+              >
+                <Badge
+                  ariaLabel='Home'
+                  text='Home'
+                  tone='assist'
+                  wrapInset='-0.5u'
+                />
+              </div>
             </Column>
           </Columns>
 
@@ -88,15 +103,6 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
           </TabPanels>
         </Rows>
       </Tabs>
-
-      {/* Continue Button */}
-      <Button
-        variant="primary"
-        stretch={true}
-        onClick={() => goToPage("HomePage")}
-      >
-        Continue
-      </Button>
     </Box>
   );
 };

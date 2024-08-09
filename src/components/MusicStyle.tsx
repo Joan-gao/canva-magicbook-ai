@@ -5,12 +5,14 @@ import { useViewContext } from "src/context/contentContext";
 
 const MusicStyles = () => {
   const { setMusicOption, musicOption } = useViewContext();
+
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", width: "100%", gap: "8px" }}
     >
       {musicStyleOptions.map((option, index) => (
         <Pill
+          key={index}
           ariaLabel={option.text}
           onClick={() => setMusicOption(option.text)}
           selected={musicOption == option.text ? true : false}
