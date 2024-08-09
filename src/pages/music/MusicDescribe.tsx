@@ -66,7 +66,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
     }
   };
 
-  if (loading) return <CustomLoading goToPage={goToPage} />;
+  if (loading) return <CustomLoading />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
