@@ -27,25 +27,30 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
 
   const [generteData, setGenerateData] = useState({
     scriptContent: "",
-    ageRange: "",
+    ageRange: [] as string[],
     storyType: "",
     teachingContent: "",
     length: 3,
   });
+
+  const isFormValid = () => {
+    return (
+      generteData.scriptContent.trim() !== "" &&
+      generteData.ageRange.length > 0 &&
+      generteData.storyType.trim() !== ""
+    );
+  };
 
   const requestForStory = async () => {
     console.log(generteData);
     try {
       setLoading(true);
 
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
-
       const response = await fetch("http://127.0.0.1:5000/generate/story", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ generatePrompt: generteData }),
       });
@@ -147,48 +152,15 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "adventure" })
-              }
-              text="Adventure"
-            />
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "birthday" })
-              }
-              text="Birthday"
-            />
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "science" })
-              }
-              text="Science"
-            />
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "travel" })
-              }
-              text="Travel"
-            />
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "language study" })
-              }
-              text="Language Study"
-            />
-            <Pill
-              ariaLabel="a pill"
-              onClick={() =>
-                setGenerateData({ ...generteData, storyType: "family" })
-              }
-              text="Family"
-            />
+            {["adventure", "birthday", "science", "travel", "language study", "family"].map((type) => (
+              <Pill
+                key={type}
+                ariaLabel={type}
+                onClick={() => setGenerateData({ ...generteData, storyType: type })}
+                text={type.charAt(0).toUpperCase() + type.slice(1)}
+                selected={generteData.storyType === type}
+              />
+            ))}
           </Carousel>
         </Rows>
 
@@ -228,7 +200,12 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Generate Button */}
-        <Button variant="primary" stretch={true} onClick={requestForStory}>
+        <Button
+          variant="primary"
+          stretch={true}
+          onClick={requestForStory}
+          disabled={!isFormValid()}
+        >
           Generate
         </Button>
       </Rows>
