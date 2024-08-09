@@ -1,4 +1,4 @@
-<h1 align="center">MagicBook: Your AI Story Journey with Kids🔮🌈</h1>
+<h1 align="center">MagicBook.AI: Start Your Magical Story Journey with Kids🔮🌈</h1>
 
 ## **Introduction**
 
