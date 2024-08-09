@@ -5,17 +5,14 @@ import {
   Title,
   Box,
   ArrowLeftIcon,
-  ArrowRightIcon,
-  PlayFilledIcon,
+  Badge,
   Columns,
   Column,
   Select,
-  Carousel,
-  Badge,
 } from "@canva/app-ui-kit";
-
 import { useViewContext } from "src/context/contentContext";
 import VoiceoverLoading from "./VoiceoverLoading";
+
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
 }
@@ -23,10 +20,10 @@ interface VoiceoverDescribeProps {
 const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
   const { chapterData, setAudioData } = useViewContext();
   const [loading, setLoading] = useState(false);
-  const [ageGroup, setAgeGroup] = useState("Middle-Aged");
-  const [gender, setGender] = useState("Male");
-  const [style, setStyle] = useState("StoryTelling");
-  const [language, setLanguage] = useState("English");
+  const [ageGroup, setAgeGroup] = useState<string | null>(null);
+  const [gender, setGender] = useState<string | null>(null);
+  const [style, setStyle] = useState<string | null>(null);
+  const [language, setLanguage] = useState<string | null>(null);
 
   const requestForVoice = async () => {
     console.log(chapterData);
@@ -76,7 +73,13 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
       goToPage("MusicDescribe");
     }
   };
+
   if (loading) return <VoiceoverLoading goToPage={goToPage} />;
+
+  const isFormValid = () => {
+    return language && gender && ageGroup && style;
+  };
+
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -96,6 +99,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
               Voiceover Description
             </Title>
           </Column>
+
           <Column width="containedContent">
             <div
               style={{ background: "none", border: "none", cursor: "pointer" }}
@@ -116,19 +120,12 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Title tone="primary" size="small" alignment="start">
             Language
           </Title>
-
           <Select
             onChange={(value) => setLanguage(value)}
             id="language"
             options={[
-              {
-                label: "English",
-                value: "English",
-              },
-              {
-                label: "Chinese",
-                value: "Chinese",
-              },
+              { label: "English", value: "English" },
+              { label: "Chinese", value: "Chinese" },
             ]}
           />
         </Rows>
@@ -138,97 +135,59 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           <Title tone="primary" size="small" alignment="start">
             Gender
           </Title>
-
           <Select
             onChange={(value) => setGender(value)}
             id="gender"
             options={[
-              {
-                label: "Male",
-                value: "Male",
-              },
-              {
-                label: "Female",
-                value: "Female",
-              },
-              {
-                label: "Non-Binary",
-                value: "Non-Binary",
-              },
+              { label: "Male", value: "Male" },
+              { label: "Female", value: "Female" },
+              { label: "Non-Binary", value: "Non-Binary" },
             ]}
           />
         </Rows>
+
         {/* Age group */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
             Age group
           </Title>
-
           <Select
             onChange={(value) => setAgeGroup(value)}
             id="ageGroup"
             options={[
-              {
-                label: "Children",
-                value: "Children",
-              },
-              {
-                label: "Young",
-                value: "Young",
-              },
-              {
-                label: "Middle-Aged",
-                value: "Middle-Aged",
-              },
-              {
-                label: "Senior",
-                value: "Senior",
-              },
+              { label: "Children", value: "Children" },
+              { label: "Young", value: "Young" },
+              { label: "Middle-Aged", value: "Middle-Aged" },
+              { label: "Senior", value: "Senior" },
             ]}
           />
         </Rows>
+
         {/* Voice Style Selection */}
         <Rows spacing="1u">
           <Title tone="primary" size="small" alignment="start">
             Voice Style
           </Title>
-
           <Select
             onChange={(value) => setStyle(value)}
             id="voiceStyle"
             options={[
-              {
-                label: "StoryTelling",
-                value: "Storytelling",
-              },
-              {
-                label: "Casual",
-                value: "Casual",
-              },
-              {
-                label: "Friendly",
-                value: "Friendly",
-              },
-              {
-                label: "Cheerful",
-                value: "Cheerful",
-              },
+              { label: "Storytelling", value: "Storytelling" },
+              { label: "Casual", value: "Casual" },
+              { label: "Friendly", value: "Friendly" },
+              { label: "Cheerful", value: "Cheerful" },
             ]}
           />
         </Rows>
 
         {/* Preview / Generate Button */}
         <Rows spacing="1u">
-          {/* <Button
-            variant="secondary"
+          <Button
+            variant="primary"
             stretch={true}
-            icon={PlayFilledIcon}
-            onClick={() => {}}
+            onClick={requestForVoice}
+            disabled={!isFormValid()}
           >
-            Preview Speech
-          </Button> */}
-
-          <Button variant="primary" stretch={true} onClick={requestForVoice}>
             Generate
           </Button>
         </Rows>
