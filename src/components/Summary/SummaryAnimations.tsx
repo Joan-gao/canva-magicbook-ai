@@ -126,9 +126,10 @@ const SummaryAnimations: React.FC = () => {
   });
   const DesignImageClick = async (url: string) => {
     // Upload an image
+    const imageType = example ? "image/png" : "image/webp";
     const result = await upload({
       type: "IMAGE",
-      mimeType: "image/png",
+      mimeType: imageType,
       url: url,
       thumbnailUrl: url,
     });

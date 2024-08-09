@@ -14,7 +14,6 @@ secrets.json
 .github/workflows/package-lock-check.yml
 .npmrc
 .nvmrc
-assets
 examples
 sdk
 utils
@@ -22,3 +21,4 @@ webpack.config.js
 styles/components.css
 jest.config.js
 CHANGELOG.md
+/backend/setting.yaml
