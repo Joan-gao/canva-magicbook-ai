@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
+  Badge,
   Tab,
   Tabs,
   TabList,
@@ -50,18 +51,18 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
     >
       <Tabs>
         <Rows spacing="1u">
+          {/* Page Title / Navigation */}
           <Columns spacing='1.5u'>
-            {/* Back Button */}
             <Column width='containedContent'>
               <div
                 style={{background: 'none', border: 'none', cursor:'pointer'}}
-                onClick={() => goToPage('MusicDescribe')}
+                onClick={() => goToPage('VoiceoverDescribe')}
               >
                 <ArrowLeftIcon />
               </div>
             </Column>
-              
-            <Column width='containedContent'>
+
+            <Column width='fluid'>
               <Title 
                 tone='primary'
                 size='medium'
@@ -69,6 +70,20 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
               >
                 Generated Contents
               </Title>
+            </Column>
+
+            <Column width='containedContent'>
+              <div
+                style={{background: 'none', border: 'none', cursor:'pointer'}}
+                onClick={() => goToPage('HomePage')}
+              >
+                <Badge
+                  ariaLabel='Home'
+                  text='Home'
+                  tone='assist'
+                  wrapInset='-0.5u'
+                />
+              </div>
             </Column>
           </Columns>
 

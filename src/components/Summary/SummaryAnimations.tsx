@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Rows,
   EmbedCard,
-  Grid,
+  Badge,
   Box,
   Text,
   VideoCard,
@@ -91,44 +91,48 @@ const embedCardsData = [
 const SummaryAnimations: React.FC = () => {
   return (
     <Rows spacing='3u'>
-      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="3u">
-        {embedCardsData.map((card, index) => (
-          <Rows spacing='1u'>
-            <Carousel >
-              <EmbedCard
-                key={index}
-                ariaLabel={card.ariaLabel}
-
-                onClick={card.onClick}
-                onDragStart={card.onDragStart}
-                thumbnailUrl={card.thumbnailUrl}
-                thumbnailHeight={80}
+      {embedCardsData.map((card, index) => (
+        <Rows spacing='1u'>
+          <Carousel >
+            <EmbedCard
+              key={index}
+              ariaLabel={card.ariaLabel}
+              onClick={card.onClick}
+              onDragStart={card.onDragStart}
+              thumbnailUrl={card.thumbnailUrl}
+              thumbnailHeight={160}
+            />
+            <VideoCard
+              borderRadius='none'
+              ariaLabel={card.ariaLabel}
+              onClick={card.onClick}
+              videoPreviewUrl={card.videoPreviewUrl}
+              thumbnailUrl={card.thumbnailUrl}
+              mimeType='video/mp4'
+              bottomEndVisibility='always'
+              thumbnailHeight={160}
+              bottomEnd= {
+              <Badge
+                ariaLabel='hover to play video'
+                text='hover to play video'
+                tone='contrast'
               />
-              <VideoCard
-                borderRadius='standard'
-                ariaLabel={card.ariaLabel}
-                onClick={card.onClick}
-                videoPreviewUrl={card.videoPreviewUrl}
-                thumbnailUrl={card.thumbnailUrl}
-                mimeType='video/mp4'
-                bottomEndVisibility='always'
-                thumbnailHeight={80}
-              />
-            </Carousel>
+              }
+            />
+          </Carousel>
 
-            <Box
-                background='neutralLow'
-                borderRadius='large'
-                padding='1u'
-              >
-                <Text>{card.description}</Text>
-              </Box>
-          </Rows>
-        ))}
-      </Grid>
+          <Box
+              background='neutralLow'
+              borderRadius='large'
+              padding='1u'
+            >
+              <Text>{card.description}</Text>
+            </Box>
+        </Rows>
+      ))}
 
-            {/* Animation Settings */}
-            <Rows spacing='1u'>
+      {/* Animation Settings */}
+      <Rows spacing='1u'>
         <Title
           tone='primary'
           size='small'
@@ -138,7 +142,7 @@ const SummaryAnimations: React.FC = () => {
         </Title>
 
 
-      {/* Story Length Slider */}
+        {/* Story Length Slider */}
         <Title
           tone='primary'
           size='xsmall'
