@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-
+import React, { useState } from "react";
 import {
   MultilineInput,
   Rows,
@@ -22,26 +21,25 @@ interface MusicDescribeProps {
 
 const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
   const [loading, setLoading] = useState(false);
-  const [selectedMusicStyle, setSelectedMusicStyle] = useState<string | null>(null);
+  const [musicDescription, setMusicDescription] = useState<string>("");
   const { setMusicData, musicOption, musicParameters } = useViewContext();
+
   const requestForMusic = async () => {
     try {
       setLoading(true);
-
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
 
       const response = await fetch("http://127.0.0.1:5000/generate/music", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          // Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           option: musicOption,
-          parameters: musicParameters,
+          parameters: { ...musicParameters, description: musicDescription },
         }),
       });
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -49,7 +47,6 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       const result = await response.json();
 
       if (result.status === "success") {
-        console.log(result.musicData);
         setMusicData({ musicUrl: result.musicData });
       }
     } catch (error) {
@@ -58,10 +55,12 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       }
     } finally {
       setLoading(false);
-
       goToPage("Summary");
     }
   };
+
+  const isButtonDisabled = !musicOption || !musicDescription.trim();
+
   if (loading) return <MusicLoading goToPage={goToPage} />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
@@ -98,48 +97,35 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
           </Column>
         </Columns>
 
-      {/* Descriptions */}
-      <Rows spacing='2u'>
-        <Columns spacing='2u'>
-          <Column width='containedContent'>
-            <Badge
-              tone='assist'
-              shape='circle'
-              ariaLabel='1'
-              text='1'
-            >
-            </Badge>
-          </Column>
-        
-          <Column>
-            <Title
-              tone='primary'
-              size='small'
-              alignment='start'
-            >
-              Descriptions
-            </Title>
-          </Column>
-        </Columns>
+        {/* Descriptions */}
+        <Rows spacing="2u">
+          <Columns spacing="2u">
+            <Column width="containedContent">
+              <Badge tone="assist" shape="circle" ariaLabel="1" text="1" />
+            </Column>
 
-        <MultilineInput
-          id='musicDescriptions'
-          autoGrow
-          minRows={2}
-          placeholder="Write your music descriptions here..."
-        />
-      </Rows>
+            <Column>
+              <Title tone="primary" size="small" alignment="start">
+                Descriptions
+              </Title>
+            </Column>
+          </Columns>
+
+          <MultilineInput
+            id="musicDescriptions"
+            autoGrow
+            minRows={2}
+            placeholder="Write your music descriptions here..."
+            value={musicDescription}
+            onChange={(value: string) => setMusicDescription(value)}
+            />
+        </Rows>
 
         {/* Styles Selection */}
         <Rows spacing="1u">
           <Columns spacing="2u">
             <Column width="containedContent">
-              <Badge
-                tone="assist"
-                shape="circle"
-                ariaLabel="2"
-                text="2"
-              ></Badge>
+              <Badge tone="assist" shape="circle" ariaLabel="2" text="2" />
             </Column>
 
             <Column>
@@ -156,12 +142,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         <Rows spacing="2u">
           <Columns spacing="2u">
             <Column width="containedContent">
-              <Badge
-                tone="assist"
-                shape="circle"
-                ariaLabel="3"
-                text="3"
-              ></Badge>
+              <Badge tone="assist" shape="circle" ariaLabel="3" text="3" />
             </Column>
 
             <Column>
@@ -171,11 +152,16 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
             </Column>
           </Columns>
 
-          <Switch id='isInstrumental' label="Instrumental" />
+          <Switch id="isInstrumental" label="Instrumental" />
         </Rows>
 
         {/* Generate Button */}
-        <Button variant="primary" stretch={true} onClick={requestForMusic}>
+        <Button
+          variant="primary"
+          stretch={true}
+          onClick={requestForMusic}
+          disabled={isButtonDisabled}
+        >
           Generate
         </Button>
       </Rows>
