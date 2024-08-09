@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Badge,
   Rows,
   EmbedCard,
   Grid,
@@ -210,36 +211,40 @@ const SummaryAnimations: React.FC = () => {
   if (loading) return <LoadingIndicator />;
   return (
     <Rows spacing="3u">
-      <Grid alignX="stretch" alignY="stretch" columns={2} spacing="3u">
-        {newEmbedCardsData.map((card, index) => (
-          <Rows spacing="1u">
-            <Carousel>
-              <EmbedCard
-                key={index}
-                ariaLabel={card.ariaLabel}
-                onClick={() => DesignImageClick(card.thumbnailUrl)}
-                onDragStart={card.onDragStart}
-                thumbnailUrl={card.thumbnailUrl}
-                thumbnailHeight={80}
+      {embedCardsData.map((card, index) => (
+        <Rows spacing='1u'>
+          <Carousel >
+            <EmbedCard
+              key={index}
+              ariaLabel={card.ariaLabel}
+              onClick={card.onClick}
+              onDragStart={card.onDragStart}
+              thumbnailUrl={card.thumbnailUrl}
+              thumbnailHeight={160}
+            />
+            <VideoCard
+              borderRadius='none'
+              ariaLabel={card.ariaLabel}
+              onClick={card.onClick}
+              videoPreviewUrl={card.videoPreviewUrl}
+              thumbnailUrl={card.thumbnailUrl}
+              mimeType='video/mp4'
+              bottomEndVisibility='always'
+              thumbnailHeight={160}
+              bottomEnd= {
+              <Badge
+                ariaLabel='hover to play video'
+                text='hover to play video'
+                tone='contrast'
               />
-              <VideoCard
-                borderRadius="standard"
-                ariaLabel={card.ariaLabel}
-                onClick={() => DesignVideoClick(card.videoPreviewUrl)}
-                videoPreviewUrl={card.videoPreviewUrl}
-                thumbnailUrl={card.thumbnailUrl}
-                mimeType="video/mp4"
-                bottomEndVisibility="always"
-                thumbnailHeight={80}
-              />
-            </Carousel>
-
+              }
+            />
+          </Carousel>
             <Box background="neutralLow" borderRadius="large" padding="1u">
               <Text>{card.description}</Text>
             </Box>
           </Rows>
         ))}
-      </Grid>
 
       {/* Animation Settings */}
       <Rows spacing="1u">
