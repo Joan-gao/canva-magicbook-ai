@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import {
-  Text,
-  TextInput,
+  MultilineInput,
   Rows,
   Columns,
   Column,
@@ -10,12 +9,10 @@ import {
   Button,
   Title,
   Box,
-  Slider,
-  Grid,
+  Switch,
   ArrowLeftIcon,
 } from "@canva/app-ui-kit";
 import MusicStyles from "src/components/MusicStyle";
-import MusicParameter from "src/components/MusicParameter";
 import { useViewContext } from "src/context/contentContext";
 import MusicLoading from "./MusicLoading";
 
@@ -25,6 +22,7 @@ interface MusicDescribeProps {
 
 const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
   const [loading, setLoading] = useState(false);
+  const [selectedMusicStyle, setSelectedMusicStyle] = useState<string | null>(null);
   const { setMusicData, musicOption, musicParameters } = useViewContext();
   const requestForMusic = async () => {
     try {
@@ -100,6 +98,38 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
           </Column>
         </Columns>
 
+      {/* Descriptions */}
+      <Rows spacing='2u'>
+        <Columns spacing='2u'>
+          <Column width='containedContent'>
+            <Badge
+              tone='assist'
+              shape='circle'
+              ariaLabel='1'
+              text='1'
+            >
+            </Badge>
+          </Column>
+        
+          <Column>
+            <Title
+              tone='primary'
+              size='small'
+              alignment='start'
+            >
+              Descriptions
+            </Title>
+          </Column>
+        </Columns>
+
+        <MultilineInput
+          id='musicDescriptions'
+          autoGrow
+          minRows={2}
+          placeholder="Write your music descriptions here..."
+        />
+      </Rows>
+
         {/* Styles Selection */}
         <Rows spacing="1u">
           <Columns spacing="2u">
@@ -107,8 +137,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
               <Badge
                 tone="assist"
                 shape="circle"
-                ariaLabel="1"
-                text="1"
+                ariaLabel="2"
+                text="2"
               ></Badge>
             </Column>
 
@@ -122,31 +152,9 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
           <MusicStyles />
         </Rows>
 
-        {/* Music Parameters */}
+        {/* Music Choice */}
         <Rows spacing="2u">
           <Columns spacing="2u">
-            <Column width="containedContent">
-              <Badge
-                tone="assist"
-                shape="circle"
-                ariaLabel="2"
-                text="2"
-              ></Badge>
-            </Column>
-
-            <Column>
-              <Title tone="primary" size="small" alignment="start">
-                Refine Music Parameters
-              </Title>
-            </Column>
-          </Columns>
-
-          <MusicParameter />
-        </Rows>
-
-        {/* Durations */}
-        {/* <Rows spacing="1u"> */}
-        {/* <Columns spacing="2u">
             <Column width="containedContent">
               <Badge
                 tone="assist"
@@ -154,17 +162,17 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
                 ariaLabel="3"
                 text="3"
               ></Badge>
-            </Column> */}
+            </Column>
 
-        {/* <Column>
+            <Column>
               <Title tone="primary" size="small" alignment="start">
-                Set Duration
+                Music Choice
               </Title>
             </Column>
           </Columns>
 
-          <TextInput placeholder="Enter value from 5.0 to 300.0" />
-        </Rows> */}
+          <Switch id='isInstrumental' label="Instrumental" />
+        </Rows>
 
         {/* Generate Button */}
         <Button variant="primary" stretch={true} onClick={requestForMusic}>
