@@ -1,4 +1,4 @@
-<h1 align="center">MagicBook: Start Your Magical Story Journey with Kids🔮🌈</h1>
+<h1 align="center">MagicBook: Your Magical Journey with Kids🔮🌈</h1>
 
 ## **Introduction**
 
