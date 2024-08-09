@@ -4,13 +4,11 @@ import { useState } from "react";
 import { useViewContext } from "src/context/contentContext";
 
 const MusicStyles = () => {
-  const { setMusicOption } = useViewContext();
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
 
-  const handleStyleSelection = (style: string) => {
-    setSelectedStyle(style);
-    setMusicOption(style);
-  };
+  const { setMusicOption, musicOption } = useViewContext();
+
+
+
 
   return (
     <div
@@ -20,9 +18,11 @@ const MusicStyles = () => {
         <Pill
           key={index}
           ariaLabel={option.text}
-          onClick={() => handleStyleSelection(option.text)}
+
+          onClick={() => setMusicOption(option.text)}
+          selected={musicOption == option.text ? true : false}
           text={option.text}
-          selected={selectedStyle === option.text}
+
         />
       ))}
     </div>

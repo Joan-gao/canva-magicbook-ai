@@ -15,7 +15,7 @@ import {
   LoadingIndicator,
 } from "@canva/app-ui-kit";
 import { useViewContext } from "src/context/contentContext";
-import ScriptLoading from "./ScriptLoading";
+import CustomLoading from "../../components/CustomProgress";
 
 interface ScriptDescProps {
   goToPage: (page: string) => void;
@@ -76,7 +76,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
     }
   };
 
-  if (loading) return <ScriptLoading goToPage={goToPage} />;
+  if (loading) return <CustomLoading />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">

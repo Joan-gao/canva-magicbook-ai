@@ -13,6 +13,10 @@ import {
 import { useViewContext } from "src/context/contentContext";
 import VoiceoverLoading from "./VoiceoverLoading";
 
+import CustomLoading from "src/components/CustomProgress";
+
+
+
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
 }
@@ -74,11 +78,12 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
     }
   };
 
-  if (loading) return <VoiceoverLoading goToPage={goToPage} />;
+
 
   const isFormValid = () => {
     return language && gender && ageGroup && style;
   };
+ if (loading) return <CustomLoading />;
 
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
@@ -188,6 +193,19 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             onClick={requestForVoice}
             disabled={!isFormValid()}
           >
+
+            Preview Speech
+          </Button> */}
+
+          <Button
+            variant="secondary"
+            stretch={true}
+            onClick={() => goToPage("MusicDescribe")}
+          >
+            Skip
+          </Button>
+          <Button variant="primary" stretch={true} onClick={requestForVoice}>
+
             Generate
           </Button>
         </Rows>

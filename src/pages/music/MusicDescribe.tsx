@@ -14,6 +14,7 @@ import {
 import MusicStyles from "src/components/MusicStyle";
 import { useViewContext } from "src/context/contentContext";
 import MusicLoading from "./MusicLoading";
+import CustomLoading from "src/components/CustomProgress";
 
 interface MusicDescribeProps {
   goToPage: (page: string) => void;
@@ -59,9 +60,11 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
     }
   };
 
+
   const isButtonDisabled = !musicOption || !musicDescription.trim();
 
-  if (loading) return <MusicLoading goToPage={goToPage} />;
+ if (loading) return <CustomLoading  />;
+
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -157,11 +160,21 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
 
         {/* Generate Button */}
         <Button
+
+          variant="secondary"
+          stretch={true}
+          onClick={() => goToPage("Summary")}
+        >
+          Skip
+        </Button>
+        <Button variant="primary" stretch={true} >
+
           variant="primary"
           stretch={true}
           onClick={requestForMusic}
           disabled={isButtonDisabled}
         >
+
           Generate
         </Button>
       </Rows>

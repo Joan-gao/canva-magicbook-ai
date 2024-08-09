@@ -13,6 +13,8 @@ import {
 } from "@canva/app-ui-kit";
 import { useViewContext } from "src/context/contentContext";
 import DesignLoading from "./DesignLoading";
+import LoadingBar from "src/components/CustomProgress";
+import CustomLoading from "src/components/CustomProgress";
 
 interface DesignDescribeProps {
   goToPage: (page: string) => void;
@@ -21,8 +23,11 @@ interface DesignDescribeProps {
 const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
   const { chapterData, setImageData } = useViewContext();
   const [loading, setLoading] = useState(false);
-  const [imageStyle, setImageStyle] = useState("");
+
+  const [imageStyle, setImageStyple] = useState("");
+
   const [size, setSize] = useState<string | null>(null);
+
 
   const requestForImage = async () => {
     try {
@@ -68,11 +73,13 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     }
   };
 
+
   const isFormValid = () => {
     return imageStyle !== "" && size !== null;
   };
 
-  if (loading) return <DesignLoading goToPage={goToPage} />;
+  if (loading) return <CustomLoading />;
+
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -101,6 +108,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
+
             {["Japanese anime", "Disney", "Clay", "American Marvel", "Realistic"].map((style) => (
               <Pill
                 key={style}
@@ -110,6 +118,7 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
                 selected={imageStyle === style}
               />
             ))}
+
           </Carousel>
         </Rows>
 

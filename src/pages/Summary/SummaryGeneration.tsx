@@ -16,6 +16,7 @@ import {
 } from "@canva/app-ui-kit";
 import SummaryChapters from "src/components/Summary/SummaryChapters";
 import SummaryAnimations from "src/components/Summary/SummaryAnimations";
+import { useViewContext } from "src/context/contentContext";
 
 interface SummaryPageProps {
   goToPage: (page: string) => void;
@@ -23,6 +24,7 @@ interface SummaryPageProps {
 
 const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
   const [currentPage, setCurrentPage] = useState<string>("illustrations");
+  const { example } = useViewContext();
   const handleClick = () => {
     setCurrentPage("illustrations");
   };
@@ -53,7 +55,9 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
                   border: "none",
                   cursor: "pointer",
                 }}
-                onClick={() => goToPage("MusicDescribe")}
+                onClick={() =>
+                  example ? goToPage("Main") : goToPage("MusicDescribe")
+                }
               >
                 <ArrowLeftIcon />
               </div>
@@ -61,7 +65,7 @@ const Summary: React.FC<SummaryPageProps> = ({ goToPage }) => {
 
             <Column width="fluid">
               <Title tone="primary" size="medium" alignment="start">
-                Generated Contents
+                {example ? "Return to Home" : " Generated Contents"}
               </Title>
             </Column>
 
