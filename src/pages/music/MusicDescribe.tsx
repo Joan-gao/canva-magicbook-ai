@@ -23,7 +23,7 @@ interface MusicDescribeProps {
 const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
   const [loading, setLoading] = useState(false);
   const [musicDescription, setMusicDescription] = useState<string>("");
-  const { setMusicData, musicOption, musicParameters } = useViewContext();
+  const { setMusicData, musicOption } = useViewContext();
 
   const requestForMusic = async () => {
     try {
@@ -37,7 +37,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         },
         body: JSON.stringify({
           option: musicOption,
-          parameters: { ...musicParameters, description: musicDescription },
+          description: musicDescription,
         }),
       });
 
@@ -60,10 +60,9 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
     }
   };
 
-
   const isButtonDisabled = !musicOption || !musicDescription.trim();
 
- if (loading) return <CustomLoading  />;
+  if (loading) return <CustomLoading />;
 
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
@@ -121,7 +120,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
             placeholder="Write your music descriptions here..."
             value={musicDescription}
             onChange={(value: string) => setMusicDescription(value)}
-            />
+          />
         </Rows>
 
         {/* Styles Selection */}
@@ -142,7 +141,7 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         </Rows>
 
         {/* Music Choice */}
-        <Rows spacing="2u">
+        {/* <Rows spacing="2u">
           <Columns spacing="2u">
             <Column width="containedContent">
               <Badge tone="assist" shape="circle" ariaLabel="3" text="3" />
@@ -154,27 +153,24 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
               </Title>
             </Column>
           </Columns>
-
+          
           <Switch id="isInstrumental" label="Instrumental" />
-        </Rows>
+        </Rows> */}
 
         {/* Generate Button */}
         <Button
-
           variant="secondary"
           stretch={true}
           onClick={() => goToPage("Summary")}
         >
           Skip
         </Button>
-        <Button variant="primary" stretch={true} >
-
+        <Button
           variant="primary"
           stretch={true}
           onClick={requestForMusic}
           disabled={isButtonDisabled}
         >
-
           Generate
         </Button>
       </Rows>

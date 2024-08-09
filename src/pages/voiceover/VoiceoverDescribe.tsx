@@ -15,8 +15,6 @@ import VoiceoverLoading from "./VoiceoverLoading";
 
 import CustomLoading from "src/components/CustomProgress";
 
-
-
 interface VoiceoverDescribeProps {
   goToPage: (page: string) => void;
 }
@@ -78,12 +76,10 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
     }
   };
 
-
-
   const isFormValid = () => {
     return language && gender && ageGroup && style;
   };
- if (loading) return <CustomLoading />;
+  if (loading) return <CustomLoading />;
 
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
@@ -187,7 +183,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
 
         {/* Preview / Generate Button */}
         <Rows spacing="1u">
-          <Button
+          {/* <Button
             variant="primary"
             stretch={true}
             onClick={requestForVoice}
@@ -195,7 +191,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           >
 
             Preview Speech
-          </Button> */}
+          </Button>  */}
 
           <Button
             variant="secondary"
@@ -205,7 +201,6 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
             Skip
           </Button>
           <Button variant="primary" stretch={true} onClick={requestForVoice}>
-
             Generate
           </Button>
         </Rows>

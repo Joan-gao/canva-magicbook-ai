@@ -18,6 +18,7 @@ import { useViewContext } from "src/context/contentContext";
 import { upload } from "@canva/asset";
 import { addNativeElement } from "@canva/design";
 import MusicLoading from "src/pages/music/MusicLoading";
+import CustomLoading from "../CustomProgress";
 const embedCardsData = [
   {
     ariaLabel: "Add embed to design",
@@ -208,43 +209,43 @@ const SummaryAnimations: React.FC = () => {
       setLoading(false);
     }
   };
-  if (loading) return <LoadingIndicator />;
+  if (loading) return <CustomLoading />;
   return (
     <Rows spacing="3u">
-      {embedCardsData.map((card, index) => (
-        <Rows spacing='1u'>
-          <Carousel >
+      {newEmbedCardsData.map((card, index) => (
+        <Rows spacing="1u">
+          <Carousel>
             <EmbedCard
               key={index}
               ariaLabel={card.ariaLabel}
-              onClick={card.onClick}
+              onClick={() => DesignImageClick(card.thumbnailUrl)}
               onDragStart={card.onDragStart}
               thumbnailUrl={card.thumbnailUrl}
               thumbnailHeight={160}
             />
             <VideoCard
-              borderRadius='none'
+              borderRadius="none"
               ariaLabel={card.ariaLabel}
-              onClick={card.onClick}
+              onClick={() => DesignVideoClick(card.videoPreviewUrl)}
               videoPreviewUrl={card.videoPreviewUrl}
               thumbnailUrl={card.thumbnailUrl}
-              mimeType='video/mp4'
-              bottomEndVisibility='always'
+              mimeType="video/mp4"
+              bottomEndVisibility="always"
               thumbnailHeight={160}
-              bottomEnd= {
-              <Badge
-                ariaLabel='hover to play video'
-                text='hover to play video'
-                tone='contrast'
-              />
+              bottomEnd={
+                <Badge
+                  ariaLabel="hover to play video"
+                  text="hover to play video"
+                  tone="contrast"
+                />
               }
             />
           </Carousel>
-            <Box background="neutralLow" borderRadius="large" padding="1u">
-              <Text>{card.description}</Text>
-            </Box>
-          </Rows>
-        ))}
+          <Box background="neutralLow" borderRadius="large" padding="1u">
+            <Text>{card.description}</Text>
+          </Box>
+        </Rows>
+      ))}
 
       {/* Animation Settings */}
       <Rows spacing="1u">
@@ -252,10 +253,10 @@ const SummaryAnimations: React.FC = () => {
         {!example && (
           <>
             <Title tone="primary" size="small" alignment="start">
-              Animation Settings (optional)
+              Create Animation for Image (optional)
             </Title>
             {/* Story Length Slider */}
-            <Title tone="primary" size="xsmall" alignment="start">
+            {/* <Title tone="primary" size="xsmall" alignment="start">
               Motion Length (seconds)
             </Title>
 
@@ -277,7 +278,7 @@ const SummaryAnimations: React.FC = () => {
                 { value: "aiMotion", label: "AI Motion" },
                 { value: "parallaxMotion", label: "Parallax Motion" },
               ]}
-            />
+            /> */}
 
             <Button
               variant="secondary"

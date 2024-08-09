@@ -24,10 +24,9 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
   const { chapterData, setImageData } = useViewContext();
   const [loading, setLoading] = useState(false);
 
-  const [imageStyle, setImageStyple] = useState("");
+  const [imageStyle, setImageStyle] = useState("");
 
   const [size, setSize] = useState<string | null>(null);
-
 
   const requestForImage = async () => {
     try {
@@ -73,7 +72,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     }
   };
 
-
   const isFormValid = () => {
     return imageStyle !== "" && size !== null;
   };
@@ -108,8 +106,13 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
-
-            {["Japanese anime", "Disney", "Clay", "American Marvel", "Realistic"].map((style) => (
+            {[
+              "Japanese anime",
+              "Disney",
+              "Clay",
+              "American Marvel",
+              "Realistic",
+            ].map((style) => (
               <Pill
                 key={style}
                 ariaLabel={style}
@@ -118,7 +121,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
                 selected={imageStyle === style}
               />
             ))}
-
           </Carousel>
         </Rows>
 
