@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Text,
   TextInput,
   Rows,
   Columns,
@@ -10,12 +9,11 @@ import {
   Button,
   Title,
   Box,
-  Slider,
-  Grid,
+  Switch,
   ArrowLeftIcon,
+  MultilineInput,
 } from '@canva/app-ui-kit';
 import MusicStyles from 'src/components/MusicStyle';
-import MusicParameter from 'src/components/MusicParameter';
 
 interface MusicDescribeProps {
   goToPage: (page: string) => void;
@@ -65,8 +63,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         </Column>
       </Columns>
 
-      {/* Styles Selection */}
-      <Rows spacing='1u'>
+      {/* Descriptions */}
+      <Rows spacing='2u'>
         <Columns spacing='2u'>
           <Column width='containedContent'>
             <Badge
@@ -74,6 +72,38 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
               shape='circle'
               ariaLabel='1'
               text='1'
+            >
+            </Badge>
+          </Column>
+        
+          <Column>
+            <Title
+              tone='primary'
+              size='small'
+              alignment='start'
+            >
+              Descriptions
+            </Title>
+          </Column>
+        </Columns>
+
+        <MultilineInput
+          id='musicDescriptions'
+          autoGrow
+          minRows={2}
+          placeholder="Write your music descriptions here..."
+        />
+      </Rows>
+
+      {/* Styles Selection */}
+      <Rows spacing='1u'>
+        <Columns spacing='2u'>
+          <Column width='containedContent'>
+            <Badge
+              tone='assist'
+              shape='circle'
+              ariaLabel='2'
+              text='2'
             >
             </Badge>
           </Column>
@@ -93,15 +123,15 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       </Rows>
 
 
-      {/* Music Parameters */}
+      {/* Music Choice */}
       <Rows spacing='2u'>
         <Columns spacing='2u'>
           <Column width='containedContent'>
             <Badge
               tone='assist'
               shape='circle'
-              ariaLabel='2'
-              text='2'
+              ariaLabel='3'
+              text='3'
             >
             </Badge>
           </Column>
@@ -112,12 +142,12 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
               size='small'
               alignment='start'
             >
-              Refine Music Parameters
+              Music Choice
             </Title>
           </Column>
         </Columns>
 
-        <MusicParameter />
+        <Switch id='isInstrumental' label="Instrumental" />
       </Rows>
 
       {/* Durations */}
@@ -127,8 +157,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
             <Badge
               tone='assist'
               shape='circle'
-              ariaLabel='3'
-              text='3'
+              ariaLabel='4'
+              text='4'
             >
             </Badge>
           </Column>

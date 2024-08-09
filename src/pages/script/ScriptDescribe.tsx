@@ -59,6 +59,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Title>
 
           <MultilineInput
+            id='scriptDescriptions'
             autoGrow
             minRows={2}
             placeholder="Write your script here..."
