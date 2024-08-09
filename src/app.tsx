@@ -26,7 +26,7 @@ const App: React.FC = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'Main':
-        return <HomePage goToPage={setCurrentPage} />;
+        return <ScriptLoading goToPage={setCurrentPage} />;
       case 'ScriptDescribe':
         return <ScriptDescribe goToPage={setCurrentPage} />;
       case 'ScriptLoading':
