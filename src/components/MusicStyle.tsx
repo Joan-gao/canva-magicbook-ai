@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useViewContext } from "src/context/contentContext";
 
 const MusicStyles = () => {
-  const { setMusicOption } = useViewContext();
+  const { setMusicOption, musicOption } = useViewContext();
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", width: "100%", gap: "8px" }}
@@ -13,6 +13,7 @@ const MusicStyles = () => {
         <Pill
           ariaLabel={option.text}
           onClick={() => setMusicOption(option.text)}
+          selected={musicOption == option.text ? true : false}
           text={option.text}
         />
       ))}

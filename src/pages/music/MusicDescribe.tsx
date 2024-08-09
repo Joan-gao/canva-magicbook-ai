@@ -18,6 +18,7 @@ import MusicStyles from "src/components/MusicStyle";
 import MusicParameter from "src/components/MusicParameter";
 import { useViewContext } from "src/context/contentContext";
 import MusicLoading from "./MusicLoading";
+import CustomLoading from "src/components/CustomProgress";
 
 interface MusicDescribeProps {
   goToPage: (page: string) => void;
@@ -64,7 +65,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
       goToPage("Summary");
     }
   };
-  if (loading) return <MusicLoading goToPage={goToPage} />;
+
+  if (loading) return <CustomLoading goToPage={goToPage} />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -167,6 +169,13 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         </Rows> */}
 
         {/* Generate Button */}
+        <Button
+          variant="secondary"
+          stretch={true}
+          onClick={() => goToPage("Summary")}
+        >
+          Skip
+        </Button>
         <Button variant="primary" stretch={true} onClick={requestForMusic}>
           Generate
         </Button>

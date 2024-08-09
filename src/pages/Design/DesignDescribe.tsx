@@ -16,6 +16,8 @@ import {
 import DesignStyle from "../../components/DesignStyle";
 import { useViewContext } from "src/context/contentContext";
 import DesignLoading from "./DesignLoading";
+import LoadingBar from "src/components/CustomProgress";
+import CustomLoading from "src/components/CustomProgress";
 
 interface DesignDescribeProps {
   goToPage: (page: string) => void;
@@ -24,7 +26,7 @@ interface DesignDescribeProps {
 const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
   const { chapterData, setImageData } = useViewContext();
   const [loading, setLoading] = useState(false);
-  const [imageStyle, setImageStyple] = useState("Disney");
+  const [imageStyle, setImageStyple] = useState("");
   const [size, setSize] = useState("Landscape");
   const requestForImage = async () => {
     // console.log(chapterData);
@@ -80,7 +82,9 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
       goToPage("VoiceoverDescribe");
     }
   };
-  if (loading) return <DesignLoading goToPage={goToPage} />;
+  // if (loading) return <DesignLoading goToPage={goToPage} />;
+
+  if (loading) return <CustomLoading />;
   return (
     <Box paddingTop="2u" paddingEnd="2u" paddingBottom="3u">
       <Rows spacing="3u">
@@ -113,26 +117,31 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
             <Pill
               ariaLabel="a pill"
               onClick={() => setImageStyple("Japanese anime")}
+              selected={imageStyle == "Japanese anime" ? true : false}
               text="Japanese anime"
             />
             <Pill
               ariaLabel="a pill"
               onClick={() => setImageStyple("Disney")}
+              selected={imageStyle == "Disney" ? true : false}
               text="Disney"
             />
             <Pill
               ariaLabel="a pill"
               onClick={() => setImageStyple("Clay")}
+              selected={imageStyle == "Clay" ? true : false}
               text="Clay"
             />
             <Pill
               ariaLabel="a pill"
               onClick={() => setImageStyple("American Marvel")}
+              selected={imageStyle == "American Marvel" ? true : false}
               text="American Marvel"
             />
             <Pill
               ariaLabel="a pill"
               onClick={() => setImageStyple("Realistic")}
+              selected={imageStyle == "Clay" ? true : false}
               text="Realistic"
             />
           </Carousel>
