@@ -92,7 +92,7 @@ pip install -r requirements.txt
 - Run the Flask application
 
 ```bash
-flask --app ChatPage run
+flask --app CanvaAPI run
 ```
 
 ## Links
