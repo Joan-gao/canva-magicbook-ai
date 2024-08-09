@@ -31,7 +31,7 @@ const MusicLoading: React.FC<MusicLoadingProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('ScriptDescribe')}
+            onClick={() => goToPage('MusicDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -98,7 +98,7 @@ const MusicLoading: React.FC<MusicLoadingProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('ScriptGenerate')}
+        onClick={() => goToPage('Summary')}
       >
         Continue
       </Button>

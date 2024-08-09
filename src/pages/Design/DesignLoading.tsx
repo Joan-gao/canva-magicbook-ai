@@ -31,7 +31,7 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('ScriptDescribe')}
+            onClick={() => goToPage('DesignDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -43,7 +43,7 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
             size='medium'
             alignment='start'
           >
-            Generating Script
+            Generating Design
           </Title>
         </Column>
       </Columns>
@@ -98,7 +98,7 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('ScriptGenerate')}
+        onClick={() => goToPage('VoiceoverDescribe')}
       >
         Continue
       </Button>

@@ -31,7 +31,7 @@ const VoiceoverLoading: React.FC<VoiceoverLoadingProps> = ({ goToPage }) => {
         <Column width='containedContent'>
           <div
             style={{background: 'none', border: 'none', cursor:'pointer'}}
-            onClick={() => goToPage('ScriptDescribe')}
+            onClick={() => goToPage('VoiceoverDescribe')}
           >
             <ArrowLeftIcon />
           </div>
@@ -98,7 +98,7 @@ const VoiceoverLoading: React.FC<VoiceoverLoadingProps> = ({ goToPage }) => {
       <Button
         variant="primary"
         stretch={true}
-        onClick={() => goToPage('ScriptGenerate')}
+        onClick={() => goToPage('MusicDescribe')}
       >
         Continue
       </Button>

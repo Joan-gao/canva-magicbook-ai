@@ -31,7 +31,7 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           <Column width='containedContent'>
             <div
               style={{background: 'none', border: 'none', cursor:'pointer'}}
-              onClick={() => goToPage('Main')}
+              onClick={() => goToPage('HomePage')}
             >
               <ArrowLeftIcon />
             </div>
