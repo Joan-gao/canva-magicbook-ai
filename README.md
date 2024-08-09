@@ -40,9 +40,9 @@ This project developed an AI-powered Canva App that offers a one-stop solution f
 
 ## Technical Highlights
 
-1. **Comprehensive AI Integration**: Utilizes multiple AI models, including ChatGPT for text generation, Stable Diffusion for image creation, AnimateDiffusion for animations, ChatTTS for voiceovers, and MusicGen for background music, providing an all-in-one solution for creating children’s books.
+1. **Comprehensive AI Integration**: Utilizes 6 AI models, including ChatGPT for text generation, Stable Diffusion and LoRa for image creation, AnimateDiffusion for animations, ChatTTS for voiceovers, and MusicGen for background music, providing an all-in-one solution for creating children’s books.
 
-2. **Seamless Canva Integration**: Directly connects generated content with Canva's design interface, enabling users to easily edit and enhance their stories, images, and videos within Canva before exporting the final product.
+2. **Seamless Canva Integration**: Utilizes Canva API to connect generated content directly with Canva's design interface, enabling users to easily edit and enhance their stories, images, and videos within Canva before exporting the final product.
 
 3. **User-Friendly Workflow**: Offers a streamlined, step-by-step process for generating scripts, illustrations, voiceovers, and music, making it accessible for users of all levels, including beginners, to create unique, interactive children's audiobooks.
 
