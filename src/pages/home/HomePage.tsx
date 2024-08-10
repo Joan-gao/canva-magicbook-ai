@@ -573,17 +573,6 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
     <Box paddingTop="2u" paddingBottom="3u">
       <Rows spacing="3u">
         <Rows spacing="1u">
-          <Carousel>
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Birthday" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Science" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Travel" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Language Study" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Family" />
-          </Carousel>
-        </Rows>
-
-        <Rows spacing="1u">
           <Grid alignX="stretch" alignY="stretch" columns={2} spacing="1u">
             <EmbedCard
               thumbnailHeight={140}
