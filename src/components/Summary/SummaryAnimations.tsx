@@ -173,7 +173,8 @@ const SummaryAnimations: React.FC = () => {
       // await new Promise((resolve) => setTimeout(resolve, 5000));
 
       const response = await fetch(
-        "http://127.0.0.1:5000/generate/animations",
+        "http:127.0.0.1:5000/generate/animations",
+        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/animations",
         {
           method: "POST",
           headers: {

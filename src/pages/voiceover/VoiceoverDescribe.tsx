@@ -34,21 +34,25 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
 
       // await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      const response = await fetch("http://127.0.0.1:5000/generate/voice", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          // Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          story: chapterData.scence,
-          language: language,
-          ageGroup: ageGroup,
-          style: style,
-          gender: gender,
-        }),
-      });
+      const response = await fetch(
+        "http://127.0.0.1:5000/generate/voice",
+        //   "https://canva-childbook-70af20fccda3.herokuapp.com/generate/voice",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            // Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            story: chapterData.scence,
+            language: language,
+            ageGroup: ageGroup,
+            style: style,
+            gender: gender,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

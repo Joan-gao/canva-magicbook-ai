@@ -46,14 +46,18 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
     try {
       setLoading(true);
 
-      const response = await fetch("http://127.0.0.1:5000/generate/story", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({ generatePrompt: generteData }),
-      });
+      const response = await fetch(
+        "http://127.0.0.1:5000/generate/story",
+        //  "https://canva-childbook-70af20fccda3.herokuapp.com/generate/story",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({ generatePrompt: generteData }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -152,11 +156,20 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
-            {["adventure", "birthday", "science", "travel", "language study", "family"].map((type) => (
+            {[
+              "adventure",
+              "birthday",
+              "science",
+              "travel",
+              "language study",
+              "family",
+            ].map((type) => (
               <Pill
                 key={type}
                 ariaLabel={type}
-                onClick={() => setGenerateData({ ...generteData, storyType: type })}
+                onClick={() =>
+                  setGenerateData({ ...generteData, storyType: type })
+                }
                 text={type.charAt(0).toUpperCase() + type.slice(1)}
                 selected={generteData.storyType === type}
               />
