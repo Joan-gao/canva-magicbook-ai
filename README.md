@@ -2,7 +2,7 @@
 
 ## **Introduction**
 
-This project developed an AI-powered Canva App that offers a one-stop solution for creating children's books, including story writing, storyboard drawing, animation, voice interaction, and music composition. Final outputs seamlessly integrate with Canva's design interface, enabling users to edit and enhance content before exporting. This app simplifies the production of unique stories, helping to build cherished memories for children.
+This project developed an AI-powered Canva App that offers a one-stop solution for creating children's books, including story writing, storyboard drawing, animation, voice interaction, and music composition. Final outputs seamlessly integrate with Canva's design interface, enabling users to edit and enhance content before exporting. Aligned with Canva's AI education strategy, MagicBook.AI enables personalized book creation, helps families create lasting memories, makes teaching more engaging, and introduces children to the fun and convenience of AI technology.
 
 ## **Technologies Use**
 1. **Frontend**: React, Typescript, JavaScript, Tailwind CSS
