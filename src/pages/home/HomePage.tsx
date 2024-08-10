@@ -604,7 +604,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
             <EmbedCard
               thumbnailHeight={140}
               ariaLabel="Add embed to design"
-              description="Puppyhood"
+              description=""
               onClick={() => handleExample("example4")}
               onDragStart={() => {}}
               thumbnailUrl={example4Depature}
