@@ -573,19 +573,9 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
     <Box paddingTop="2u" paddingBottom="3u">
       <Rows spacing="3u">
         <Rows spacing="1u">
-          <Carousel>
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Adventure" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Birthday" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Science" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Travel" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Language Study" />
-            <Pill ariaLabel="a pill" onClick={() => {}} text="Family" />
-          </Carousel>
-        </Rows>
-
-        <Rows spacing="1u">
           <Grid alignX="stretch" alignY="stretch" columns={2} spacing="1u">
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example1")}
@@ -594,6 +584,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example1.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example2")}
@@ -602,6 +593,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example2.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example3")}
@@ -610,14 +602,16 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example3.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
-              description="Puppyhood"
+              description=""
               onClick={() => handleExample("example4")}
               onDragStart={() => {}}
               thumbnailUrl={example4Depature}
               title={example4.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example5")}
