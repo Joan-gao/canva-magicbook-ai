@@ -586,6 +586,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
         <Rows spacing="1u">
           <Grid alignX="stretch" alignY="stretch" columns={2} spacing="1u">
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example1")}
@@ -594,6 +595,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example1.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example2")}
@@ -602,6 +604,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example2.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example3")}
@@ -610,6 +613,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example3.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description="Puppyhood"
               onClick={() => handleExample("example4")}
@@ -618,6 +622,7 @@ const HomePage: React.FC<HomePageProps> = ({ goToPage }) => {
               title={example4.storyTitle}
             />
             <EmbedCard
+              thumbnailHeight={140}
               ariaLabel="Add embed to design"
               description=""
               onClick={() => handleExample("example5")}
