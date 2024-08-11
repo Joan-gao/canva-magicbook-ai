@@ -48,8 +48,8 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
     try {
       // Step 1: Trigger the generation of the story
       const generateResponse = await fetch(
-        "http://127.0.0.1:5000/generate/story",
-        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/story",
+        // "http://127.0.0.1:5000/generate/story",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/story",
         {
           method: "POST",
           headers: {
@@ -71,7 +71,8 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
         const pollForStatus = async () => {
           try {
             const statusResponse = await fetch(
-              "http://127.0.0.1:5000/check-data-status",
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
               {
                 method: "POST",
                 headers: {

@@ -31,8 +31,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
     try {
       // Step 1: Trigger the generation of the music
       const generateResponse = await fetch(
-        "http://127.0.0.1:5000/generate/music",
-        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/music",
+        // "http://127.0.0.1:5000/generate/music",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/music",
         {
           method: "POST",
           headers: {
@@ -57,7 +57,8 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         const pollForStatus = async () => {
           try {
             const statusResponse = await fetch(
-              "http://127.0.0.1:5000/check-data-status",
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
               {
                 method: "POST",
                 headers: {

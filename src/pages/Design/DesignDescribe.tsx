@@ -33,8 +33,8 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     try {
       // Step 1: Trigger the generation of the image
       const generateResponse = await fetch(
-        "http://127.0.0.1:5000/generate/image",
-        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/image",
+        // "http://127.0.0.1:5000/generate/image",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/image",
         {
           method: "POST",
           headers: {
@@ -60,7 +60,8 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
         const pollForStatus = async () => {
           try {
             const statusResponse = await fetch(
-              "http://127.0.0.1:5000/check-data-status",
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
               {
                 method: "POST",
                 headers: {

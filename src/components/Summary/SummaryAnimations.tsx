@@ -171,8 +171,8 @@ const SummaryAnimations: React.FC = () => {
     try {
       // Step 1: Trigger the generation of the video
       const generateResponse = await fetch(
-        "http://127.0.0.1:5000/generate/animations",
-        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/animations",
+        //"http://127.0.0.1:5000/generate/animations",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/animations",
         {
           method: "POST",
           headers: {
@@ -197,7 +197,8 @@ const SummaryAnimations: React.FC = () => {
         const pollForStatus = async () => {
           try {
             const statusResponse = await fetch(
-              "http://127.0.0.1:5000/check-data-status",
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
               {
                 method: "POST",
                 headers: {
