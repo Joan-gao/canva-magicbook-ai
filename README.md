@@ -97,8 +97,8 @@ flask --app CanvaAPI run
 
 ## Links
 
-- ([Devpost](https://youtu.be/8D57UD3cWfo?si=xhHj6ELR5Tlrhy4y))
-- ([Demo Video](https://youtu.be/8D57UD3cWfo?si=xhHj6ELR5Tlrhy4y))
+- ([Devpost](https://devpost.com/software/magicbook-ai))
+- ([Demo Video](https://youtu.be/55oBUx3e9Ew?si=yQjwCAk-D6q2AKPH))
 
 ## Contributors
 
