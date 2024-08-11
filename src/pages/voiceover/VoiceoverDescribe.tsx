@@ -33,7 +33,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
       // Step 1: Trigger the generation of the voice
       const generateResponse = await fetch(
         // "http://127.0.0.1:5000/generate/voice",
-         "https://canva-childbook-70af20fccda3.herokuapp.com/generate/voice",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/voice",
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           try {
             const statusResponse = await fetch(
               // "http://127.0.0.1:5000/check-data-status",
-               "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status"
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
               {
                 method: "POST",
                 headers: {
