@@ -8,39 +8,9 @@ import {
   ArrowLeftIcon,
   Columns,
   Column,
-  LoadingIndicator,
 } from "@canva/app-ui-kit";
 import { useViewContext } from "src/context/contentContext";
 import ScriptLoading from "./ScriptLoading";
-
-// Define placeholder data
-const storyBackground =
-  "Once upon a time in a land far away, a magical adventure was about to begin. The sun was setting, casting a golden glow over the tranquil village, and everyone was eagerly anticipating the start of the journey.";
-
-const characters = [
-  {
-    name: "Lia",
-    description: "A brave young girl with a knack for solving mysteries.",
-  },
-  { name: "Rex", description: "A loyal dog who never leaves Lia’s side." },
-  {
-    name: "Professor Oak",
-    description: "An old wise man who provides guidance to the heroes.",
-  },
-];
-
-const chapters = [
-  {
-    title: "The Mysterious Forest",
-    description:
-      "Lia and Rex enter the forest, encountering strange creatures and finding clues about the ancient legend.",
-  },
-  {
-    title: "The Hidden Temple",
-    description:
-      "The duo discovers a hidden temple and faces challenges to uncover its secrets.",
-  },
-];
 
 interface ScriptGenerateProps {
   goToPage: (page: string) => void;

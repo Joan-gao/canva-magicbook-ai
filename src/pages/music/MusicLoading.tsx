@@ -3,8 +3,6 @@ import {
   Rows,
   Columns,
   Column,
-  Text,
-  Button,
   Title,
   Box,
   ArrowLeftIcon,
@@ -38,15 +36,6 @@ const MusicLoading: React.FC<MusicLoadingProps> = ({ goToPage }) => {
         </Columns>
 
         <ProgressBar size="medium" tone="info" value={10} />
-
-        {/* DELETE LATER */}
-        {/* <Button
-          variant="primary"
-          stretch={true}
-          onClick={() => goToPage("Summary")}
-        >
-          Continue
-        </Button> */}
       </Rows>
     </Box>
   );

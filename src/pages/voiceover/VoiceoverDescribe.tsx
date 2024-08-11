@@ -271,25 +271,8 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
           />
         </Rows>
 
-        {/* Preview / Generate Button */}
+        {/* Generate Button */}
         <Rows spacing="1u">
-          {/* <Button
-            variant="primary"
-            stretch={true}
-            onClick={requestForVoice}
-            disabled={!isFormValid()}
-          >
-
-            Preview Speech
-          </Button>  */}
-
-          <Button
-            variant="secondary"
-            stretch={true}
-            onClick={() => goToPage("MusicDescribe")}
-          >
-            Skip
-          </Button>
           <Button variant="primary" stretch={true} onClick={requestForVoice}>
             Generate
           </Button>

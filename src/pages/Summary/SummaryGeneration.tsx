@@ -9,7 +9,6 @@ import {
   TabPanels,
   TabPanel,
   Title,
-  Button,
   Column,
   Columns,
   ArrowLeftIcon,

@@ -33,7 +33,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
     try {
       // Step 1: Trigger the generation of the image
       const generateResponse = await fetch(
-        // "http://127.0.0.1:5000/generate/image",
         "https://canva-childbook-70af20fccda3.herokuapp.com/generate/image",
         {
           method: "POST",
@@ -113,53 +112,6 @@ const DesignDescribe: React.FC<DesignDescribeProps> = ({ goToPage }) => {
       setLoading(false);
     }
   };
-  // const requestForImage = async () => {
-  //   try {
-  //     setLoading(true);
-
-  //     await new Promise((resolve) => setTimeout(resolve, 5000));
-
-  //     const response = await fetch(
-  //       "http:127.0.0.1:5000/generate/image",
-  //       // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/image",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           scenePrompts: chapterData.scenceImagePrompts,
-  //           imageStyle: imageStyle,
-  //           size: size,
-  //         }),
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
-
-  //     const result = await response.json();
-
-  //     if (result.status === "success") {
-  //       console.log(result.imageData);
-  //       const imageFiles = result.imageData;
-  //       const scenes = Object.entries(imageFiles).map(([scenceName, url]) => ({
-  //         scenceName,
-  //         url,
-  //       }));
-  //       console.log(scenes);
-  //       setImageData({ imageFiles: scenes });
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       console.log("error", error.message);
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //     goToPage("VoiceoverDescribe");
-  //   }
-  // };
 
   const isFormValid = () => {
     return imageStyle !== "" && size !== null;
