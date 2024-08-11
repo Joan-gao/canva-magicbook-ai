@@ -26,12 +26,13 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
   const { setMusicData, musicOption } = useViewContext();
 
   const requestForMusic = async () => {
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      const response = await fetch(
+    try {
+      // Step 1: Trigger the generation of the music
+      const generateResponse = await fetch(
         "http://127.0.0.1:5000/generate/music",
-        //  "https://canva-childbook-70af20fccda3.herokuapp.com/generate/music",
+        // "https://canva-childbook-70af20fccda3.herokuapp.com/generate/music",
         {
           method: "POST",
           headers: {
@@ -45,24 +46,99 @@ const MusicDescribe: React.FC<MusicDescribeProps> = ({ goToPage }) => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (!generateResponse.ok) {
+        throw new Error("Failed to generate music");
       }
 
-      const result = await response.json();
+      const generateResult = await generateResponse.json();
 
-      if (result.status === "success") {
-        setMusicData({ musicUrl: result.musicData });
+      if (generateResult.status === "pending") {
+        // Step 2: Start polling /check-data-status every 30 seconds using setTimeout
+        const pollForStatus = async () => {
+          try {
+            const statusResponse = await fetch(
+              "http://127.0.0.1:5000/check-data-status",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ task: "music" }), // 将task参数传递为POST请求的body内容
+              }
+            );
+
+            if (!statusResponse.ok) {
+              throw new Error("Failed to check data status");
+            }
+
+            const statusResult = await statusResponse.json();
+
+            if (statusResult.status === "success") {
+              // 如果状态为成功，停止轮询并进行后续操作
+              console.log(statusResult.data); // 打印获取到的数据
+              setMusicData({ musicUrl: statusResult.data });
+
+              setLoading(false);
+              goToPage("Summary");
+            } else {
+              // 如果状态仍然是 pending，继续轮询
+              setTimeout(pollForStatus, 30000); // 30秒后再次检查状态
+            }
+          } catch (error) {
+            if (error instanceof Error) {
+              console.log("error", error.message);
+            }
+          }
+        };
+
+        pollForStatus(); // Initial call to check status immediately
       }
     } catch (error) {
       if (error instanceof Error) {
         console.log("error", error.message);
       }
-    } finally {
       setLoading(false);
-      goToPage("Summary");
     }
   };
+  // const requestForMusic = async () => {
+  //   try {
+  //     setLoading(true);
+
+  //     const response = await fetch(
+  //       "http://127.0.0.1:5000/generate/music",
+  //       //  "https://canva-childbook-70af20fccda3.herokuapp.com/generate/music",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //         body: JSON.stringify({
+  //           option: musicOption,
+  //           description: musicDescription,
+  //         }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const result = await response.json();
+
+  //     if (result.status === "success") {
+  //       setMusicData({ musicUrl: result.musicData });
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       console.log("error", error.message);
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //     goToPage("Summary");
+  //   }
+  // };
 
   const isButtonDisabled = !musicOption || !musicDescription.trim();
 

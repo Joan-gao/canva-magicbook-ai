@@ -59,7 +59,7 @@ const chaptersData = [
 
 const SummaryChapters: React.FC = () => {
   const { chapterData, musicData, audioData } = useViewContext();
-
+  console.log("aduioData", audioData);
   const newChaptersData = chapterData.scence.map((scence) => {
     // 查找与当前 scence 相关的所有 audioData
     const urlInfos = audioData.audioFiles.find(
