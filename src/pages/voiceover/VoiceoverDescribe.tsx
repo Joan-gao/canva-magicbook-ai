@@ -26,55 +26,145 @@ const VoiceoverDescribe: React.FC<VoiceoverDescribeProps> = ({ goToPage }) => {
   const [gender, setGender] = useState<string | null>(null);
   const [style, setStyle] = useState<string | null>(null);
   const [language, setLanguage] = useState<string | null>(null);
-
   const requestForVoice = async () => {
-    console.log(chapterData);
+    setLoading(true);
+
     try {
-      setLoading(true);
+      // Step 1: Trigger the generation of the voice
+      const generateResponse = await fetch(
+        // "http://127.0.0.1:5000/generate/voice",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/voice",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            // Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            story: chapterData.scence,
+            language: language,
+            ageGroup: ageGroup,
+            style: style,
+            gender: gender,
+          }),
+        }
+      );
 
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
-
-      const response = await fetch("http://127.0.0.1:5000/generate/voice", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          // Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          story: chapterData.scence,
-          language: language,
-          ageGroup: ageGroup,
-          style: style,
-          gender: gender,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (!generateResponse.ok) {
+        throw new Error("Failed to generate voice");
       }
 
-      const result = await response.json();
+      const generateResult = await generateResponse.json();
 
-      if (result.status === "success") {
-        console.log(result.voiceData);
-        const voiceFiles = result.voiceData;
-        const scenes = Object.entries(voiceFiles).map(([scenceName, url]) => {
-          return { scenceName, url };
-        });
+      if (generateResult.status === "pending") {
+        // Step 2: Start polling /check-data-status every 30 seconds using setTimeout
+        const pollForStatus = async () => {
+          try {
+            const statusResponse = await fetch(
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ task: "voice" }), // 将task参数传递为POST请求的body内容
+              }
+            );
 
-        setAudioData({ audioFiles: scenes });
+            if (!statusResponse.ok) {
+              throw new Error("Failed to check data status");
+            }
+
+            const statusResult = await statusResponse.json();
+
+            if (statusResult.status === "success") {
+              console.log(statusResult.data); // 打印获取到的数据
+
+              const voiceFiles = statusResult.data;
+              const scenes = Object.entries(voiceFiles).map(
+                ([scenceName, url]) => {
+                  return { scenceName, url };
+                }
+              );
+
+              setAudioData({ audioFiles: scenes });
+
+              setLoading(false);
+              goToPage("MusicDescribe");
+            } else {
+              // 如果状态仍然是 pending，继续轮询
+              setTimeout(pollForStatus, 30000); // 30秒后再次检查状态
+            }
+          } catch (error) {
+            if (error instanceof Error) {
+              console.log("error", error.message);
+            }
+          }
+        };
+
+        pollForStatus(); // Initial call to check status immediately
       }
     } catch (error) {
       if (error instanceof Error) {
         console.log("error", error.message);
       }
-    } finally {
       setLoading(false);
-
-      goToPage("MusicDescribe");
     }
   };
+  // const requestForVoice = async () => {
+  //   try {
+  //     setLoading(true);
+
+  //     // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  //     const response = await fetch(
+  //       "http://127.0.0.1:5000/generate/voice",
+  //       //   "https://canva-childbook-70af20fccda3.herokuapp.com/generate/voice",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //           // Authorization: `Bearer ${token}`,
+  //         },
+  //         body: JSON.stringify({
+  //           story: chapterData.scence,
+  //           language: language,
+  //           ageGroup: ageGroup,
+  //           style: style,
+  //           gender: gender,
+  //         }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const result = await response.json();
+
+  //     if (result.status === "success") {
+  //       console.log("result.voiceData", result.voiceData);
+  //       const voiceFiles = result.voiceData;
+  //       const scenes = Object.entries(voiceFiles).map(([scenceName, url]) => {
+  //         return { scenceName, url };
+  //       });
+
+  //       setAudioData({ audioFiles: scenes });
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       console.log("error", error.message);
+  //     }
+  //   } finally {
+  //     setLoading(false);
+
+  //     goToPage("MusicDescribe");
+  //   }
+  // };
 
   const isFormValid = () => {
     return language && gender && ageGroup && style;

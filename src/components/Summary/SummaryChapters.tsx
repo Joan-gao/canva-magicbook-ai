@@ -59,7 +59,7 @@ const chaptersData = [
 
 const SummaryChapters: React.FC = () => {
   const { chapterData, musicData, audioData } = useViewContext();
-
+  console.log("aduioData", audioData);
   const newChaptersData = chapterData.scence.map((scence) => {
     // 查找与当前 scence 相关的所有 audioData
     const urlInfos = audioData.audioFiles.find(
@@ -124,40 +124,45 @@ const SummaryChapters: React.FC = () => {
                 <Text>{chapter.description}</Text>
               </Box>
             </div>
-
-            <Box background="neutral" borderRadius="large">
-              <AudioContextProvider>
-                {chapter.AudioPreviewURLs.map((audioUrl, index) => (
-                  <AudioCard
-                    key={index}
-                    durationInSeconds={3}
-                    audioPreviewUrl={audioUrl} // 确保这里是单个 URL
-                    onClick={() => DesignAudioClick(audioUrl, chapter.title)}
-                    onDragStart={() => {}}
-                    thumbnailUrl=""
-                    title={`${chapter.AudioTitle}`} // 为每个音频添加编号
-                  />
-                ))}
-              </AudioContextProvider>
-            </Box>
+            {audioData.audioFiles && (
+              <Box background="neutral" borderRadius="large">
+                <AudioContextProvider>
+                  {chapter.AudioPreviewURLs.map((audioUrl, index) => (
+                    <AudioCard
+                      key={index}
+                      durationInSeconds={3}
+                      audioPreviewUrl={audioUrl} // 确保这里是单个 URL
+                      onClick={() => DesignAudioClick(audioUrl, chapter.title)}
+                      onDragStart={() => {}}
+                      thumbnailUrl=""
+                      title={`${chapter.AudioTitle}`} // 为每个音频添加编号
+                    />
+                  ))}
+                </AudioContextProvider>
+              </Box>
+            )}
           </Rows>
         </Box>
       ))}
-      <Box background="neutralLow" borderRadius="large" padding="2u">
-        <Text>Music For The Story</Text>
-      </Box>
-      <Box background="neutral" borderRadius="large">
-        <AudioContextProvider>
-          <AudioCard
-            audioPreviewUrl={musicData.musicUrl}
-            durationInSeconds={60}
-            onClick={() => DesignAudioClick(musicData.musicUrl, "Music")}
-            onDragStart={() => {}}
-            thumbnailUrl=""
-            title="Music"
-          />
-        </AudioContextProvider>
-      </Box>
+      {musicData.musicUrl && (
+        <>
+          <Box background="neutralLow" borderRadius="large" padding="2u">
+            <Text>Music For The Story</Text>
+          </Box>
+          <Box background="neutral" borderRadius="large">
+            <AudioContextProvider>
+              <AudioCard
+                audioPreviewUrl={musicData.musicUrl}
+                durationInSeconds={60}
+                onClick={() => DesignAudioClick(musicData.musicUrl, "Music")}
+                onDragStart={() => {}}
+                thumbnailUrl=""
+                title="Music"
+              />
+            </AudioContextProvider>
+          </Box>
+        </>
+      )}
     </Rows>
   );
 };

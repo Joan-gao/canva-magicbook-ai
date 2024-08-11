@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import axios from "axios";
 import {
   Rows,
   Button,
@@ -42,39 +43,120 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
   };
 
   const requestForStory = async () => {
-    console.log(generteData);
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      const response = await fetch("http://127.0.0.1:5000/generate/story", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({ generatePrompt: generteData }),
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+    try {
+      // Step 1: Trigger the generation of the story
+      const generateResponse = await fetch(
+        // "http://127.0.0.1:5000/generate/story",
+        "https://canva-childbook-70af20fccda3.herokuapp.com/generate/story",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({ generatePrompt: generteData }),
+        }
+      );
+
+      if (!generateResponse.ok) {
+        throw new Error("Failed to generate story");
       }
 
-      const result = await response.json();
+      const generateResult = await generateResponse.json();
 
-      if (result.status === "success") {
-        console.log(result.story);
-        setScriptData(generteData);
-        setChapterData(result.story);
+      if (generateResult.status === "pending") {
+        // Step 2: Start polling /check-data-status every 10 seconds
+        const pollForStatus = async () => {
+          try {
+            const statusResponse = await fetch(
+              // "http://127.0.0.1:5000/check-data-status",
+              "https://canva-childbook-70af20fccda3.herokuapp.com/check-data-status",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({ task: "story" }), // 将task参数传递为POST请求的body内容
+              }
+            );
+
+            if (!statusResponse.ok) {
+              throw new Error("Failed to check data status");
+            }
+
+            const statusResult = await statusResponse.json();
+
+            if (statusResult.status === "success") {
+              // 如果状态为成功，停止轮询并进行后续操作
+              console.log(statusResult.data); // 打印获取到的数据
+              setScriptData(generteData);
+              setChapterData(statusResult.data);
+
+              setLoading(false);
+              goToPage("ScriptGenerate");
+
+              // 停止轮询
+              clearInterval(pollingInterval);
+            }
+          } catch (error) {
+            if (error instanceof Error) {
+              console.log("error", error.message);
+            }
+          }
+        };
+
+        // Start polling every 10 seconds
+        const pollingInterval = setInterval(pollForStatus, 10000);
+        pollForStatus(); // Initial call to check status immediately
       }
     } catch (error) {
       if (error instanceof Error) {
         console.log("error", error.message);
       }
-    } finally {
       setLoading(false);
-
-      goToPage("ScriptGenerate");
     }
   };
+  // const requestForStory = async () => {
+  //   console.log(generteData);
+  //   try {
+  //     setLoading(true);
+
+  //     const response = await fetch(
+  //       "http://127.0.0.1:5000/generate/story",
+  //       //  "https://canva-childbook-70af20fccda3.herokuapp.com/generate/story",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //         body: JSON.stringify({ generatePrompt: generteData }),
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const result = await response.json();
+
+  //     if (result.status === "success") {
+  //       console.log(result.story);
+  //       setScriptData(generteData);
+  //       setChapterData(result.story);
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       console.log("error", error.message);
+  //     }
+  //   } finally {
+  //     setLoading(false);
+
+  //     goToPage("ScriptGenerate");
+  //   }
+  // };
 
   if (loading) return <CustomLoading />;
   return (
@@ -152,11 +234,20 @@ const ScriptDesc: React.FC<ScriptDescProps> = ({ goToPage }) => {
           </Title>
 
           <Carousel>
-            {["adventure", "birthday", "science", "travel", "language study", "family"].map((type) => (
+            {[
+              "adventure",
+              "birthday",
+              "science",
+              "travel",
+              "language study",
+              "family",
+            ].map((type) => (
               <Pill
                 key={type}
                 ariaLabel={type}
-                onClick={() => setGenerateData({ ...generteData, storyType: type })}
+                onClick={() =>
+                  setGenerateData({ ...generteData, storyType: type })
+                }
                 text={type.charAt(0).toUpperCase() + type.slice(1)}
                 selected={generteData.storyType === type}
               />
