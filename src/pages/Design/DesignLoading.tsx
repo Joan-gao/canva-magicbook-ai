@@ -38,15 +38,6 @@ const DesignLoading: React.FC<DesignLoadingProps> = ({ goToPage }) => {
         </Columns>
 
         <ProgressBar size="medium" tone="info" value={10} />
-
-        {/* REMOVE LATER */}
-        {/* <Button
-        variant="primary"
-        stretch={true}
-        onClick={() => goToPage('VoiceoverDescribe')}
-      >
-        Continue
-      </Button> */}
       </Rows>
     </Box>
   );

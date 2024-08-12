@@ -10,8 +10,6 @@ import {
   TabPanel,
   Title,
   Button,
-  Carousel,
-  Pill,
   EmbedCard,
   Grid,
 } from "@canva/app-ui-kit";

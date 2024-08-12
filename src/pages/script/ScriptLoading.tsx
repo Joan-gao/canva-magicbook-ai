@@ -3,8 +3,6 @@ import {
   Rows,
   Columns,
   Column,
-  Text,
-  Button,
   Title,
   Box,
   ArrowLeftIcon,
@@ -38,15 +36,6 @@ const ScriptLoading: React.FC<ScriptLoadingProps> = ({ goToPage }) => {
         </Columns>
 
         <ProgressBar size="medium" tone="info" value={10} />
-
-        {/* REMOVE LATER */}
-        {/* <Button
-        variant="primary"
-        stretch={true}
-        onClick={() => goToPage('ScriptGenerate')}
-      >
-        Continue
-      </Button> */}
       </Rows>
     </Box>
   );

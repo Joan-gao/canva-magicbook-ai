@@ -8,7 +8,6 @@ import {
   Button,
   Title,
   Box,
-  Switch,
   ArrowLeftIcon,
 } from "@canva/app-ui-kit";
 import MusicStyles from "src/components/MusicStyle";
