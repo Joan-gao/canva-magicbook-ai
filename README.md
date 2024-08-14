@@ -105,4 +105,4 @@ flask --app CanvaAPI run
 - **Xinyi Gao** [[Linkedin](https://www.linkedin.com/in/xinyi-gao-cn/)][[GitHub](https://github.com/Joan-gao)]: Product Design, UI/UX Design, Front-end Development, AI Model Testing
 - **Viet Doan** [[Linkedin](https://www.linkedin.com/in/viet-doan-vqd/)][[GitHub](https://github.com/viet-doan)]: UI/UX Design, Front-end Development
 - **Li Cui** [[Linkedin](https://www.linkedin.com/in/li-cui-73809027b)][[GitHub](https://github.com/amandaliberaann)]: Backend Development, AI Model Testing
-- **Lee ( Jiacheng ) Li** [[Linkedin](https://www.linkedin.com/in/jiacheng-li-b17b41242/)][[GitHub](https://github.com/ljc0359)]: AI Development
+- **Lee ( Jiacheng ) Li** [[Linkedin](https://www.linkedin.com/in/jiacheng-li-b17b41242/)][[GitHub](https://github.com/ljc0359)]: AI Development, Backend Development
